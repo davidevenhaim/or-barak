@@ -46,7 +46,7 @@ export enum DateFormating {
   HUMANIZED = "eeee 'at' h:mm a",
 
   /** e.g., Thursday */
-  DAY_NAME = "EEEE",
+  DAY_NAME = "EEEE"
 }
 
 export const formatDateRange = (
@@ -65,9 +65,9 @@ export const getDateLocale = (currentLang: Language): Locale => {
   if (currentLang === Language.HE) {
     return he;
   }
-  if (currentLang === Language.ES) {
-    return es;
-  }
+  // if (currentLang === Language.ES) {
+  //   return es;
+  // }
   return enUS;
 };
 
@@ -86,6 +86,17 @@ export const ifDayIsToday = (day: number) => {
 
 export const toUtcDate = (date: Date, appLocale: Language = Language.EN) => {
   return format(date, "yyyy-MM-dd'T'HH:mm:ss.SSS", {
-    locale: getDateLocale(appLocale),
+    locale: getDateLocale(appLocale)
   });
+};
+
+/**
+ * Format a post date from ISO string to readable format
+ * e.g., "2025-10-20T09:00:00.000Z" -> "October 20, 2025"
+ */
+export const formatPostDate = (
+  isoString: string,
+  appLocale: Language = Language.EN
+): string => {
+  return formatDate(new Date(isoString), DateFormating.FULL_DATE, appLocale);
 };

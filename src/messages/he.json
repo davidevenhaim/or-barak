@@ -19,8 +19,23 @@
   "social_email": "אימייל",
 
   "home_hero_name": "אור ברק",
-  "home_hero_subtitle": "צלם וידאו ובמאי יצירה",
-  "home_hero_description": "ברוכים הבאים לתיק העבודות והיומן היצירתי שלי. זהו מקום שומר מקום זמני - האתר המלא בבנייה.",
+  "home_hero_subtitle": "צלם וידאו ומנהל קריאייטיב",
+  "home_hero_description": "מספר סיפורים ויזואלי היוצר נרטיבים מרתקים באמצעות קולנוע וצילום. מביא חזונות קריאטיביים לחיים עם תשוקה ודיוק.",
+
+  "home_videos_title": "עבודות אחרונות",
+  "home_videos_description": "גלו את הפקות הווידאו והפרויקטים הקולנועיים האחרונים שלי",
+
+  "home_quicklinks_title": "גלו עוד",
+  "home_quicklinks_description": "חקרו תחומים שונים בעבודה הקריאטיבית שלי",
+
+  "home_partners_title": "שיתופי הפעולה שלי",
+
+  "home_newsletter_title": "הישארו מחוברים",
+  "home_newsletter_description": "הירשמו לקבלת עדכונים על פרויקטים חדשים, תוכן מאחורי הקלעים ותובנות קריאטיביות.",
+  "home_newsletter_success": "תודה על ההרשמה! תקבלו עדכונים בקרוב.",
+  "home_newsletter_submit": "הירשמו",
+  "home_newsletter_email_placeholder": "הכניסו את כתובת האימייל שלכם",
+  "home_newsletter_name_placeholder": "שמכם (אופציונלי)",
 
   "language_english": "English",
   "language_hebrew": "עברית",
@@ -58,6 +73,10 @@
   "journal_description": "מחשבות, הרהורים וסיפורים מהמסע היצירתי שלי.",
   "journal_read_time": "{minutes} דקות קריאה",
   "journal_published_on": "פורסם ב-{date}",
+  "journal_empty_state": "אין עדיין פוסטים. בקרו שוב בקרוב.",
+  "journal_back_link": "חזרה ליומן",
+  "journal_not_found_title": "הפוסט לא נמצא",
+  "journal_not_found_description": "פוסט היומן שאתם מחפשים לא קיים או הוסר.",
 
   "about_title": "אודות",
   "about_description": "למד עוד על העבודה והפילוסופיה היצירתית שלי.",

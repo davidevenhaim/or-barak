@@ -115,24 +115,6 @@ export const Typewriter: React.FC<TypewriterProps> = ({
     <div ref={ref} className={cn("inline-block", className)}>
       {injectText(children, displayed)}
       {blinkCursor && <span className='typewriter-cursor'>|</span>}
-      <style jsx>{`
-        .typewriter-cursor {
-          display: inline-block;
-          margin-left: 2px;
-          width: 1ch;
-          animation: blink 1s steps(1) infinite;
-        }
-        @keyframes blink {
-          0%,
-          50% {
-            opacity: 1;
-          }
-          51%,
-          100% {
-            opacity: 0;
-          }
-        }
-      `}</style>
     </div>
   );
 };

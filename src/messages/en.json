@@ -20,7 +20,22 @@
 
   "home_hero_name": "Or Barak",
   "home_hero_subtitle": "Cinematographer & Creative Director",
-  "home_hero_description": "Welcome to my portfolio and creative journal. This is a temporary placeholder - the full site is being built.",
+  "home_hero_description": "Visual storyteller crafting compelling narratives through film and photography. Bringing creative visions to life with passion and precision.",
+
+  "home_videos_title": "Latest Work",
+  "home_videos_description": "Explore my recent video productions and cinematic projects",
+
+  "home_quicklinks_title": "Discover More",
+  "home_quicklinks_description": "Explore different areas of my creative work",
+
+  "home_partners_title": "Partnered With",
+
+  "home_newsletter_title": "Stay Connected",
+  "home_newsletter_description": "Subscribe to receive updates about new projects, behind-the-scenes content, and creative insights.",
+  "home_newsletter_success": "Thank you for subscribing! You'll receive updates soon.",
+  "home_newsletter_submit": "Subscribe",
+  "home_newsletter_email_placeholder": "Enter your email",
+  "home_newsletter_name_placeholder": "Your name (optional)",
 
   "language_english": "English",
   "language_hebrew": "עברית",
@@ -58,6 +73,10 @@
   "journal_description": "Thoughts, reflections, and stories from my creative journey.",
   "journal_read_time": "{minutes} min read",
   "journal_published_on": "Published on {date}",
+  "journal_empty_state": "No posts yet. Check back soon.",
+  "journal_back_link": "Back to Journal",
+  "journal_not_found_title": "Post Not Found",
+  "journal_not_found_description": "The journal post you're looking for doesn't exist or has been removed.",
 
   "about_title": "About",
   "about_description": "Learn more about my work and creative philosophy.",
