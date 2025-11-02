@@ -1,0 +1,140 @@
+"use client";
+
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { motion, AnimatePresence } from "framer-motion";
+import { Icon } from "@/components/ui/icon";
+import { Typography } from "@/components/ui/typography";
+import { cn } from "@/lib/utils";
+import { useBoolean } from "@/hooks/use-boolean";
+import { useTranslations } from "next-intl";
+import LanguageSwitcher from "./language-switcher";
+
+const Navbar = () => {
+  const t = useTranslations();
+  const pathname = usePathname();
+  const mobileMenuOpen = useBoolean(false);
+
+  const navigation = [
+    { name: t("nav_home"), href: "/" },
+    { name: t("nav_videography"), href: "/videography" },
+    { name: t("nav_photography"), href: "/photography" },
+    { name: t("nav_journal"), href: "/journal" },
+    { name: t("nav_about"), href: "/about" },
+    { name: t("nav_contact"), href: "/contact" }
+  ];
+
+  return (
+    <nav className='fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-zinc-200 dark:bg-black/80 dark:border-zinc-800'>
+      <div className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
+        <div className='flex h-16 items-center justify-between'>
+          {/* Logo / Name */}
+          <Link href='/' className='flex items-center'>
+            <Typography
+              variant='h6'
+              className='font-serif text-zinc-900 dark:text-zinc-50 hover:text-amber-700 dark:hover:text-amber-600 transition-colors'
+            >
+              {t("home_hero_name")}
+            </Typography>
+          </Link>
+
+          {/* Desktop Navigation */}
+          <div className='hidden md:flex md:items-center md:gap-6'>
+            {navigation.map((item) => {
+              const isActive = pathname === item.href;
+              return (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  className='relative py-2'
+                >
+                  <Typography
+                    variant='body2'
+                    className={cn(
+                      "text-sm font-medium transition-colors",
+                      isActive
+                        ? "text-zinc-900 dark:text-zinc-50"
+                        : "text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-50"
+                    )}
+                  >
+                    {item.name}
+                  </Typography>
+                  {isActive && (
+                    <motion.div
+                      layoutId='navbar-indicator'
+                      className='absolute -bottom-[1px] left-0 right-0 h-[2px] bg-amber-700 dark:bg-amber-600'
+                      transition={{
+                        type: "spring",
+                        stiffness: 380,
+                        damping: 30
+                      }}
+                    />
+                  )}
+                </Link>
+              );
+            })}
+            <LanguageSwitcher />
+          </div>
+
+          {/* Mobile: Language Switcher & Menu Button */}
+          <div className='flex items-center gap-2 md:hidden'>
+            <LanguageSwitcher />
+            {/* Mobile Menu Button */}
+            <button
+              type='button'
+              className='p-2 rounded-md text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-50 transition-colors'
+              onClick={mobileMenuOpen.onToggle}
+              aria-label='Toggle menu'
+            >
+              <Icon
+                name={mobileMenuOpen.value ? "mdi:close" : "mdi:menu"}
+                className='w-6 h-6'
+              />
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Mobile Menu */}
+      <AnimatePresence>
+        {mobileMenuOpen.value && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.2 }}
+            className='md:hidden border-t border-zinc-200 dark:border-zinc-800 bg-white dark:bg-black'
+          >
+            <div className='px-4 py-6 space-y-4'>
+              {navigation.map((item) => {
+                const isActive = pathname === item.href;
+                return (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    onClick={mobileMenuOpen.onFalse}
+                    className='block'
+                  >
+                    <Typography
+                      variant='body2'
+                      className={cn(
+                        "text-base font-medium transition-colors",
+                        isActive
+                          ? "text-zinc-900 dark:text-zinc-50"
+                          : "text-zinc-600 dark:text-zinc-400"
+                      )}
+                    >
+                      {item.name}
+                    </Typography>
+                  </Link>
+                );
+              })}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </nav>
+  );
+};
+
+export default Navbar;

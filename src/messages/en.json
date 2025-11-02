@@ -1,0 +1,67 @@
+{
+  "site_title": "Or Barak | Cinematographer & Creative Director",
+  "site_description": "Portfolio and creative journal of Or Barak - cinematographer, creative director, and visual storyteller.",
+  "site_tagline": "Cinematographer & Creative Director",
+
+  "nav_home": "Home",
+  "nav_videography": "Videography",
+  "nav_photography": "Photography",
+  "nav_journal": "Journal",
+  "nav_about": "About",
+  "nav_contact": "Contact",
+
+  "footer_copyright": "© {year} Or Barak. All rights reserved.",
+  "footer_tagline": "Cinematographer & Creative Director",
+
+  "social_instagram": "Instagram",
+  "social_vimeo": "Vimeo",
+  "social_linkedin": "LinkedIn",
+  "social_email": "Email",
+
+  "home_hero_name": "Or Barak",
+  "home_hero_subtitle": "Cinematographer & Creative Director",
+  "home_hero_description": "Welcome to my portfolio and creative journal. This is a temporary placeholder - the full site is being built.",
+
+  "language_english": "English",
+  "language_hebrew": "עברית",
+  "change_language": "Change language",
+
+  "contact_form_title": "Get in Touch",
+  "contact_form_description": "Let's discuss your next project",
+  "contact_form_name_label": "Name",
+  "contact_form_name_placeholder": "Your name",
+  "contact_form_name_required": "Name is required",
+  "contact_form_email_label": "Email",
+  "contact_form_email_placeholder": "your@email.com",
+  "contact_form_email_required": "Email is required",
+  "contact_form_email_invalid": "Please enter a valid email address",
+  "contact_form_message_label": "Message",
+  "contact_form_message_placeholder": "Tell me about your project...",
+  "contact_form_message_required": "Message is required",
+  "contact_form_message_min_length": "Message must be at least 20 characters",
+  "contact_form_submit": "Send Message",
+  "contact_form_success": "Message sent successfully!",
+  "contact_form_error": "Failed to send message. Please try again.",
+
+  "read_more": "Read more",
+  "view_all": "View all",
+  "back_to": "Back to {section}",
+  "loading": "Loading...",
+
+  "videography_title": "Videography",
+  "videography_description": "A collection of my video work including music videos, short films, and commercial projects.",
+
+  "photography_title": "Photography",
+  "photography_description": "Selected photography from various projects and personal work.",
+
+  "journal_title": "Journal",
+  "journal_description": "Thoughts, reflections, and stories from my creative journey.",
+  "journal_read_time": "{minutes} min read",
+  "journal_published_on": "Published on {date}",
+
+  "about_title": "About",
+  "about_description": "Learn more about my work and creative philosophy.",
+
+  "contact_title": "Contact",
+  "contact_description": "Let's work together on your next project."
+}

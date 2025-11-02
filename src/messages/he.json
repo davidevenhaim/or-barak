@@ -1,0 +1,67 @@
+{
+  "site_title": "אור ברק | צלם וידאו ובמאי יצירה",
+  "site_description": "תיק עבודות ויומן יצירתי של אור ברק - צלם וידאו, במאי יצירה ומספר סיפורים ויזואליים.",
+  "site_tagline": "צלם וידאו ובמאי יצירה",
+
+  "nav_home": "בית",
+  "nav_videography": "וידאוגרפיה",
+  "nav_photography": "צילום",
+  "nav_journal": "יומן",
+  "nav_about": "אודות",
+  "nav_contact": "צור קשר",
+
+  "footer_copyright": "© {year} אור ברק. כל הזכויות שמורות.",
+  "footer_tagline": "צלם וידאו ובמאי יצירה",
+
+  "social_instagram": "אינסטגרם",
+  "social_vimeo": "וימאו",
+  "social_linkedin": "לינקדאין",
+  "social_email": "אימייל",
+
+  "home_hero_name": "אור ברק",
+  "home_hero_subtitle": "צלם וידאו ובמאי יצירה",
+  "home_hero_description": "ברוכים הבאים לתיק העבודות והיומן היצירתי שלי. זהו מקום שומר מקום זמני - האתר המלא בבנייה.",
+
+  "language_english": "English",
+  "language_hebrew": "עברית",
+  "change_language": "שנה שפה",
+
+  "contact_form_title": "צור קשר",
+  "contact_form_description": "בואו נדבר על הפרויקט הבא שלכם",
+  "contact_form_name_label": "שם",
+  "contact_form_name_placeholder": "השם שלך",
+  "contact_form_name_required": "יש למלא שם",
+  "contact_form_email_label": "אימייל",
+  "contact_form_email_placeholder": "your@email.com",
+  "contact_form_email_required": "יש למלא אימייל",
+  "contact_form_email_invalid": "נא להזין כתובת אימייל תקינה",
+  "contact_form_message_label": "הודעה",
+  "contact_form_message_placeholder": "ספר לי על הפרויקט שלך...",
+  "contact_form_message_required": "יש למלא הודעה",
+  "contact_form_message_min_length": "ההודעה חייבת להכיל לפחות 20 תווים",
+  "contact_form_submit": "שלח הודעה",
+  "contact_form_success": "ההודעה נשלחה בהצלחה!",
+  "contact_form_error": "שליחת ההודעה נכשלה. אנא נסה שוב.",
+
+  "read_more": "קרא עוד",
+  "view_all": "צפה בהכל",
+  "back_to": "חזרה ל{section}",
+  "loading": "טוען...",
+
+  "videography_title": "וידאוגרפיה",
+  "videography_description": "אוסף עבודות הווידאו שלי כולל קליפים, סרטים קצרים ופרויקטים מסחריים.",
+
+  "photography_title": "צילום",
+  "photography_description": "צילומים נבחרים מפרויקטים שונים ועבודות אישיות.",
+
+  "journal_title": "יומן",
+  "journal_description": "מחשבות, הרהורים וסיפורים מהמסע היצירתי שלי.",
+  "journal_read_time": "{minutes} דקות קריאה",
+  "journal_published_on": "פורסם ב-{date}",
+
+  "about_title": "אודות",
+  "about_description": "למד עוד על העבודה והפילוסופיה היצירתית שלי.",
+
+  "contact_title": "צור קשר",
+  "contact_description": "בואו נעבוד יחד על הפרויקט הבא שלכם."
+}
