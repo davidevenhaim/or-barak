@@ -4,6 +4,7 @@ import { Typography } from "@/components/ui/typography";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { useState } from "react";
+import { Typewriter } from "../ui/typewriter";
 
 interface HeroSectionProps {
   title: string;
@@ -23,7 +24,7 @@ export function HeroSection({
   const [videoLoaded, setVideoLoaded] = useState(false);
 
   return (
-    <section className='relative h-screen w-full overflow-hidden'>
+    <section className='relative h-[calc(100vh-50px)] w-full overflow-hidden'>
       {/* Background Media */}
       <div className='absolute inset-0'>
         {backgroundVideo ? (
@@ -67,19 +68,9 @@ export function HeroSection({
       {/* Content */}
       <div className='relative z-10 flex h-full items-center justify-center px-4'>
         <div className='max-w-5xl text-center'>
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            <Typography
-              variant='caption1'
-              className='mb-4 text-amber-400 font-semibold tracking-wider uppercase'
-            >
-              {subtitle}
-            </Typography>
-          </motion.div>
-
+          <Typewriter className='mb-4 text-amber-400 font-semibold tracking-wider uppercase'>
+            {subtitle}
+          </Typewriter>
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}

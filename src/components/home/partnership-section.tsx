@@ -18,13 +18,11 @@ export function PartnershipSection({
   partners,
   sectionTitle
 }: PartnershipSectionProps) {
-  // Duplicate the partners array for seamless infinite scroll
   const duplicatedPartners = [...partners, ...partners];
 
   return (
     <section className='py-20 bg-white dark:bg-black overflow-hidden'>
       <div className='container mx-auto px-4'>
-        {/* Section Header */}
         <div className='text-center mb-16'>
           <Typography
             variant='h3'
@@ -34,13 +32,10 @@ export function PartnershipSection({
           </Typography>
         </div>
 
-        {/* Infinite Scrolling Logos */}
         <div className='relative'>
-          {/* Gradient Overlays */}
           <div className='absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-white dark:from-black to-transparent z-10' />
           <div className='absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-white dark:from-black to-transparent z-10' />
 
-          {/* Scrolling Container */}
           <div className='flex animate-infinite-scroll hover:pause-animation'>
             {duplicatedPartners.map((partner, index) => (
               <div

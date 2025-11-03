@@ -1,5 +1,7 @@
 "use client";
 
+import { useState } from "react";
+import Image from "next/image";
 import {
   Carousel,
   CarouselContent,
@@ -10,20 +12,143 @@ import {
 import { Card, CardContent } from "@/components/ui/card";
 import { Typography } from "@/components/ui/typography";
 import { Badge } from "@/components/ui/badge";
+import { Icon } from "@/components/ui/icon";
+
+function getYouTubeVideoId(url: string): string | null {
+  const patterns = [
+    /(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([^&\n?#]+)/,
+    /youtube\.com\/watch\?.*v=([^&\n?#]+)/
+  ];
+
+  for (const pattern of patterns) {
+    const match = url.match(pattern);
+    if (match && match[1]) {
+      return match[1];
+    }
+  }
+  return null;
+}
+
+function getYouTubeThumbnail(videoId: string): string {
+  return `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+}
+
+function isYouTubeUrl(url: string): boolean {
+  return url.includes("youtube.com") || url.includes("youtu.be");
+}
 
 export interface Video {
   id: string;
   title: string;
   description: string;
-  thumbnailUrl: string;
+  thumbnailUrl?: string;
   videoUrl: string;
-  category?: string;
+  category?: VideoCategory;
+}
+
+export enum VideoCategory {
+  DirectedFilmedEdited = "directed_filmed_edited",
+  HeadProducer = "head_producer",
+  ExecutiveProducer = "executive_producer",
+  BTS_PARTIAL = "bts_partial"
 }
 
 interface VideoSliderProps {
   videos: Video[];
   sectionTitle: string;
   sectionDescription?: string;
+}
+
+function VideoCard({ video }: { video: Video }) {
+  const [isPlaying, setIsPlaying] = useState(false);
+  const isYouTube = isYouTubeUrl(video.videoUrl);
+  const youtubeId = isYouTube ? getYouTubeVideoId(video.videoUrl) : null;
+
+  const thumbnail =
+    video.thumbnailUrl || (youtubeId ? getYouTubeThumbnail(youtubeId) : "");
+
+  const handlePlay = () => {
+    if (isYouTube) {
+      setIsPlaying(true);
+    }
+  };
+
+  return (
+    <Card className='group overflow-hidden border-zinc-200/50 dark:border-zinc-800/50 bg-white/50 dark:bg-zinc-900/50 backdrop-blur-xl hover:border-amber-500/50 transition-all duration-300 hover:shadow-2xl hover:scale-[1.02]'>
+      <CardContent className='p-0'>
+        {/* Video Player */}
+        <div className='relative aspect-video overflow-hidden bg-zinc-100 dark:bg-zinc-800'>
+          {isYouTube && youtubeId ? (
+            <>
+              {isPlaying ? (
+                <iframe
+                  src={`https://www.youtube.com/embed/${youtubeId}?autoplay=1`}
+                  className='w-full h-full'
+                  allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+                  allowFullScreen
+                />
+              ) : (
+                <button
+                  onClick={handlePlay}
+                  className='relative w-full h-full group/play'
+                >
+                  <Image
+                    src={thumbnail}
+                    alt={video.title}
+                    fill
+                    className='object-cover group-hover/play:scale-110 transition-transform duration-700'
+                    sizes='(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw'
+                  />
+                  {/* Play button overlay */}
+                  <div className='absolute inset-0 flex items-center justify-center bg-black/20 group-hover/play:bg-black/30 transition-colors'>
+                    <div className='w-16 h-16 rounded-full bg-amber-500 flex items-center justify-center group-hover/play:scale-110 transition-transform shadow-lg'>
+                      <Icon
+                        name='lucide:play'
+                        className='w-8 h-8 text-white ml-1'
+                      />
+                    </div>
+                  </div>
+                </button>
+              )}
+            </>
+          ) : (
+            <video
+              src={video.videoUrl}
+              poster={thumbnail}
+              className='w-full h-full object-cover group-hover:scale-110 transition-transform duration-700'
+              controls
+              preload='metadata'
+            />
+          )}
+
+          {video.category && !isPlaying && (
+            <Badge
+              variant='secondary'
+              className='absolute top-4 right-4 bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md'
+            >
+              {video.category}
+            </Badge>
+          )}
+        </div>
+
+        {/* Content */}
+        <div className='p-6'>
+          <Typography
+            variant='h5'
+            className='mb-2 group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors line-clamp-2'
+          >
+            {video.title}
+          </Typography>
+          <Typography
+            variant='body2'
+            className='text-zinc-600 dark:text-zinc-400 line-clamp-2'
+          >
+            {video.description}
+          </Typography>
+        </div>
+      </CardContent>
+    </Card>
+  );
 }
 
 export function VideoSlider({
@@ -68,45 +193,7 @@ export function VideoSlider({
                 key={video.id}
                 className='pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3'
               >
-                <Card className='group overflow-hidden border-zinc-200/50 dark:border-zinc-800/50 bg-white/50 dark:bg-zinc-900/50 backdrop-blur-xl hover:border-amber-500/50 transition-all duration-300 hover:shadow-2xl hover:scale-[1.02]'>
-                  <CardContent className='p-0'>
-                    {/* Video Thumbnail */}
-                    <div className='relative aspect-video overflow-hidden bg-zinc-100 dark:bg-zinc-800'>
-                      <video
-                        src={video.videoUrl}
-                        poster={video.thumbnailUrl}
-                        className='w-full h-full object-cover group-hover:scale-110 transition-transform duration-700'
-                        controls
-                        preload='metadata'
-                      />
-
-                      {video.category && (
-                        <Badge
-                          variant='secondary'
-                          className='absolute top-4 right-4 bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md'
-                        >
-                          {video.category}
-                        </Badge>
-                      )}
-                    </div>
-
-                    {/* Content */}
-                    <div className='p-6'>
-                      <Typography
-                        variant='h5'
-                        className='mb-2 group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors line-clamp-2'
-                      >
-                        {video.title}
-                      </Typography>
-                      <Typography
-                        variant='body2'
-                        className='text-zinc-600 dark:text-zinc-400 line-clamp-2'
-                      >
-                        {video.description}
-                      </Typography>
-                    </div>
-                  </CardContent>
-                </Card>
+                <VideoCard video={video} />
               </CarouselItem>
             ))}
           </CarouselContent>

@@ -11,7 +11,10 @@ const nextConfig: NextConfig = {
       "127.0.0.1",
       "unsplash.com",
       "images.unsplash.com",
-      "via.placeholder.com"
+      "via.placeholder.com",
+      "img.youtube.com",
+      "i.ytimg.com",
+      "upload.wikimedia.org"
     ]
   }
 };
