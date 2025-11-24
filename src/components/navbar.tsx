@@ -27,9 +27,9 @@ const Navbar = () => {
   return (
     <nav className='fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-zinc-200 dark:bg-black/80 dark:border-zinc-800'>
       <div className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
-        <div className='flex h-16 items-center justify-between'>
+        <div className='relative flex h-16 items-center justify-between md:justify-center'>
           {/* Logo / Name */}
-          <Link href='/' className='flex items-center'>
+          <Link href='/' className='flex items-center md:absolute md:left-4'>
             <Typography
               variant='h6'
               className='font-serif text-zinc-900 dark:text-zinc-50 hover:text-amber-700 dark:hover:text-amber-600 transition-colors'

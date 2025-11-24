@@ -91,7 +91,7 @@ export function HeroSection({
           >
             <Typography
               variant='subtitle1'
-              className='text-zinc-200 max-w-3xl mx-auto leading-relaxed text-lg md:text-xl'
+              className='text-zinc-200 max-w-xl mx-auto leading-relaxed text-xl md:text-xl whitespace-pre-line'
             >
               {description}
             </Typography>
