@@ -4,6 +4,7 @@ import { Container } from "@/components/container";
 import { Typography } from "@/components/ui/typography";
 import { ImageGallery } from "./image-gallery";
 import { MasonryGallery } from "./masonry-gallery";
+import { SelectedWorksSlider } from "./selected-works-slider";
 import {
   selectedWorks,
   topImages,
@@ -36,7 +37,7 @@ const Photography = () => {
             </Typography>
           </div>
 
-          {/* Selected Works Section */}
+          {/* Selected Works Section - Now with Slider */}
           <section className='space-y-8'>
             <div className='flex items-center justify-between'>
               <Typography
@@ -46,12 +47,7 @@ const Photography = () => {
                 {t("photography_selected_works")}
               </Typography>
             </div>
-            <ImageGallery
-              images={selectedWorks}
-              columns={3}
-              size='small'
-              allImages={allImages}
-            />
+            <SelectedWorksSlider images={selectedWorks} allImages={allImages} />
           </section>
 
           {/* Top 20 Section */}

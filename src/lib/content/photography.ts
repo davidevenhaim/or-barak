@@ -350,13 +350,13 @@ export const topImages: PhotographyImage[] = [
     src: "https://drive.google.com/uc?export=view&id=1l_2rWzueuAtsvsBSMcrI7VspwTSM1LAm",
     alt: "Top image 20",
     title: "Wilderness"
-  },
-  {
-    id: "top-21",
-    src: "https://drive.google.com/uc?export=view&id=1DWD1luBjS7sDJd3HcDYGmP1r79YaPVcs",
-    alt: "Top image 21",
-    title: "Washington"
   }
+  // {
+  //   id: "top-21",
+  //   src: "https://drive.google.com/uc?export=view&id=1DWD1luBjS7sDJd3HcDYGmP1r79YaPVcs",
+  //   alt: "Top image 21",
+  //   title: "Washington"
+  // }
 ];
 
 // Full Catalog - Third section (varied sizes)
