@@ -26,7 +26,7 @@ export function HeroSection({
   const isVideoLoaded = useBoolean(false);
 
   return (
-    <section className='relative h-[calc(100vh-50px)] w-full overflow-hidden'>
+    <section className='relative h-[calc(100vh-64px)] sm:h-[calc(100vh-64px)] md:h-[calc(100vh-50px)] w-full overflow-hidden'>
       {/* Background Media */}
       <div className='absolute inset-0'>
         {backgroundVideo ? (
@@ -68,9 +68,9 @@ export function HeroSection({
       </div>
 
       {/* Content */}
-      <div className='relative z-10 flex h-full items-center justify-center px-4'>
-        <div className='max-w-5xl text-center'>
-          <Typewriter className='mb-4 text-amber-400 font-semibold tracking-wider uppercase'>
+      <div className='relative z-10 flex h-full items-center justify-center px-4 sm:px-6 md:px-8'>
+        <div className='max-w-5xl text-center w-full'>
+          <Typewriter className='mb-3 sm:mb-4 text-amber-400 font-semibold tracking-wider uppercase text-xs sm:text-sm md:text-base'>
             {subtitle}
           </Typewriter>
           <motion.div
@@ -80,7 +80,7 @@ export function HeroSection({
           >
             <Typography
               variant='h1'
-              className='mb-6 text-white font-bold leading-tight'
+              className='mb-4 sm:mb-6 text-white font-bold leading-tight px-2'
             >
               {title}
             </Typography>
@@ -93,7 +93,7 @@ export function HeroSection({
           >
             <Typography
               variant='subtitle1'
-              className='text-zinc-200 max-w-xl mx-auto leading-relaxed whitespace-pre-line'
+              className='text-zinc-200 max-w-xl mx-auto leading-relaxed whitespace-pre-line text-sm sm:text-base md:text-lg px-4'
             >
               {description}
             </Typography>
@@ -104,7 +104,7 @@ export function HeroSection({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 1.2 }}
-            className='absolute bottom-12 left-1/2 -translate-x-1/2 cursor-pointer'
+            className='absolute bottom-8 sm:bottom-12 left-1/2 -translate-x-1/2 cursor-pointer touch-manipulation'
             onClick={() => scrollToElement(videosSectionId)}
           >
             <motion.div
@@ -112,12 +112,12 @@ export function HeroSection({
               transition={{ duration: 2, repeat: Infinity }}
               className='flex flex-col items-center gap-2'
             >
-              <span className='text-white/70 text-base'>Scroll</span>
-              <div className='w-6 h-10 border-2 border-white/30 rounded-full flex items-start justify-center p-2'>
+              <span className='text-white/70 text-xs sm:text-sm md:text-base'>Scroll</span>
+              <div className='w-5 h-8 sm:w-6 sm:h-10 border-2 border-white/30 rounded-full flex items-start justify-center p-1.5 sm:p-2'>
                 <motion.div
                   animate={{ y: [0, 12, 0] }}
                   transition={{ duration: 2, repeat: Infinity }}
-                  className='w-1 h-2 bg-white/70 rounded-full'
+                  className='w-1 h-1.5 sm:h-2 bg-white/70 rounded-full'
                 />
               </div>
             </motion.div>

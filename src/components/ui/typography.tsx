@@ -36,66 +36,66 @@ const variantClassMap: Record<
 > = {
   h1: {
     tag: "h1",
-    classes: "text-6xl sm:text-7xl font-bold text-zinc-900 dark:text-zinc-50"
+    classes: "text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-zinc-900 dark:text-zinc-50 leading-tight"
   },
   h2: {
     tag: "h2",
-    classes: "text-4xl sm:text-5xl font-bold text-zinc-900 dark:text-zinc-50"
+    classes: "text-3xl sm:text-4xl md:text-5xl font-bold text-zinc-900 dark:text-zinc-50 leading-tight"
   },
   h3: {
     tag: "h3",
     classes:
-      "text-3xl sm:text-4xl font-semibold text-zinc-900 dark:text-zinc-50"
+      "text-2xl sm:text-3xl md:text-4xl font-semibold text-zinc-900 dark:text-zinc-50 leading-tight"
   },
   h4: {
     tag: "h4",
     classes:
-      "text-2xl sm:text-3xl font-semibold text-zinc-900 dark:text-zinc-50"
+      "text-xl sm:text-2xl md:text-3xl font-semibold text-zinc-900 dark:text-zinc-50 leading-tight"
   },
   h5: {
     tag: "h5",
-    classes: "text-xl sm:text-2xl font-medium text-zinc-900 dark:text-zinc-50"
+    classes: "text-lg sm:text-xl md:text-2xl font-medium text-zinc-900 dark:text-zinc-50 leading-snug"
   },
   h6: {
     tag: "h6",
-    classes: "text-lg sm:text-xl font-medium text-zinc-900 dark:text-zinc-50"
+    classes: "text-base sm:text-lg md:text-xl font-medium text-zinc-900 dark:text-zinc-50 leading-snug"
   },
   subtitle1: {
     tag: "h2",
-    classes: "text-2xl sm:text-xl lg:text-2xl font-semibold text-foreground"
+    classes: "text-lg sm:text-xl md:text-2xl font-semibold text-foreground leading-relaxed"
   },
   subtitle2: {
     tag: "h3",
-    classes: "text-xl sm:text-2xl lg:text-3xl font-semibold text-foreground"
+    classes: "text-xl sm:text-2xl md:text-3xl font-semibold text-foreground leading-relaxed"
   },
   body1: {
     tag: "p",
-    classes: "text-lg lg:text-xl text-foreground leading-relaxed"
+    classes: "text-base sm:text-lg md:text-xl text-foreground leading-relaxed"
   },
   body2: {
     tag: "p",
-    classes: "text-md lg:text-lg text-foreground leading-relaxed"
+    classes: "text-sm sm:text-base md:text-lg text-foreground leading-relaxed"
   },
   caption1: {
     tag: "p",
-    classes: "text-base lg:text-lg text-muted-foreground leading-relaxed"
+    classes: "text-sm sm:text-base md:text-lg text-muted-foreground leading-relaxed"
   },
   caption2: {
     tag: "p",
-    classes: "text-sm lg:text-base text-muted-foreground leading-relaxed"
+    classes: "text-xs sm:text-sm md:text-base text-muted-foreground leading-relaxed"
   },
   label1: {
     tag: "label",
-    classes: "text-lg lg:text-xl text-foreground leading-relaxed"
+    classes: "text-base sm:text-lg md:text-xl text-foreground leading-relaxed"
   },
   label2: {
     tag: "label",
-    classes: "text-base lg:text-lg text-foreground leading-relaxed"
+    classes: "text-sm sm:text-base md:text-lg text-foreground leading-relaxed"
   },
   overline: {
     tag: "p",
     classes:
-      "text-sm lg:text-base uppercase tracking-widest text-muted-foreground"
+      "text-xs sm:text-sm md:text-base uppercase tracking-widest text-muted-foreground"
   }
 };
 

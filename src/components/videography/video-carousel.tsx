@@ -33,7 +33,9 @@ export function VideoCarousel({ videos, title }: VideoCarouselProps) {
       <div className='space-y-6'>
         <Typography
           variant='h4'
-          className='uppercase tracking-wider text-zinc-500 dark:text-zinc-400 font-medium'
+          className='uppercase tracking-wider text-zinc-500 dark:text-zinc-400 font-medium 
+          text-center sm:text-left
+          '
         >
           {title}
         </Typography>
@@ -42,7 +44,7 @@ export function VideoCarousel({ videos, title }: VideoCarouselProps) {
             align: "start",
             loop: false
           }}
-          className='w-full'
+          className='w-full max-w-full overflow-hidden'
         >
           <CarouselContent className='-ml-2 md:-ml-4'>
             {videos.map((video, index) => (
@@ -59,8 +61,8 @@ export function VideoCarousel({ videos, title }: VideoCarouselProps) {
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious className='-left-12 border-zinc-800 bg-black/80 hover:bg-amber-500 hover:text-white hover:border-amber-500 text-white' />
-          <CarouselNext className='-right-12 border-zinc-800 bg-black/80 hover:bg-amber-500 hover:text-white hover:border-amber-500 text-white' />
+          <CarouselPrevious className='hidden md:flex -left-12 border-zinc-800 bg-black/80 hover:bg-amber-500 hover:text-white hover:border-amber-500 text-white' />
+          <CarouselNext className='hidden md:flex -right-12 border-zinc-800 bg-black/80 hover:bg-amber-500 hover:text-white hover:border-amber-500 text-white' />
         </Carousel>
       </div>
       <VideoDialog

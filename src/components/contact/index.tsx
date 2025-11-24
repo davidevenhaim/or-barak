@@ -90,15 +90,15 @@ const Contact = () => {
   ];
 
   return (
-    <section className='min-h-screen bg-black dark:bg-black py-20 px-4'>
-      <div className='container mx-auto max-w-7xl'>
+    <section className='min-h-screen bg-black dark:bg-black py-12 sm:py-16 md:py-20 px-4 sm:px-6 overflow-x-hidden max-w-full'>
+      <div className='container mx-auto max-w-7xl w-full'>
         <div className='grid grid-cols-1 lg:grid-cols-2 gap-0'>
           {/* Left Column - Info */}
-          <div className='flex flex-col justify-center space-y-8 bg-black dark:bg-black p-8 lg:p-12 xl:p-16'>
+          <div className='flex flex-col justify-center space-y-6 sm:space-y-8 bg-black dark:bg-black p-6 sm:p-8 lg:p-12 xl:p-16'>
             {/* Header */}
             <Typography
               variant='caption1'
-              className='text-zinc-400 dark:text-zinc-500 uppercase tracking-wider text-xs md:text-sm font-sans'
+              className='text-zinc-400 dark:text-zinc-500 uppercase tracking-wider text-xs sm:text-sm font-sans'
             >
               {t("contact_header")}
             </Typography>
@@ -107,7 +107,7 @@ const Contact = () => {
             <div>
               <Typography
                 variant='h1'
-                className='font-serif italic text-4xl md:text-5xl lg:text-6xl text-white leading-tight mb-2'
+                className='font-serif italic text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white leading-tight mb-2'
               >
                 {t("contact_title_part1")}{" "}
                 <span className='text-amber-500 dark:text-amber-400'>
@@ -119,13 +119,13 @@ const Contact = () => {
             {/* Description */}
             <Typography
               variant='body1'
-              className='text-zinc-400 dark:text-zinc-300 text-base md:text-lg leading-relaxed max-w-lg font-sans'
+              className='text-zinc-400 dark:text-zinc-300 text-sm sm:text-base md:text-lg leading-relaxed max-w-lg font-sans'
             >
               {t("contact_description_text")}
             </Typography>
 
             {/* Contact Info */}
-            <div className='space-y-6 pt-4'>
+            <div className='space-y-4 sm:space-y-6 pt-2 sm:pt-4'>
               {/* Email */}
               <div>
                 <Typography
@@ -136,7 +136,7 @@ const Contact = () => {
                 </Typography>
                 <a
                   href={`mailto:${OR_CONSTANTS.EMAIL}`}
-                  className='text-zinc-300 dark:text-zinc-300 italic text-base md:text-lg hover:text-amber-500 dark:hover:text-amber-400 transition-colors font-sans'
+                  className='text-zinc-300 dark:text-zinc-300 italic text-sm sm:text-base md:text-lg hover:text-amber-500 dark:hover:text-amber-400 transition-colors font-sans break-all touch-manipulation'
                 >
                   {OR_CONSTANTS.EMAIL}
                 </a>
@@ -152,7 +152,7 @@ const Contact = () => {
                 </Typography>
                 <a
                   href={`tel:${OR_CONSTANTS.PHONE.replace(/\s/g, "")}`}
-                  className='text-zinc-300 dark:text-zinc-300 italic text-base md:text-lg hover:text-amber-500 dark:hover:text-amber-400 transition-colors font-sans'
+                  className='text-zinc-300 dark:text-zinc-300 italic text-sm sm:text-base md:text-lg hover:text-amber-500 dark:hover:text-amber-400 transition-colors font-sans touch-manipulation'
                 >
                   {OR_CONSTANTS.PHONE}
                 </a>
@@ -160,14 +160,14 @@ const Contact = () => {
             </div>
 
             {/* Social Links */}
-            <div className='flex flex-wrap gap-6 pt-4'>
+            <div className='flex flex-wrap gap-4 sm:gap-6 pt-2 sm:pt-4'>
               {socialLinks.map((link) => (
                 <Link
                   key={link.name}
                   href={link.href}
                   target='_blank'
                   rel='noopener noreferrer'
-                  className='text-zinc-500 dark:text-zinc-500 uppercase tracking-wider text-xs font-sans hover:text-amber-500 dark:hover:text-amber-400 transition-colors'
+                  className='text-zinc-500 dark:text-zinc-500 uppercase tracking-wider text-xs font-sans hover:text-amber-500 dark:hover:text-amber-400 transition-colors py-2 touch-manipulation'
                 >
                   {link.name}
                 </Link>
@@ -176,18 +176,18 @@ const Contact = () => {
           </div>
 
           {/* Right Column - Form */}
-          <div className='flex flex-col justify-center bg-card dark:bg-card p-8 lg:p-12 xl:p-16'>
+          <div className='flex flex-col justify-center bg-card dark:bg-card p-6 sm:p-8 lg:p-12 xl:p-16'>
             <Form {...form}>
               <form
                 onSubmit={form.handleSubmit(onSubmit)}
-                className='space-y-8'
+                className='space-y-6 sm:space-y-8'
               >
                 {/* Success Message */}
                 {isSubmitted && (
-                  <div className='mb-6 p-4 rounded-lg bg-zinc-900 border border-zinc-800'>
+                  <div className='mb-4 sm:mb-6 p-3 sm:p-4 rounded-lg bg-zinc-900 border border-zinc-800'>
                     <Typography
                       variant='body2'
-                      className='text-zinc-300 dark:text-zinc-300'
+                      className='text-zinc-300 dark:text-zinc-300 text-sm sm:text-base'
                     >
                       {t("contact_form_success")}
                     </Typography>
@@ -207,7 +207,7 @@ const Contact = () => {
                         <div className='relative w-full'>
                           <Input
                             {...field}
-                            className='bg-transparent border-0 border-b border-zinc-700 dark:border-zinc-700 rounded-none px-0 py-2 text-white placeholder:text-zinc-600 focus-visible:ring-0 focus-visible:border-amber-500 dark:focus-visible:border-amber-400 transition-colors font-sans w-full'
+                            className='bg-transparent border-0 border-b border-zinc-700 dark:border-zinc-700 rounded-none px-0 py-3 text-base sm:text-lg text-white placeholder:text-zinc-600 focus-visible:ring-0 focus-visible:border-amber-500 dark:focus-visible:border-amber-400 transition-colors font-sans w-full touch-manipulation'
                             placeholder=''
                           />
                         </div>
@@ -231,7 +231,7 @@ const Contact = () => {
                           <Input
                             type='email'
                             {...field}
-                            className='bg-transparent border-0 border-b border-zinc-700 dark:border-zinc-700 rounded-none px-0 py-2 text-white placeholder:text-zinc-600 focus-visible:ring-0 focus-visible:border-amber-500 dark:focus-visible:border-amber-400 transition-colors font-sans w-full'
+                            className='bg-transparent border-0 border-b border-zinc-700 dark:border-zinc-700 rounded-none px-0 py-3 text-base sm:text-lg text-white placeholder:text-zinc-600 focus-visible:ring-0 focus-visible:border-amber-500 dark:focus-visible:border-amber-400 transition-colors font-sans w-full touch-manipulation'
                             placeholder=''
                           />
                         </div>
@@ -255,7 +255,7 @@ const Contact = () => {
                           onValueChange={field.onChange}
                           defaultValue={field.value}
                         >
-                          <SelectTrigger className='bg-transparent border-0 border-b border-zinc-700 dark:border-zinc-700 rounded-none px-0 py-2 text-white focus:ring-0 focus:border-amber-500 dark:focus:border-amber-400 transition-colors font-sans [&>span]:text-zinc-400 w-full'>
+                          <SelectTrigger className='bg-transparent border-0 border-b border-zinc-700 dark:border-zinc-700 rounded-none px-0 py-3 text-base sm:text-lg text-white focus:ring-0 focus:border-amber-500 dark:focus:border-amber-400 transition-colors font-sans [&>span]:text-zinc-400 w-full touch-manipulation'>
                             <SelectValue
                               placeholder={t(
                                 "contact_form_project_type_placeholder"
@@ -265,43 +265,43 @@ const Contact = () => {
                           <SelectContent className='bg-zinc-900 border-zinc-800 text-white'>
                             <SelectItem
                               value='commercial'
-                              className='text-white focus:bg-zinc-800'
+                              className='text-white focus:bg-zinc-800 py-3'
                             >
                               {t("contact_project_type_commercial")}
                             </SelectItem>
                             <SelectItem
                               value='documentary'
-                              className='text-white focus:bg-zinc-800'
+                              className='text-white focus:bg-zinc-800 py-3'
                             >
                               {t("contact_project_type_documentary")}
                             </SelectItem>
                             <SelectItem
                               value='short_film'
-                              className='text-white focus:bg-zinc-800'
+                              className='text-white focus:bg-zinc-800 py-3'
                             >
                               {t("contact_project_type_short_film")}
                             </SelectItem>
                             <SelectItem
                               value='feature_film'
-                              className='text-white focus:bg-zinc-800'
+                              className='text-white focus:bg-zinc-800 py-3'
                             >
                               {t("contact_project_type_feature_film")}
                             </SelectItem>
                             <SelectItem
                               value='music_video'
-                              className='text-white focus:bg-zinc-800'
+                              className='text-white focus:bg-zinc-800 py-3'
                             >
                               {t("contact_project_type_music_video")}
                             </SelectItem>
                             <SelectItem
                               value='corporate'
-                              className='text-white focus:bg-zinc-800'
+                              className='text-white focus:bg-zinc-800 py-3'
                             >
                               {t("contact_project_type_corporate")}
                             </SelectItem>
                             <SelectItem
                               value='other'
-                              className='text-white focus:bg-zinc-800'
+                              className='text-white focus:bg-zinc-800 py-3'
                             >
                               {t("contact_project_type_other")}
                             </SelectItem>
@@ -326,7 +326,7 @@ const Contact = () => {
                         <textarea
                           {...field}
                           rows={4}
-                          className='bg-transparent border-0 border-b border-zinc-700 dark:border-zinc-700 rounded-none px-0 py-2 w-full text-white placeholder:text-zinc-600 focus-visible:ring-0 focus-visible:border-amber-500 dark:focus-visible:border-amber-400 transition-colors resize-none font-sans min-h-[60px]'
+                          className='bg-transparent border-0 border-b border-zinc-700 dark:border-zinc-700 rounded-none px-0 py-2 w-full text-base sm:text-lg text-white placeholder:text-zinc-600 focus-visible:ring-0 focus-visible:border-amber-500 dark:focus-visible:border-amber-400 transition-colors resize-none font-sans min-h-[80px] sm:min-h-[100px] touch-manipulation'
                           placeholder=''
                         />
                       </FormControl>
@@ -340,8 +340,8 @@ const Contact = () => {
                   type='submit'
                   disabled={isLoading}
                   className={cn(
-                    "w-full border-2 border-amber-500 dark:border-amber-400 bg-transparent hover:bg-amber-500/10 text-white font-sans uppercase tracking-wider text-sm py-6 rounded-none transition-all",
-                    "hover:border-amber-400 dark:hover:border-amber-300"
+                    "w-full border-2 border-amber-500 dark:border-amber-400 bg-transparent hover:bg-amber-500/10 text-white font-sans uppercase tracking-wider text-sm sm:text-base py-5 sm:py-6 rounded-none transition-all min-h-[52px] touch-manipulation",
+                    "hover:border-amber-400 dark:hover:border-amber-300 active:bg-amber-500/20"
                   )}
                 >
                   {isLoading ? (

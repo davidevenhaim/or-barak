@@ -86,7 +86,8 @@ export function VideoRolesSection({ videos }: VideoRolesSectionProps) {
                       className={cn(
                         "w-full text-left py-3 text-zinc-400 hover:text-zinc-200",
                         "transition-colors duration-200 cursor-pointer",
-                        "border-b border-zinc-800 last:border-b-0"
+                        "border-b border-zinc-800 last:border-b-0 hover:text-zinc-100",
+                        "transition-colors duration-200 hover:scale-105 hover:font-bold"
                       )}
                     >
                       <Typography variant='body2' className='font-sans'>

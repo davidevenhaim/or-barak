@@ -22,19 +22,19 @@ export function QuickLinkCard({ link, index = 0 }: QuickLinkCardProps) {
             animationDelay: `${index * 0.1}s`
           }}
         >
-          <CardContent className='p-6 flex flex-col h-full'>
+          <CardContent className='p-4 sm:p-5 md:p-6 flex flex-col h-full'>
             {/* Icon */}
-            <div className='mb-4 w-12 h-12 flex-shrink-0 rounded-lg bg-gradient-to-br from-amber-500/10 to-amber-600/5 dark:from-amber-500/20 dark:to-amber-600/10 flex items-center justify-center group-hover:from-amber-500/20 group-hover:to-amber-600/10 dark:group-hover:from-amber-500/30 dark:group-hover:to-amber-600/20 transition-all duration-300'>
+            <div className='mb-3 sm:mb-4 w-10 h-10 sm:w-12 sm:h-12 flex-shrink-0 rounded-lg bg-gradient-to-br from-amber-500/10 to-amber-600/5 dark:from-amber-500/20 dark:to-amber-600/10 flex items-center justify-center group-hover:from-amber-500/20 group-hover:to-amber-600/10 dark:group-hover:from-amber-500/30 dark:group-hover:to-amber-600/20 transition-all duration-300'>
               <Icon
                 name={link.icon}
-                className='w-6 h-6 text-amber-600 dark:text-amber-400 group-hover:scale-110 transition-transform duration-300'
+                className='w-5 h-5 sm:w-6 sm:h-6 text-amber-600 dark:text-amber-400 group-hover:scale-110 transition-transform duration-300'
               />
             </div>
 
             {/* Title */}
             <Typography
               variant='h6'
-              className='mb-3 flex-shrink-0 text-zinc-900 dark:text-zinc-100 font-medium group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors line-clamp-2 min-h-[3rem]'
+              className='mb-2 sm:mb-3 flex-shrink-0 text-zinc-900 dark:text-zinc-100 font-medium group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors line-clamp-2 min-h-[2.5rem] sm:min-h-[3rem]'
             >
               {link.title}
             </Typography>
@@ -42,16 +42,16 @@ export function QuickLinkCard({ link, index = 0 }: QuickLinkCardProps) {
             {/* Description */}
             <Typography
               variant='body2'
-              className='text-zinc-600 dark:text-zinc-400 leading-relaxed flex-grow line-clamp-3'
+              className='text-zinc-600 dark:text-zinc-400 leading-relaxed flex-grow line-clamp-3 text-sm sm:text-base'
             >
               {link.description}
             </Typography>
 
             {/* Subtle arrow indicator */}
-            <div className='mt-auto pt-6 flex-shrink-0 border-t border-zinc-200/50 dark:border-zinc-800/50 group-hover:border-amber-500/30 transition-colors'>
+            <div className='mt-auto pt-4 sm:pt-5 md:pt-6 flex-shrink-0 border-t border-zinc-200/50 dark:border-zinc-800/50 group-hover:border-amber-500/30 transition-colors'>
               <Icon
                 name='lucide:arrow-right'
-                className='w-5 h-5 text-zinc-400 dark:text-zinc-600 group-hover:text-amber-600 dark:group-hover:text-amber-400 group-hover:translate-x-2 transition-all duration-300'
+                className='w-4 h-4 sm:w-5 sm:h-5 text-zinc-400 dark:text-zinc-600 group-hover:text-amber-600 dark:group-hover:text-amber-400 group-hover:translate-x-2 transition-all duration-300'
               />
             </div>
           </CardContent>

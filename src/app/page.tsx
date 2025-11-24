@@ -32,7 +32,7 @@ export default async function Home() {
   const t = await getTranslations();
 
   return (
-    <div>
+    <div className='overflow-x-hidden max-w-full'>
       <HeroSection
         title={t("home_hero_name")}
         subtitle={t("home_hero_subtitle")}

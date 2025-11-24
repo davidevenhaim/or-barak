@@ -21,7 +21,7 @@ export function Container({
   return (
     <div
       className={cn(
-        "mx-auto px-4 sm:px-6 lg:px-8",
+        "mx-auto px-4 sm:px-5 md:px-6 lg:px-8 w-full max-w-full",
         sizeClasses[size],
         className
       )}

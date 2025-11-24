@@ -75,7 +75,7 @@ function VideoCard({ video }: { video: Video }) {
   };
 
   return (
-    <Card className='group overflow-hidden border-zinc-200/50 dark:border-zinc-800/50 bg-white/50 dark:bg-zinc-900/50 backdrop-blur-xl hover:border-amber-500/50 transition-all duration-300 hover:shadow-2xl hover:scale-[1.02] h-full flex flex-col m-2'>
+    <Card className='group overflow-hidden border-zinc-200/50 dark:border-zinc-800/50 bg-white/50 dark:bg-zinc-900/50 backdrop-blur-xl hover:border-amber-500/50 transition-all duration-300 hover:shadow-2xl hover:scale-[1.02] h-full flex flex-col m-1 sm:m-2'>
       <CardContent className='p-0 flex flex-col h-full'>
         {/* Video Player */}
         <div className='relative aspect-video overflow-hidden bg-zinc-100 dark:bg-zinc-800 flex-shrink-0'>
@@ -91,7 +91,7 @@ function VideoCard({ video }: { video: Video }) {
               ) : (
                 <button
                   onClick={handlePlay}
-                  className='relative w-full h-full group/play'
+                  className='relative w-full h-full group/play touch-manipulation'
                 >
                   <Image
                     src={thumbnail}
@@ -102,10 +102,10 @@ function VideoCard({ video }: { video: Video }) {
                   />
                   {/* Play button overlay */}
                   <div className='absolute inset-0 flex items-center justify-center bg-black/20 group-hover/play:bg-black/30 transition-colors'>
-                    <div className='w-16 h-16 rounded-full bg-amber-500 flex items-center justify-center group-hover/play:scale-110 transition-transform shadow-lg'>
+                    <div className='w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-amber-500 flex items-center justify-center group-hover/play:scale-110 transition-transform shadow-lg'>
                       <Icon
                         name='lucide:play'
-                        className='w-8 h-8 text-white ml-1'
+                        className='w-6 h-6 sm:w-8 sm:h-8 text-white ml-0.5 sm:ml-1'
                       />
                     </div>
                   </div>
@@ -125,7 +125,7 @@ function VideoCard({ video }: { video: Video }) {
           {video.category && !isPlaying && (
             <Badge
               variant='secondary'
-              className='absolute top-4 right-4 bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md'
+              className='absolute top-2 right-2 sm:top-4 sm:right-4 bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md text-xs sm:text-sm'
             >
               {video.category}
             </Badge>
@@ -133,16 +133,16 @@ function VideoCard({ video }: { video: Video }) {
         </div>
 
         {/* Content */}
-        <div className='p-6 flex flex-col flex-1 min-h-0'>
+        <div className='p-4 sm:p-5 md:p-6 flex flex-col flex-1 min-h-0'>
           <Typography
             variant='h5'
-            className='mb-2 group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors line-clamp-2 min-h-[3.5rem]'
+            className='mb-2 group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors line-clamp-2 min-h-[2.5rem] sm:min-h-[3.5rem]'
           >
             {video.title}
           </Typography>
           <Typography
             variant='body2'
-            className='text-zinc-600 dark:text-zinc-400 line-clamp-2 flex-1'
+            className='text-zinc-600 dark:text-zinc-400 line-clamp-2 flex-1 text-sm sm:text-base'
           >
             {video.description}
           </Typography>
@@ -161,27 +161,27 @@ export function VideoSlider({
   return (
     <section
       id={sectionId}
-      className='py-20 pt-10 bg-gradient-to-br from-zinc-50 via-white to-zinc-50 dark:from-zinc-950 dark:via-black dark:to-zinc-950'
+      className='py-12 sm:py-16 md:py-20 pt-8 sm:pt-10 bg-gradient-to-br from-zinc-50 via-white to-zinc-50 dark:from-zinc-950 dark:via-black dark:to-zinc-950 overflow-x-hidden max-w-full'
     >
-      <div className='container mx-auto px-4'>
+      <div className='container mx-auto px-4 sm:px-6 w-full'>
         {/* Section Header */}
-        <div className='text-center mb-10'>
-          <div className='h-px w-24 bg-gradient-to-r from-transparent via-amber-500 to-transparent mb-8 mx-auto' />
+        <div className='text-center mb-8 sm:mb-10 md:mb-12'>
+          <div className='h-px w-16 sm:w-24 bg-gradient-to-r from-transparent via-amber-500 to-transparent mb-6 sm:mb-8 mx-auto' />
           <Typography
             variant='h2'
-            className='mb-4 bg-gradient-to-r from-zinc-900 via-amber-700 to-zinc-900 dark:from-zinc-50 dark:via-amber-400 dark:to-zinc-50 bg-clip-text text-transparent'
+            className='mb-3 sm:mb-4 px-4 bg-gradient-to-r from-zinc-900 via-amber-700 to-zinc-900 dark:from-zinc-50 dark:via-amber-400 dark:to-zinc-50 bg-clip-text text-transparent'
           >
             {sectionTitle}
           </Typography>
           {sectionDescription && (
             <Typography
               variant='subtitle1'
-              className='text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto'
+              className='text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto px-4 text-sm sm:text-base'
             >
               {sectionDescription}
             </Typography>
           )}
-          <div className='h-px w-24 bg-gradient-to-r from-transparent via-amber-500 to-transparent mt-8 mx-auto' />
+          <div className='h-px w-16 sm:w-24 bg-gradient-to-r from-transparent via-amber-500 to-transparent mt-6 sm:mt-8 mx-auto' />
         </div>
 
         {/* Carousel */}
@@ -190,7 +190,7 @@ export function VideoSlider({
             align: "start",
             loop: true
           }}
-          className='w-full max-w-6xl mx-auto'
+          className='w-full max-w-6xl mx-auto relative overflow-hidden'
         >
           <CarouselContent className='-ml-2 md:-ml-4'>
             {videos.map((video) => (
@@ -202,8 +202,8 @@ export function VideoSlider({
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious className='-left-12 border-zinc-200 dark:border-zinc-800 bg-white/80 dark:bg-zinc-900/80 hover:bg-amber-500 hover:text-white hover:border-amber-500' />
-          <CarouselNext className='-right-12 border-zinc-200 dark:border-zinc-800 bg-white/80 dark:bg-zinc-900/80 hover:bg-amber-500 hover:text-white hover:border-amber-500' />
+          <CarouselPrevious className='hidden md:flex -left-12 border-zinc-200 dark:border-zinc-800 bg-white/80 dark:bg-zinc-900/80 hover:bg-amber-500 hover:text-white hover:border-amber-500 min-w-[44px] min-h-[44px]' />
+          <CarouselNext className='hidden md:flex -right-12 border-zinc-200 dark:border-zinc-800 bg-white/80 dark:bg-zinc-900/80 hover:bg-amber-500 hover:text-white hover:border-amber-500 min-w-[44px] min-h-[44px]' />
         </Carousel>
       </div>
     </section>
