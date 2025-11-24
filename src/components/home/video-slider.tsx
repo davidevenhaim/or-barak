@@ -57,6 +57,7 @@ interface VideoSliderProps {
   videos: Video[];
   sectionTitle: string;
   sectionDescription?: string;
+  sectionId: string;
 }
 
 function VideoCard({ video }: { video: Video }) {
@@ -74,10 +75,10 @@ function VideoCard({ video }: { video: Video }) {
   };
 
   return (
-    <Card className='group overflow-hidden border-zinc-200/50 dark:border-zinc-800/50 bg-white/50 dark:bg-zinc-900/50 backdrop-blur-xl hover:border-amber-500/50 transition-all duration-300 hover:shadow-2xl hover:scale-[1.02]'>
-      <CardContent className='p-0'>
+    <Card className='group overflow-hidden border-zinc-200/50 dark:border-zinc-800/50 bg-white/50 dark:bg-zinc-900/50 backdrop-blur-xl hover:border-amber-500/50 transition-all duration-300 hover:shadow-2xl hover:scale-[1.02] h-full flex flex-col m-2'>
+      <CardContent className='p-0 flex flex-col h-full'>
         {/* Video Player */}
-        <div className='relative aspect-video overflow-hidden bg-zinc-100 dark:bg-zinc-800'>
+        <div className='relative aspect-video overflow-hidden bg-zinc-100 dark:bg-zinc-800 flex-shrink-0'>
           {isYouTube && youtubeId ? (
             <>
               {isPlaying ? (
@@ -132,16 +133,16 @@ function VideoCard({ video }: { video: Video }) {
         </div>
 
         {/* Content */}
-        <div className='p-6'>
+        <div className='p-6 flex flex-col flex-1 min-h-0'>
           <Typography
             variant='h5'
-            className='mb-2 group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors line-clamp-2'
+            className='mb-2 group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors line-clamp-2 min-h-[3.5rem]'
           >
             {video.title}
           </Typography>
           <Typography
             variant='body2'
-            className='text-zinc-600 dark:text-zinc-400 line-clamp-2'
+            className='text-zinc-600 dark:text-zinc-400 line-clamp-2 flex-1'
           >
             {video.description}
           </Typography>
@@ -154,13 +155,17 @@ function VideoCard({ video }: { video: Video }) {
 export function VideoSlider({
   videos,
   sectionTitle,
-  sectionDescription
+  sectionDescription,
+  sectionId
 }: VideoSliderProps) {
   return (
-    <section className='py-20 bg-gradient-to-br from-zinc-50 via-white to-zinc-50 dark:from-zinc-950 dark:via-black dark:to-zinc-950'>
+    <section
+      id={sectionId}
+      className='py-20 pt-10 bg-gradient-to-br from-zinc-50 via-white to-zinc-50 dark:from-zinc-950 dark:via-black dark:to-zinc-950'
+    >
       <div className='container mx-auto px-4'>
         {/* Section Header */}
-        <div className='text-center mb-16'>
+        <div className='text-center mb-10'>
           <div className='h-px w-24 bg-gradient-to-r from-transparent via-amber-500 to-transparent mb-8 mx-auto' />
           <Typography
             variant='h2'
@@ -191,7 +196,7 @@ export function VideoSlider({
             {videos.map((video) => (
               <CarouselItem
                 key={video.id}
-                className='pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3'
+                className='pl-2 mb-2 md:pl-4 md:basis-1/2 lg:basis-1/3 py-2 flex'
               >
                 <VideoCard video={video} />
               </CarouselItem>

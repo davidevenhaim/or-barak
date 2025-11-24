@@ -3,8 +3,10 @@
 import { Typography } from "@/components/ui/typography";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { useState } from "react";
 import { Typewriter } from "../ui/typewriter";
+import { videosSectionId } from "@/components/home/hero-constants";
+import { scrollToElement } from "@/components/home/scroll-handler";
+import { useBoolean } from "@/hooks/use-boolean";
 
 interface HeroSectionProps {
   title: string;
@@ -21,7 +23,7 @@ export function HeroSection({
   backgroundImage,
   backgroundVideo
 }: HeroSectionProps) {
-  const [videoLoaded, setVideoLoaded] = useState(false);
+  const isVideoLoaded = useBoolean(false);
 
   return (
     <section className='relative h-[calc(100vh-50px)] w-full overflow-hidden'>
@@ -30,7 +32,7 @@ export function HeroSection({
         {backgroundVideo ? (
           <>
             {/* Fallback Image */}
-            {!videoLoaded && (
+            {!isVideoLoaded.value && (
               <Image
                 src={backgroundImage}
                 alt='Hero background'
@@ -46,7 +48,7 @@ export function HeroSection({
               muted
               playsInline
               className='h-full w-full object-cover'
-              onLoadedData={() => setVideoLoaded(true)}
+              onLoadedData={isVideoLoaded.onTrue}
             >
               <source src={backgroundVideo} type='video/mp4' />
             </video>
@@ -102,7 +104,8 @@ export function HeroSection({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 1.2 }}
-            className='absolute bottom-12 left-1/2 -translate-x-1/2'
+            className='absolute bottom-12 left-1/2 -translate-x-1/2 cursor-pointer'
+            onClick={() => scrollToElement(videosSectionId)}
           >
             <motion.div
               animate={{ y: [0, 10, 0] }}

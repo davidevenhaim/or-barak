@@ -73,12 +73,12 @@ const Navbar = () => {
                 </Link>
               );
             })}
-            <LanguageSwitcher />
+            {/* <LanguageSwitcher /> */}
           </div>
 
           {/* Mobile: Language Switcher & Menu Button */}
           <div className='flex items-center gap-2 md:hidden'>
-            <LanguageSwitcher />
+            {/* <LanguageSwitcher /> */}
             {/* Mobile Menu Button */}
             <button
               type='button'
