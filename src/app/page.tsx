@@ -1,4 +1,4 @@
-import { HeroSection, VideoSlider, QuickLinksSection } from "@/components/home";
+import { HeroSection, QuickLinksSection, VideoSlider } from "@/components/home";
 import { quickLinks, videos, videosSectionId } from "@/lib/content/homepage";
 import { getTranslations } from "next-intl/server";
 
@@ -47,11 +47,6 @@ export default async function Home() {
         sectionDescription={t("home_videos_description")}
         sectionId={videosSectionId}
       />
-
-      {/* <PartnershipSection
-        partners={partners}
-        sectionTitle={t("home_partners_title")}
-      /> */}
 
       <QuickLinksSection
         links={quickLinks}

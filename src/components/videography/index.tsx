@@ -4,8 +4,7 @@ import {
   executiveProducerVideos,
   featuredVideos,
   headProducerVideos,
-  moreVideos,
-  videographyVideos
+  moreVideos
 } from "@/lib/content/videography";
 import VideographyHeader from "./header";
 import { VideoGrid } from "./video-grid";

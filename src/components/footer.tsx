@@ -6,26 +6,27 @@ import { Typography } from "@/components/ui/typography";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useTranslations } from "next-intl";
+import { OR_CONSTANTS } from "@/lib/constants/or.constants";
 
 const socialLinks = [
   {
     name: "social_instagram",
-    href: "https://instagram.com",
+    href: OR_CONSTANTS.INSTAGRAM,
     icon: "mdi:instagram"
   },
-  {
-    name: "social_vimeo",
-    href: "https://vimeo.com",
-    icon: "mdi:vimeo"
-  },
-  {
-    name: "social_linkedin",
-    href: "https://linkedin.com",
-    icon: "mdi:linkedin"
-  },
+  // {
+  //   name: "social_vimeo",
+  //   href: "https://vimeo.com",
+  //   icon: "mdi:vimeo"
+  // },
+  // {
+  //   name: "social_linkedin",
+  //   href: "https://linkedin.com",
+  //   icon: "mdi:linkedin"
+  // },
   {
     name: "social_email",
-    href: "mailto:or@example.com",
+    href: "mailto:orbarak808@gmail.com",
     icon: "mdi:email-outline"
   }
 ];

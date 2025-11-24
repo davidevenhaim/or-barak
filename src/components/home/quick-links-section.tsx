@@ -22,9 +22,11 @@ export function QuickLinksSection({
   sectionDescription
 }: QuickLinksSectionProps) {
   return (
-    <section className='py-20 bg-gradient-to-br from-white via-zinc-50 to-zinc-100 dark:from-black dark:via-zinc-950 dark:to-zinc-900'>
+    <section className='py-20 pt-10 bg-gradient-to-br from-zinc-50 via-white to-zinc-50 dark:from-zinc-950 dark:via-black dark:to-zinc-950'>
       <div className='container mx-auto px-4'>
-        <div className='text-center mb-16'>
+        {/* Section Header */}
+        <div className='text-center mb-10'>
+          <div className='h-px w-24 bg-gradient-to-r from-transparent via-amber-500 to-transparent mb-8 mx-auto' />
           <Typography
             variant='h2'
             className='mb-4 bg-gradient-to-r from-zinc-900 via-amber-700 to-zinc-900 dark:from-zinc-50 dark:via-amber-400 dark:to-zinc-50 bg-clip-text text-transparent'
@@ -39,11 +41,14 @@ export function QuickLinksSection({
               {sectionDescription}
             </Typography>
           )}
+          <div className='h-px w-24 bg-gradient-to-r from-transparent via-amber-500 to-transparent mt-8 mx-auto' />
         </div>
 
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto'>
           {links.map((link, index) => (
-            <QuickLinkCard key={link.id} link={link} index={index} />
+            <div key={link.id} className='h-full flex'>
+              <QuickLinkCard link={link} index={index} />
+            </div>
           ))}
         </div>
       </div>

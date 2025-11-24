@@ -20,8 +20,8 @@ const Navbar = () => {
     { name: t("nav_videography"), href: routes.videography },
     { name: t("nav_photography"), href: routes.photography },
     { name: t("nav_stories"), href: routes.stories },
-    { name: t("nav_about"), href: routes.about }
-    // { name: t("nav_contact"), href: "/contact" }
+    { name: t("nav_about"), href: routes.about },
+    { name: t("nav_contact"), href: routes.contact }
   ];
 
   return (

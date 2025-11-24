@@ -1,5 +1,6 @@
 import { type Video, type Partner, type QuickLink } from "@/components/home";
 import { VideoCategory } from "@/components/home/video-slider";
+import { routes } from "@/lib/constants/routes";
 
 export const videos: Video[] = [
   {
@@ -24,21 +25,6 @@ export const videos: Video[] = [
     videoUrl: "https://youtu.be/ty-NHGnAsWk",
     category: VideoCategory.HeadProducer
   }
-  // {
-  //   id: "4",
-  //   title: "Static - Federer - Official Music Video",
-  //   description: "Capturing the essence of documentary filmmaking.",
-  //   videoUrl:
-  //     "https://www.youtube.com/watch?v=pQTkDVohdnc&list=RDpQTkDVohdnc&start_radio=1",
-  //   category: VideoCategory.ExecutiveProducer
-  // },
-  // {
-  //   id: "5",
-  //   title: "Full Trunk - Bereshit Music Video",
-  //   description: "Capturing the essence of commercial filmmaking.",
-  //   videoUrl: "https://www.youtube.com/watch?v=ECyHvyvt_mI",
-  //   category: VideoCategory.HeadProducer
-  // }
 ];
 
 export const partners: Partner[] = [
@@ -136,7 +122,7 @@ export const quickLinks: QuickLink[] = [
     id: "1",
     title: "Videography",
     description: "Explore my latest video productions and cinematic work",
-    href: "/videography",
+    href: routes.videography,
     icon: "lucide:video",
     color: "from-purple-500 to-purple-600"
   },
@@ -144,7 +130,7 @@ export const quickLinks: QuickLink[] = [
     id: "2",
     title: "Photography",
     description: "Browse through my photography portfolio and collections",
-    href: "/photography",
+    href: routes.photography,
     icon: "lucide:camera",
     color: "from-blue-500 to-blue-600"
   },
@@ -152,7 +138,7 @@ export const quickLinks: QuickLink[] = [
     id: "3",
     title: "Stories",
     description: "Read about my creative journey and behind-the-scenes stories",
-    href: "/stories",
+    href: routes.stories,
     icon: "lucide:book-open",
     color: "from-amber-500 to-amber-600"
   },
@@ -160,7 +146,7 @@ export const quickLinks: QuickLink[] = [
     id: "4",
     title: "Contact",
     description: "Let's collaborate on your next creative project",
-    href: "/contact",
+    href: routes.contact,
     icon: "lucide:mail",
     color: "from-green-500 to-green-600"
   }
