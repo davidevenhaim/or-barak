@@ -6,4 +6,3 @@ export type { Partner } from "./partnership-section";
 export { QuickLinksSection } from "./quick-links-section";
 export type { QuickLink } from "./quick-links-section";
 export { QuickLinkCard } from "./quick-link-card";
-export { NewsletterSection } from "./newsletter-section";
