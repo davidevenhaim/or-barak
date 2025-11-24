@@ -64,7 +64,8 @@ const themeColorClasses: Record<ThemeColor, string> = {
   pink: "text-pink",
   gray: "text-gray",
   green: "text-green",
-  purple: "text-purple"
+  purple: "text-purple",
+  divider: "bg-gradient-to-r from-amber-500 to-amber-600"
 };
 
 export const getThemeColorClasses = (color: ThemeColor) =>
@@ -200,7 +201,8 @@ export const getBackgroundColorClasses = (color: ThemeColor) => {
     pink: "bg-pink",
     gray: "bg-gray",
     green: "bg-green",
-    purple: "bg-purple"
+    purple: "bg-purple",
+    divider: "bg-gradient-to-r from-amber-500 to-amber-600"
   };
   return bgColorClasses[color];
 };
@@ -225,7 +227,8 @@ export const getBorderColorClasses = (color: ThemeColor) => {
     pink: "border-pink",
     gray: "border-gray",
     green: "border-green",
-    purple: "border-purple"
+    purple: "border-purple",
+    divider: "border-gradient-to-r from-amber-500 to-amber-600"
   };
   return borderColorClasses[color];
 };

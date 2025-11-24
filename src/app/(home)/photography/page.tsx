@@ -11,7 +11,19 @@ export async function generateMetadata(): Promise<Metadata> {
     openGraph: {
       title: `${t("photography_title")} | ${t("site_title")}`,
       description: t("photography_description"),
-      type: "website"
+      type: "website",
+      images: [
+        {
+          url: "/images/or-primary.jpg",
+          alt: t("site_title")
+        }
+      ]
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${t("photography_title")} | ${t("site_title")}`,
+      description: t("photography_description"),
+      images: ["/images/or-primary.jpg"]
     }
   };
 }

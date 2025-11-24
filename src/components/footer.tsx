@@ -44,7 +44,6 @@ const Footer = () => {
     setIsLoading(true);
     // Simulate API call
     await new Promise((resolve) => setTimeout(resolve, 1000));
-    console.log("Newsletter subscription:", email);
     setIsSubmitted(true);
     setIsLoading(false);
     setEmail("");
@@ -99,7 +98,10 @@ const Footer = () => {
                   className='h-9 px-4 bg-zinc-900 hover:bg-zinc-800 dark:bg-zinc-100 dark:hover:bg-zinc-200 text-white dark:text-zinc-900 text-sm'
                 >
                   {isLoading ? (
-                    <Icon name='lucide:loader-2' className='w-4 h-4 animate-spin' />
+                    <Icon
+                      name='lucide:loader-2'
+                      className='w-4 h-4 animate-spin'
+                    />
                   ) : (
                     t("home_newsletter_submit")
                   )}

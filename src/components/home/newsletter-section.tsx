@@ -65,7 +65,6 @@ export function NewsletterSection({
     // Simulate API call
     await new Promise((resolve) => setTimeout(resolve, 1500));
 
-    console.log("Newsletter subscription:", data);
     setIsSubmitted(true);
     setIsLoading(false);
     form.reset();
