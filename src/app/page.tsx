@@ -1,9 +1,5 @@
 import { HeroSection, VideoSlider, QuickLinksSection } from "@/components/home";
-import {
-  quickLinks,
-  videos,
-  videosSectionId
-} from "@/components/home/hero-constants";
+import { quickLinks, videos, videosSectionId } from "@/lib/content/homepage";
 import { getTranslations } from "next-intl/server";
 
 export async function generateMetadata() {

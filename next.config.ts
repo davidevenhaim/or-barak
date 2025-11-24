@@ -14,7 +14,8 @@ const nextConfig: NextConfig = {
       "via.placeholder.com",
       "img.youtube.com",
       "i.ytimg.com",
-      "upload.wikimedia.org"
+      "upload.wikimedia.org",
+      "drive.google.com"
     ]
   }
 };

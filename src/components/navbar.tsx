@@ -8,7 +8,6 @@ import { Typography } from "@/components/ui/typography";
 import { cn } from "@/lib/utils";
 import { useBoolean } from "@/hooks/use-boolean";
 import { useTranslations } from "next-intl";
-import LanguageSwitcher from "./language-switcher";
 
 const Navbar = () => {
   const t = useTranslations();
@@ -20,8 +19,8 @@ const Navbar = () => {
     { name: t("nav_videography"), href: "/videography" },
     { name: t("nav_photography"), href: "/photography" },
     { name: t("nav_journal"), href: "/journal" },
-    { name: t("nav_about"), href: "/about" },
-    { name: t("nav_contact"), href: "/contact" }
+    { name: t("nav_about"), href: "/about" }
+    // { name: t("nav_contact"), href: "/contact" }
   ];
 
   return (

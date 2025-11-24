@@ -4,7 +4,7 @@ import { Typography } from "@/components/ui/typography";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { Typewriter } from "../ui/typewriter";
-import { videosSectionId } from "@/components/home/hero-constants";
+import { videosSectionId } from "@/lib/content/homepage";
 import { scrollToElement } from "@/components/home/scroll-handler";
 import { useBoolean } from "@/hooks/use-boolean";
 
