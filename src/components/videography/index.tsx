@@ -1,17 +1,20 @@
-"use client";
-
 import { Container } from "@/components/ui/container";
-import { videographyVideos } from "@/lib/content/videography";
+import {
+  btsPaVideos,
+  executiveProducerVideos,
+  featuredVideos,
+  headProducerVideos,
+  moreVideos,
+  videographyVideos
+} from "@/lib/content/videography";
 import VideographyHeader from "./header";
 import { VideoGrid } from "./video-grid";
 import { VideoCarousel } from "./video-carousel";
+import { VideoRolesSection } from "./video-roles-section";
+import { getTranslations } from "next-intl/server";
 
-const Videography = () => {
-  // First 5 videos for the grid
-  const featuredVideos = videographyVideos.slice(0, 5);
-  // Remaining videos for the carousel
-  const moreVideos = videographyVideos.slice(5);
-
+const Videography = async () => {
+  const t = await getTranslations();
   return (
     <div className='min-h-screen bg-black dark:bg-black'>
       <Container className='py-12 md:py-20'>
@@ -19,14 +22,35 @@ const Videography = () => {
           <VideographyHeader />
 
           <section className='space-y-8'>
-            <VideoGrid videos={featuredVideos} />
+            <VideoGrid
+              videos={featuredVideos}
+              title={t("videography_subtitle")}
+            />
           </section>
+
+          {headProducerVideos.length > 0 && (
+            <section className='space-y-8'>
+              <VideoCarousel
+                videos={headProducerVideos}
+                title={t("videography_head_producer_videos")}
+              />
+            </section>
+          )}
 
           {moreVideos.length > 0 && (
             <section className='space-y-8'>
-              <VideoCarousel videos={moreVideos} />
+              <VideoCarousel
+                videos={moreVideos}
+                title={t("videography_more_projects")}
+              />
             </section>
           )}
+
+          <section className='space-y-8'>
+            <VideoRolesSection
+              videos={btsPaVideos.concat(executiveProducerVideos)}
+            />
+          </section>
         </div>
       </Container>
     </div>

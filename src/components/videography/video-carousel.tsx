@@ -12,20 +12,20 @@ import { VideoItem } from "@/lib/types/videography";
 import { VideoCard } from "./video-card";
 import { VideoDialog } from "./video-dialog";
 import { Typography } from "@/components/ui/typography";
-import { useTranslations } from "next-intl";
+import { useBoolean } from "@/hooks/use-boolean";
 
 interface VideoCarouselProps {
   videos: VideoItem[];
+  title: string;
 }
 
-export function VideoCarousel({ videos }: VideoCarouselProps) {
-  const t = useTranslations();
+export function VideoCarousel({ videos, title }: VideoCarouselProps) {
   const [selectedVideo, setSelectedVideo] = useState<VideoItem | null>(null);
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const isDialogOpen = useBoolean();
 
   const handleVideoClick = (video: VideoItem) => {
     setSelectedVideo(video);
-    setIsDialogOpen(true);
+    isDialogOpen.onTrue();
   };
 
   return (
@@ -35,7 +35,7 @@ export function VideoCarousel({ videos }: VideoCarouselProps) {
           variant='h4'
           className='uppercase tracking-wider text-zinc-500 dark:text-zinc-400 font-medium'
         >
-          {t("videography_more_projects")}
+          {title}
         </Typography>
         <Carousel
           opts={{
@@ -65,8 +65,8 @@ export function VideoCarousel({ videos }: VideoCarouselProps) {
       </div>
       <VideoDialog
         video={selectedVideo}
-        open={isDialogOpen}
-        onOpenChange={setIsDialogOpen}
+        open={isDialogOpen.value}
+        onOpenChange={isDialogOpen.onToggle}
       />
     </>
   );

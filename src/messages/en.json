@@ -65,9 +65,13 @@
 
   "videography_title": "Videography",
   "videography_subtitle": "Directed, Filmed & Edited",
+  "videography_head_producer_videos": "Head Producer",
   "videography_description": "My core creations. Full creative control from concept to final cut.",
   "videography_more_projects": "MORE PROJECTS",
-
+  "videography_role_directed_filmed_edited": "Directed, Filmed & Edited",
+  "videography_role_head_producer": "Head Producer",
+  "videography_role_executive_producer": "Executive Producer",
+  "videography_role_bts_pa": "BTS & PA",
   "photography_title": "Photography",
   "photography_description": "Selected photography from various projects and personal work.",
   "photography_collection_title": "The Collection",

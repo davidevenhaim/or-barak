@@ -6,19 +6,21 @@ import { VideoItem } from "@/lib/types/videography";
 import { Typography } from "@/components/ui/typography";
 import { VideoCard } from "./video-card";
 import { VideoDialog } from "./video-dialog";
+import { useBoolean } from "@/hooks/use-boolean";
 
 interface VideoGridProps {
   videos: VideoItem[];
+  title: string;
 }
 
-export function VideoGrid({ videos }: VideoGridProps) {
+export function VideoGrid({ videos, title }: VideoGridProps) {
   const t = useTranslations();
   const [selectedVideo, setSelectedVideo] = useState<VideoItem | null>(null);
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const isDialogOpen = useBoolean();
 
   const handleVideoClick = (video: VideoItem) => {
     setSelectedVideo(video);
-    setIsDialogOpen(true);
+    isDialogOpen.onTrue();
   };
 
   // First 2 videos are large, next 3 are small
@@ -32,7 +34,7 @@ export function VideoGrid({ videos }: VideoGridProps) {
           variant='h4'
           className='uppercase tracking-wider text-zinc-500 dark:text-zinc-400 font-medium'
         >
-          {t("videography_subtitle")}
+          {title}
         </Typography>
         <div className='h-px w-1/2 bg-zinc-800 mx-auto sm:mx-0 my-6' />
         <Typography
@@ -66,8 +68,8 @@ export function VideoGrid({ videos }: VideoGridProps) {
       </div>
       <VideoDialog
         video={selectedVideo}
-        open={isDialogOpen}
-        onOpenChange={setIsDialogOpen}
+        open={isDialogOpen.value}
+        onOpenChange={isDialogOpen.onToggle}
       />
     </>
   );

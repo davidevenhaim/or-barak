@@ -1,8 +1,8 @@
 import { Typography } from "@/components/ui/typography";
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 
-const VideographyHeader = () => {
-  const t = useTranslations();
+const VideographyHeader = async () => {
+  const t = await getTranslations();
 
   return (
     <div className='text-center space-y-4'>

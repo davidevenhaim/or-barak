@@ -193,3 +193,19 @@ export const videographyVideos: VideoItem[] = [
     url: "https://www.youtube.com/watch?v=Anx_juuCWwY"
   }
 ];
+
+export const featuredVideos = videographyVideos.slice(0, 5);
+
+export const headProducerVideos = videographyVideos.filter(
+  (video) => video.role === VideoRole.Head_Producer
+);
+
+export const executiveProducerVideos = videographyVideos.filter(
+  (video) => video.role === VideoRole.Executive_Producer
+);
+
+export const btsPaVideos = videographyVideos.filter(
+  (video) => video.role === VideoRole.BTS_PA
+);
+
+export const moreVideos = videographyVideos.slice(5);
