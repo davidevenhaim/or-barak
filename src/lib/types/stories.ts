@@ -1,4 +1,4 @@
-export interface JournalPost {
+export interface StoryPost {
   slug: string;
   title: string;
   description: string;
@@ -9,7 +9,7 @@ export interface JournalPost {
   coverImage: string;
 }
 
-export interface JournalMetadata {
+export interface StoryMetadata {
   slug: string;
   title: string;
   description: string;

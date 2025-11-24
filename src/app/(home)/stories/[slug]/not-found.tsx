@@ -1,7 +1,7 @@
 import { Container } from "@/components/ui/container";
 import { Typography } from "@/components/ui/typography";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
-import { BackLink } from "@/components/journal";
+import { BackLink } from "@/components/stories";
 import { useTranslations } from "next-intl";
 
 export default function NotFound() {
@@ -31,7 +31,7 @@ export default function NotFound() {
                 variant='h3'
                 className='mb-6 bg-gradient-to-r from-zinc-900 via-amber-700 to-zinc-900 dark:from-zinc-50 dark:via-amber-400 dark:to-zinc-50 bg-clip-text text-transparent'
               >
-                {t("journal_not_found_title")}
+                {t("stories_not_found_title")}
               </Typography>
 
               {/* Description */}
@@ -39,13 +39,13 @@ export default function NotFound() {
                 variant='body1'
                 className='mb-10 text-zinc-600 dark:text-zinc-400 leading-relaxed'
               >
-                {t("journal_not_found_description")}
+                {t("stories_not_found_description")}
               </Typography>
 
               {/* Back Button */}
               <BackLink
-                href='/journal'
-                text={t("journal_back_link")}
+                href='/stories'
+                text={t("stories_back_link")}
                 variant='button'
               />
             </CardContent>

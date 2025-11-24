@@ -6,21 +6,21 @@ import {
   CardFooter,
   CardHeader
 } from "@/components/ui/card";
-import { BackLink, DateBadge, PostTags } from "@/components/journal";
-import { getAllJournalPosts, getJournalPostBySlug } from "@/lib/content/post";
+import { BackLink, DateBadge, PostTags } from "@/components/stories";
+import { getAllStories, getStoryBySlug } from "@/lib/content/post";
 import { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { getTranslations } from "next-intl/server";
 
-interface JournalPostPageProps {
+interface StoryPageProps {
   params: Promise<{
     slug: string;
   }>;
 }
 
 export async function generateStaticParams() {
-  const posts = await getAllJournalPosts();
+  const posts = await getAllStories();
   return posts.map((post) => ({
     slug: post.slug
   }));
@@ -28,14 +28,14 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({
   params
-}: JournalPostPageProps): Promise<Metadata> {
+}: StoryPageProps): Promise<Metadata> {
   const { slug } = await params;
-  const post = await getJournalPostBySlug(slug);
+  const post = await getStoryBySlug(slug);
   const t = await getTranslations();
 
   if (!post) {
     return {
-      title: t("journal_not_found_title")
+      title: t("stories_not_found_title")
     };
   }
 
@@ -57,11 +57,11 @@ export async function generateMetadata({
   };
 }
 
-export default async function JournalPostPage({
+export default async function StoryPage({
   params
-}: JournalPostPageProps) {
+}: StoryPageProps) {
   const { slug } = await params;
-  const post = await getJournalPostBySlug(slug);
+  const post = await getStoryBySlug(slug);
   const t = await getTranslations();
 
   if (!post) {
@@ -73,7 +73,7 @@ export default async function JournalPostPage({
       <Container className='py-20'>
         <article className='max-w-4xl mx-auto'>
           {/* Back Link */}
-          <BackLink href='/journal' text={t("journal_back_link")} />
+          <BackLink href='/stories' text={t("stories_back_link")} />
 
           {/* Cover Image - Full Width Hero */}
           <div className='relative w-full h-[500px] mb-12 rounded-3xl overflow-hidden bg-zinc-100 dark:bg-zinc-800 shadow-2xl'>
@@ -140,8 +140,8 @@ export default async function JournalPostPage({
           <Card className='bg-white/50 dark:bg-zinc-900/50 backdrop-blur-xl border-zinc-200/50 dark:border-zinc-800/50 shadow-lg'>
             <CardFooter className='flex items-center justify-between p-6'>
               <BackLink
-                href='/journal'
-                text={t("journal_back_link")}
+                href='/stories'
+                text={t("stories_back_link")}
                 variant='button'
               />
 

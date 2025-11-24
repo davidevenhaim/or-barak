@@ -1,7 +1,7 @@
 // lib/content/posts.ts
-import { JournalPost } from "@/lib/types/journal";
+import { StoryPost } from "@/lib/types/stories";
 
-const POSTS: JournalPost[] = [
+const POSTS: StoryPost[] = [
   {
     slug: "seeing-in-the-dark",
     title: "Seeing in the Dark",
@@ -12,7 +12,7 @@ I used to think light was about control.
 Now I think it's about permission.
 ...
     `.trim(),
-    coverImage: "/images/journal/seeing-in-the-dark.jpg",
+    coverImage: "/images/stories/seeing-in-the-dark.jpg",
     publishedAt: "2025-10-20T09:00:00.000Z",
     tags: ["philosophy", "process"]
   },
@@ -28,11 +28,11 @@ am I documenting, or am I selling?
     `.trim(),
     publishedAt: "2025-10-12T09:00:00.000Z",
     tags: ["industry", "ethics"],
-    coverImage: "/images/journal/money-vs-honesty.jpg"
+    coverImage: "/images/stories/money-vs-honesty.jpg"
   }
 ];
 
-export async function getAllJournalPosts(): Promise<JournalPost[]> {
+export async function getAllStories(): Promise<StoryPost[]> {
   // In the future this can fetch from CMS.
   // For now return posts sorted by date desc.
   return [...POSTS].sort(
@@ -41,9 +41,9 @@ export async function getAllJournalPosts(): Promise<JournalPost[]> {
   );
 }
 
-export async function getJournalPostBySlug(
+export async function getStoryBySlug(
   slug: string
-): Promise<JournalPost | null> {
+): Promise<StoryPost | null> {
   const post = POSTS.find((p) => p.slug === slug);
   return post ?? null;
 }

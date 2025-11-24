@@ -1,6 +1,6 @@
 export { BackLink } from "./back-link";
 export { DateBadge } from "./date-badge";
-export { JournalHeader } from "./journal-header";
-export { JournalPostCard } from "./journal-post-card";
+export { StoriesHeader } from "./stories-header";
+export { StoryCard } from "./story-card";
 export { PostTags } from "./post-tags";
 

@@ -1,12 +1,12 @@
 {
   "site_title": "Or Barak | Producer, Entrepreneur & Filmmaker",
-  "site_description": "Portfolio and creative journal of Or Barak - Producer, Entrepreneur, Filmmaker and visual storyteller.",
+  "site_description": "Portfolio and creative stories of Or Barak - Producer, Entrepreneur, Filmmaker and visual storyteller.",
   "site_tagline": "Producer, Entrepreneur & Filmmaker",
 
   "nav_home": "Home",
   "nav_videography": "Videography",
   "nav_photography": "Photography",
-  "nav_journal": "Journal",
+  "nav_stories": "Stories",
   "nav_about": "About",
   "nav_contact": "Contact",
 
@@ -81,14 +81,14 @@
   "photography_top_works": "TOP {count}",
   "photography_full_catalog": "FULL CATALOG",
 
-  "journal_title": "Journal",
-  "journal_description": "Thoughts, reflections, and stories from my creative journey.",
-  "journal_read_time": "{minutes} min read",
-  "journal_published_on": "Published on {date}",
-  "journal_empty_state": "No posts yet. Check back soon.",
-  "journal_back_link": "Back to Journal",
-  "journal_not_found_title": "Post Not Found",
-  "journal_not_found_description": "The journal post you're looking for doesn't exist or has been removed.",
+  "stories_title": "Stories",
+  "stories_description": "Thoughts, reflections, and stories from my creative journey.",
+  "stories_read_time": "{minutes} min read",
+  "stories_published_on": "Published on {date}",
+  "stories_empty_state": "No posts yet. Check back soon.",
+  "stories_back_link": "Back to Stories",
+  "stories_not_found_title": "Post Not Found",
+  "stories_not_found_description": "The story you're looking for doesn't exist or has been removed.",
 
   "about_title": "About",
   "about_description": "Learn more about my work and creative philosophy.",

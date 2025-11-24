@@ -2,7 +2,7 @@ export const routes = {
   home: "/",
   videography: "/videography",
   photography: "/photography",
-  journal: "/journal",
+  stories: "/stories",
   about: "/about",
   contact: "/contact"
 };

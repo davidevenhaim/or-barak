@@ -1,12 +1,12 @@
 {
   "site_title": "אור ברק | צלם וידאו ובמאי יצירה",
-  "site_description": "תיק עבודות ויומן יצירתי של אור ברק - צלם וידאו, במאי יצירה ומספר סיפורים ויזואליים.",
+  "site_description": "תיק עבודות וסיפורים יצירתיים של אור ברק - צלם וידאו, במאי יצירה ומספר סיפורים ויזואליים.",
   "site_tagline": "צלם וידאו ובמאי יצירה",
 
   "nav_home": "בית",
   "nav_videography": "וידאוגרפיה",
   "nav_photography": "צילום",
-  "nav_journal": "יומן",
+  "nav_stories": "סיפורים",
   "nav_about": "אודות",
   "nav_contact": "צור קשר",
 
@@ -81,14 +81,14 @@
   "photography_top_works": "הטופ {count}",
   "photography_full_catalog": "הקטלוג המלא",
 
-  "journal_title": "יומן",
-  "journal_description": "מחשבות, הרהורים וסיפורים מהמסע היצירתי שלי.",
-  "journal_read_time": "{minutes} דקות קריאה",
-  "journal_published_on": "פורסם ב-{date}",
-  "journal_empty_state": "אין עדיין פוסטים. בקרו שוב בקרוב.",
-  "journal_back_link": "חזרה ליומן",
-  "journal_not_found_title": "הפוסט לא נמצא",
-  "journal_not_found_description": "פוסט היומן שאתם מחפשים לא קיים או הוסר.",
+  "stories_title": "סיפורים",
+  "stories_description": "מחשבות, הרהורים וסיפורים מהמסע היצירתי שלי.",
+  "stories_read_time": "{minutes} דקות קריאה",
+  "stories_published_on": "פורסם ב-{date}",
+  "stories_empty_state": "אין עדיין פוסטים. בקרו שוב בקרוב.",
+  "stories_back_link": "חזרה לסיפורים",
+  "stories_not_found_title": "הפוסט לא נמצא",
+  "stories_not_found_description": "הסיפור שאתם מחפשים לא קיים או הוסר.",
 
   "about_title": "אודות",
   "about_description": "למד עוד על העבודה והפילוסופיה היצירתית שלי.",

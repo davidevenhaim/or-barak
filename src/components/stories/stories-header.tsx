@@ -1,11 +1,11 @@
 import { Typography } from "@/components/ui/typography";
 
-interface JournalHeaderProps {
+interface StoriesHeaderProps {
   title: string;
   description: string;
 }
 
-export function JournalHeader({ title, description }: JournalHeaderProps) {
+export function StoriesHeader({ title, description }: StoriesHeaderProps) {
   return (
     <div className="mb-20 text-center">
       <div className="inline-block mb-6">

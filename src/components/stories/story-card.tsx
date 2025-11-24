@@ -3,20 +3,20 @@ import { Typography } from "@/components/ui/typography";
 import { Icon } from "@/components/ui/icon";
 import Image from "next/image";
 import Link from "next/link";
-import { JournalPost } from "@/lib/types/journal";
+import { StoryPost } from "@/lib/types/stories";
 import { DateBadge } from "./date-badge";
 import { PostTags } from "./post-tags";
 
-interface JournalPostCardProps {
-  post: JournalPost;
+interface StoryCardProps {
+  post: StoryPost;
   index?: number;
   readMoreText: string;
 }
 
-export function JournalPostCard({ post, index = 0, readMoreText }: JournalPostCardProps) {
+export function StoryCard({ post, index = 0, readMoreText }: StoryCardProps) {
   return (
     <Link
-      href={`/journal/${post.slug}`}
+      href={`/stories/${post.slug}`}
       className="block group animate-fadeInUp"
       style={{
         animationDelay: `${index * 0.1}s`

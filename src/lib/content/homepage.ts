@@ -150,9 +150,9 @@ export const quickLinks: QuickLink[] = [
   },
   {
     id: "3",
-    title: "Journal",
+    title: "Stories",
     description: "Read about my creative journey and behind-the-scenes stories",
-    href: "/journal",
+    href: "/stories",
     icon: "lucide:book-open",
     color: "from-amber-500 to-amber-600"
   },
