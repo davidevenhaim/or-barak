@@ -35,14 +35,14 @@ export const metadata: Metadata = {
     title: "Or Barak",
     description:
       "Or Barak is a Producer, Entrepreneur, Filmmaker and visual storyteller",
-    images: ["/images/or.png"]
+    images: ["/images/or-1.png"]
   },
   twitter: {
     card: "summary_large_image",
     title: "Or Barak",
     description:
       "Or Barak is a Producer, Entrepreneur, Filmmaker and visual storyteller",
-    images: ["/images/or.png"]
+    images: ["/images/or-1.png"]
   }
 };
 
