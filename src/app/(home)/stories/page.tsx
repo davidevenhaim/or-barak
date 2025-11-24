@@ -46,7 +46,7 @@ export default async function StoriesPage() {
           <StoriesHeader title={t("stories_title_and_perspectives")} />
 
           {/* Stories Grid */}
-          {posts.length > 0 && (
+          {/* {posts.length > 0 && (
             <div className='grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8'>
               {posts.map((post, index) => (
                 <StoryCard
@@ -58,7 +58,7 @@ export default async function StoriesPage() {
                 />
               ))}
             </div>
-          )}
+          )} */}
 
           {/* Coming Soon Section */}
           <ComingSoonSection
