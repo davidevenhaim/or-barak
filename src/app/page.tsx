@@ -14,7 +14,7 @@ export async function generateMetadata() {
       type: "website",
       images: [
         {
-          url: "/images/or-primary.jpg",
+          url: "/images/or-1.png",
           alt: t("site_title")
         }
       ]
@@ -23,7 +23,7 @@ export async function generateMetadata() {
       card: "summary_large_image",
       title: t("site_title"),
       description: t("site_description"),
-      images: ["/images/or-primary.jpg"]
+      images: ["/images/or-1.png"]
     }
   };
 }
