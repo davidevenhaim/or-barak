@@ -14,7 +14,6 @@
   "footer_tagline": "מפיק • יזם • צלם",
 
   "social_instagram": "אינסטגרם",
-  "social_vimeo": "וימאו",
   "social_linkedin": "לינקדאין",
   "social_email": "אימייל",
 
@@ -28,33 +27,19 @@
   "home_quicklinks_title": "גלו עוד",
   "home_quicklinks_description": "חקרו תחומים שונים בעבודה הקריאטיבית שלי",
 
-  "home_partners_title": "שיתופי הפעולה שלי",
-
   "home_newsletter_title": "הישארו מחוברים",
   "home_newsletter_description": "הירשמו לקבלת עדכונים על פרויקטים חדשים, תוכן מאחורי הקלעים ותובנות קריאטיביות.",
   "home_newsletter_success": "תודה על ההרשמה! תקבלו עדכונים בקרוב.",
   "home_newsletter_submit": "הירשמו",
   "home_newsletter_email_placeholder": "הכניסו את כתובת האימייל שלכם",
-  "home_newsletter_name_placeholder": "שמכם (אופציונלי)",
 
   "language_english": "English",
   "language_hebrew": "עברית",
   "change_language": "שנה שפה",
 
-  "contact_form_title": "צור קשר",
-  "contact_form_description": "בואו נדבר על הפרויקט הבא שלכם",
   "contact_form_name_required": "יש למלא שם",
   "contact_form_email_required": "יש למלא אימייל",
   "contact_form_email_invalid": "נא להזין כתובת אימייל תקינה",
-  "contact_form_message_label": "הודעה",
-  "contact_form_message_placeholder": "ספר לי על הפרויקט שלך...",
-  "contact_form_message_required": "יש למלא הודעה",
-  "contact_form_message_min_length": "ההודעה חייבת להכיל לפחות 20 תווים",
-
-  "read_more": "קרא עוד",
-  "view_all": "צפה בהכל",
-  "back_to": "חזרה ל{section}",
-  "loading": "טוען...",
 
   "videography_title": "וידאוגרפיה",
   "videography_subtitle": "בימוי, צילום ועריכה",
@@ -70,7 +55,6 @@
   "photography_collection_title": "האוסף",
   "photography_collection_description": "מבחר אוצרות של עבודות צילום מתחומים ופרויקטים שונים.",
   "photography_selected_works": "עבודות נבחרות",
-  "photography_drag_to_explore": "גרור לחקירה",
   "photography_top_works": "הטופ {count}",
   "photography_full_catalog": "הקטלוג המלא",
 
@@ -78,9 +62,6 @@
   "stories_title_and_perspectives": "סיפורים ופרספקטיבות",
   "stories_description": "מחשבות, הרהורים וסיפורים מהמסע היצירתי שלי.",
   "stories_read_story": "קרא סיפור",
-  "stories_read_time": "{minutes} דקות קריאה",
-  "stories_published_on": "פורסם ב-{date}",
-  "stories_empty_state": "אין עדיין פוסטים. בקרו שוב בקרוב.",
   "stories_back_link": "חזרה לסיפורים",
   "stories_not_found_title": "הפוסט לא נמצא",
   "stories_not_found_description": "הסיפור שאתם מחפשים לא קיים או הוסר.",
@@ -107,10 +88,7 @@
   "timeline_2024_title": "אופקים חדשים",
   "timeline_2024_description": "מרחיב לתחומים יצירתיים חדשים. הסיפור ממשיך להתפתח.",
 
-  "contact_title": "צור קשר",
-  "contact_description": "בואו נעבוד יחד על הפרויקט הבא שלכם.",
   "contact_header": "שיתוף פעולה",
-  "contact_title_main": "בואו ניצור מציאות.",
   "contact_title_part1": "בואו ניצור",
   "contact_title_part2": "מציאות.",
   "contact_description_text": "בין אם יש לכם תסריט, חזון מותג, או רק ניצוץ של רעיון – אני כאן כדי להפיק אותו למציאות.",
@@ -124,12 +102,8 @@
   "contact_form_project_type_label": "סוג פרויקט",
   "contact_form_vision_label": "ספר לי על החזון",
   "contact_form_submit": "שלח הצעה",
-  "contact_form_name_placeholder": "",
-  "contact_form_email_placeholder": "",
   "contact_form_project_type_placeholder": "בחר סוג פרויקט",
-  "contact_form_vision_placeholder": "",
   "contact_form_success": "ההצעה נשלחה בהצלחה!",
-  "contact_form_error": "שליחת ההצעה נכשלה. אנא נסה שוב.",
   "contact_project_type_commercial": "פרסומת",
   "contact_project_type_documentary": "דוקומנטרי",
   "contact_project_type_short_film": "סרט קצר",

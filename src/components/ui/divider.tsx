@@ -26,7 +26,7 @@ const colorMap: Record<ThemeColor, string> = {
   white: "bg-white",
   black: "bg-black",
   pink: "bg-pink",
-  gray: "bg-gray",
+  gray: "bg-zinc-200 dark:bg-zinc-800",
   green: "bg-green",
   purple: "bg-purple",
   primary: "bg-gradient-to-r from-primary to-primary-foreground",

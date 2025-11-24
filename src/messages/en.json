@@ -14,7 +14,6 @@
   "footer_tagline": "Producer • Entrepreneur • Filmmaker",
 
   "social_instagram": "Instagram",
-  "social_vimeo": "Vimeo",
   "social_linkedin": "LinkedIn",
   "social_email": "Email",
 
@@ -28,33 +27,19 @@
   "home_quicklinks_title": "Discover More",
   "home_quicklinks_description": "Explore different areas of my creative work",
 
-  "home_partners_title": "Partnered With",
-
   "home_newsletter_title": "Stay Connected",
   "home_newsletter_description": "Subscribe to receive updates about new projects, behind-the-scenes content, and creative insights.",
   "home_newsletter_success": "Thank you for subscribing! You'll receive updates soon.",
   "home_newsletter_submit": "Subscribe",
   "home_newsletter_email_placeholder": "Enter your email",
-  "home_newsletter_name_placeholder": "Your name (optional)",
 
   "language_english": "English",
   "language_hebrew": "עברית",
   "change_language": "Change language",
 
-  "contact_form_title": "Get in Touch",
-  "contact_form_description": "Let's discuss your next project",
   "contact_form_name_required": "Name is required",
   "contact_form_email_required": "Email is required",
   "contact_form_email_invalid": "Please enter a valid email address",
-  "contact_form_message_label": "Message",
-  "contact_form_message_placeholder": "Tell me about your project...",
-  "contact_form_message_required": "Message is required",
-  "contact_form_message_min_length": "Message must be at least 20 characters",
-
-  "read_more": "Read more",
-  "view_all": "View all",
-  "back_to": "Back to {section}",
-  "loading": "Loading...",
 
   "videography_title": "Videography",
   "videography_subtitle": "Directed, Filmed & Edited",
@@ -70,7 +55,6 @@
   "photography_collection_title": "The Collection",
   "photography_collection_description": "A curated selection of photographic works spanning various genres and projects.",
   "photography_selected_works": "SELECTED WORKS",
-  "photography_drag_to_explore": "DRAG TO EXPLORE",
   "photography_top_works": "TOP {count}",
   "photography_full_catalog": "FULL CATALOG",
 
@@ -78,9 +62,6 @@
   "stories_title_and_perspectives": "Stories & Perspectives",
   "stories_description": "Thoughts, reflections, and stories from my creative journey.",
   "stories_read_story": "READ STORY",
-  "stories_read_time": "{minutes} min read",
-  "stories_published_on": "Published on {date}",
-  "stories_empty_state": "No posts yet. Check back soon.",
   "stories_back_link": "Back to Stories",
   "stories_not_found_title": "Post Not Found",
   "stories_not_found_description": "The story you're looking for doesn't exist or has been removed.",
@@ -107,10 +88,7 @@
   "timeline_2024_title": "New Horizons",
   "timeline_2024_description": "Expanding into new creative territories. The story continues to evolve.",
 
-  "contact_title": "Contact",
-  "contact_description": "Let's work together on your next project.",
   "contact_header": "COLLABORATION",
-  "contact_title_main": "Let's Create Reality.",
   "contact_title_part1": "Let's Create",
   "contact_title_part2": "Reality.",
   "contact_description_text": "Whether you have a script, a brand vision, or just a spark of an idea – I'm here to produce it into existence.",
@@ -124,12 +102,8 @@
   "contact_form_project_type_label": "PROJECT TYPE",
   "contact_form_vision_label": "TELL ME ABOUT THE VISION",
   "contact_form_submit": "SEND PROPOSAL",
-  "contact_form_name_placeholder": "",
-  "contact_form_email_placeholder": "",
   "contact_form_project_type_placeholder": "Select project type",
-  "contact_form_vision_placeholder": "",
   "contact_form_success": "Proposal sent successfully!",
-  "contact_form_error": "Failed to send proposal. Please try again.",
   "contact_project_type_commercial": "Commercial",
   "contact_project_type_documentary": "Documentary",
   "contact_project_type_short_film": "Short Film",

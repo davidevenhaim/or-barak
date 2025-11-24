@@ -7,6 +7,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useTranslations } from "next-intl";
 import { OR_CONSTANTS } from "@/lib/constants/or.constants";
+import { useBoolean } from "@/hooks/use-boolean";
+import Divider from "./ui/divider";
 
 const socialLinks = [
   {
@@ -34,87 +36,15 @@ const socialLinks = [
 const Footer = () => {
   const t = useTranslations();
   const currentYear = new Date().getFullYear();
-  const [email, setEmail] = useState("");
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!email) return;
-
-    setIsLoading(true);
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    setIsSubmitted(true);
-    setIsLoading(false);
-    setEmail("");
-
-    // Reset success message after 3 seconds
-    setTimeout(() => {
-      setIsSubmitted(false);
-    }, 3000);
-  };
 
   return (
     <footer className='border-t border-zinc-200 dark:border-zinc-800 bg-white dark:bg-black'>
       <div className='mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8'>
         <div className='flex flex-col items-center gap-8'>
-          {/* Newsletter Signup */}
-          <div className='w-full max-w-md'>
-            <div className='text-center mb-4'>
-              <Typography
-                variant='caption1'
-                className='text-zinc-700 dark:text-zinc-300 font-medium mb-1'
-              >
-                {t("home_newsletter_title")}
-              </Typography>
-              <Typography
-                variant='caption2'
-                className='text-zinc-500 dark:text-zinc-500'
-              >
-                {t("home_newsletter_description")}
-              </Typography>
-            </div>
+          <NewsletterSection />
 
-            {isSubmitted ? (
-              <div className='flex items-center justify-center gap-2 py-2 text-zinc-600 dark:text-zinc-400'>
-                <Icon name='lucide:check-circle' className='w-4 h-4' />
-                <Typography variant='caption1'>
-                  {t("home_newsletter_success")}
-                </Typography>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className='flex gap-2'>
-                <Input
-                  type='email'
-                  placeholder={t("home_newsletter_email_placeholder")}
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className='h-9 text-sm bg-white dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800'
-                  required
-                />
-                <Button
-                  type='submit'
-                  disabled={isLoading}
-                  className='h-9 px-4 bg-zinc-900 hover:bg-zinc-800 dark:bg-zinc-100 dark:hover:bg-zinc-200 text-white dark:text-zinc-900 text-sm'
-                >
-                  {isLoading ? (
-                    <Icon
-                      name='lucide:loader-2'
-                      className='w-4 h-4 animate-spin'
-                    />
-                  ) : (
-                    t("home_newsletter_submit")
-                  )}
-                </Button>
-              </form>
-            )}
-          </div>
+          <Divider width='fourth' color='gray' />
 
-          {/* Divider */}
-          <div className='w-full max-w-xs h-px bg-zinc-200 dark:bg-zinc-800' />
-
-          {/* Social Links */}
           <div className='flex items-center gap-6'>
             {socialLinks.map((link) => (
               <a
@@ -150,6 +80,82 @@ const Footer = () => {
         </div>
       </div>
     </footer>
+  );
+};
+
+const NewsletterSection = () => {
+  const t = useTranslations();
+
+  const [email, setEmail] = useState("");
+
+  const isSubmitted = useBoolean();
+  const isLoading = useBoolean();
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email) return;
+
+    isLoading.onTrue();
+    // Simulate API call
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+    isSubmitted.onTrue();
+    isLoading.onFalse();
+    setEmail("");
+
+    // Reset success message after 3 seconds
+    setTimeout(() => {
+      isSubmitted.onFalse();
+    }, 3000);
+  };
+
+  return (
+    <div className='w-full max-w-md'>
+      <div className='text-center mb-4'>
+        <Typography
+          variant='caption1'
+          className='text-zinc-700 dark:text-zinc-300 font-medium mb-1'
+        >
+          {t("home_newsletter_title")}
+        </Typography>
+        <Typography
+          variant='caption2'
+          className='text-zinc-500 dark:text-zinc-500'
+        >
+          {t("home_newsletter_description")}
+        </Typography>
+      </div>
+
+      {isSubmitted.value ? (
+        <div className='flex items-center justify-center gap-2 py-2 text-zinc-600 dark:text-zinc-400'>
+          <Icon name='lucide:check-circle' className='w-4 h-4' />
+          <Typography variant='caption1'>
+            {t("home_newsletter_success")}
+          </Typography>
+        </div>
+      ) : (
+        <form onSubmit={handleSubmit} className='flex gap-2'>
+          <Input
+            type='email'
+            placeholder={t("home_newsletter_email_placeholder")}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className='h-9 text-sm bg-white dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800'
+            required
+          />
+          <Button
+            type='submit'
+            disabled={isLoading.value}
+            className='h-9 px-4 bg-zinc-900 hover:bg-zinc-800 dark:bg-zinc-100 dark:hover:bg-zinc-200 text-white dark:text-zinc-900 text-sm'
+          >
+            {isLoading.value ? (
+              <Icon name='lucide:loader-2' className='w-4 h-4 animate-spin' />
+            ) : (
+              t("home_newsletter_submit")
+            )}
+          </Button>
+        </form>
+      )}
+    </div>
   );
 };
 
