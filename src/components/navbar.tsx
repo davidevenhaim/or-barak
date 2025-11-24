@@ -25,7 +25,7 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className='fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-zinc-200 dark:bg-black/80 dark:border-zinc-800'>
+    <nav className='fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-zinc-200 dark:bg-card/80 dark:border-border'>
       <div className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
         <div className='relative flex h-16 items-center justify-between md:justify-center'>
           {/* Logo / Name */}
@@ -51,7 +51,7 @@ const Navbar = () => {
                   <Typography
                     variant='body2'
                     className={cn(
-                      "text-sm font-medium transition-colors",
+                      "text-base font-medium transition-colors",
                       isActive
                         ? "text-zinc-900 dark:text-zinc-50"
                         : "text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-50"
@@ -103,7 +103,7 @@ const Navbar = () => {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.2 }}
-            className='md:hidden border-t border-zinc-200 dark:border-zinc-800 bg-white dark:bg-black'
+            className='md:hidden border-t border-zinc-200 dark:border-border bg-white dark:bg-card'
           >
             <div className='px-4 py-6 space-y-4'>
               {navigation.map((item) => {
@@ -118,7 +118,7 @@ const Navbar = () => {
                     <Typography
                       variant='body2'
                       className={cn(
-                        "text-base font-medium transition-colors",
+                        "text-lg font-medium transition-colors",
                         isActive
                           ? "text-zinc-900 dark:text-zinc-50"
                           : "text-zinc-600 dark:text-zinc-400"

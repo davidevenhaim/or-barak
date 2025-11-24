@@ -1,4 +1,4 @@
-import { Inter, Playfair_Display } from "next/font/google";
+import { Montserrat, Playfair_Display } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, getLocale } from "next-intl/server";
 import Navbar from "@/components/navbar";
@@ -7,8 +7,8 @@ import Footer from "@/components/footer";
 import "./globals.css";
 import { Metadata } from "next";
 
-const inter = Inter({
-  variable: "--font-inter",
+const montserrat = Montserrat({
+  variable: "--font-montserrat",
   subsets: ["latin"],
   display: "swap"
 });
@@ -16,7 +16,8 @@ const inter = Inter({
 const playfair = Playfair_Display({
   variable: "--font-playfair",
   subsets: ["latin"],
-  display: "swap"
+  display: "swap",
+  style: ["italic", "normal"]
 });
 
 export const metadata: Metadata = {
@@ -64,10 +65,10 @@ export default async function RootLayout({
     <html
       lang={locale}
       dir={dir}
-      className={`${inter.variable} ${playfair.variable}`}
+      className={`${montserrat.variable} ${playfair.variable} dark`}
       suppressHydrationWarning
     >
-      <body className='antialiased bg-white dark:bg-black text-zinc-900 dark:text-zinc-50'>
+      <body className='antialiased bg-background text-foreground'>
         <NextIntlClientProvider messages={messages} locale={locale}>
           <Navbar />
           <main className='min-h-screen pt-16'>{children}</main>

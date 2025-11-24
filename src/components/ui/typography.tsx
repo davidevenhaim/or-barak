@@ -62,41 +62,40 @@ const variantClassMap: Record<
   },
   subtitle1: {
     tag: "h2",
-    classes:
-      "text-xl sm:text-2xl font-semibold text-zinc-700 dark:text-zinc-300"
+    classes: "text-2xl sm:text-xl lg:text-2xl font-semibold text-foreground"
   },
   subtitle2: {
     tag: "h3",
-    classes: "text-lg sm:text-xl font-semibold text-zinc-700 dark:text-zinc-300"
+    classes: "text-xl sm:text-2xl lg:text-3xl font-semibold text-foreground"
   },
   body1: {
     tag: "p",
-    classes: "text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed"
+    classes: "text-lg lg:text-xl text-foreground leading-relaxed"
   },
   body2: {
     tag: "p",
-    classes: "text-base text-zinc-600 dark:text-zinc-400 leading-relaxed"
+    classes: "text-md lg:text-lg text-foreground leading-relaxed"
   },
   caption1: {
     tag: "p",
-    classes: "text-sm text-zinc-500 dark:text-zinc-500 leading-relaxed"
+    classes: "text-base lg:text-lg text-muted-foreground leading-relaxed"
   },
   caption2: {
     tag: "p",
-    classes: "text-xs text-zinc-500 dark:text-zinc-500 leading-relaxed"
+    classes: "text-sm lg:text-base text-muted-foreground leading-relaxed"
   },
   label1: {
     tag: "label",
-    classes: "text-base text-zinc-700 dark:text-zinc-300 leading-relaxed"
+    classes: "text-lg lg:text-xl text-foreground leading-relaxed"
   },
   label2: {
     tag: "label",
-    classes: "text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed"
+    classes: "text-base lg:text-lg text-foreground leading-relaxed"
   },
   overline: {
     tag: "p",
     classes:
-      "text-xs uppercase tracking-widest text-zinc-500 dark:text-zinc-500"
+      "text-sm lg:text-base uppercase tracking-widest text-muted-foreground"
   }
 };
 

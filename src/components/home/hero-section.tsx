@@ -80,7 +80,7 @@ export function HeroSection({
           >
             <Typography
               variant='h1'
-              className='mb-6 text-white text-5xl md:text-7xl lg:text-8xl font-bold leading-tight'
+              className='mb-6 text-white font-bold leading-tight'
             >
               {title}
             </Typography>
@@ -93,7 +93,7 @@ export function HeroSection({
           >
             <Typography
               variant='subtitle1'
-              className='text-zinc-200 max-w-xl mx-auto leading-relaxed text-xl md:text-xl whitespace-pre-line'
+              className='text-zinc-200 max-w-xl mx-auto leading-relaxed whitespace-pre-line'
             >
               {description}
             </Typography>
@@ -112,7 +112,7 @@ export function HeroSection({
               transition={{ duration: 2, repeat: Infinity }}
               className='flex flex-col items-center gap-2'
             >
-              <span className='text-white/70 text-sm'>Scroll</span>
+              <span className='text-white/70 text-base'>Scroll</span>
               <div className='w-6 h-10 border-2 border-white/30 rounded-full flex items-start justify-center p-2'>
                 <motion.div
                   animate={{ y: [0, 12, 0] }}
