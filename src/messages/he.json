@@ -64,7 +64,9 @@
   "loading": "טוען...",
 
   "videography_title": "וידאוגרפיה",
-  "videography_description": "אוסף עבודות הווידאו שלי כולל קליפים, סרטים קצרים ופרויקטים מסחריים.",
+  "videography_subtitle": "בימוי, צילום ועריכה",
+  "videography_description": "היצירות המרכזיות שלי. שליטה יצירתית מלאה מהקונספט ועד הגרסה הסופית.",
+  "videography_more_projects": "עוד פרויקטים",
 
   "photography_title": "צילום",
   "photography_description": "צילומים נבחרים מפרויקטים שונים ועבודות אישיות.",

@@ -1,4 +1,4 @@
-import { Container } from "@/components/container";
+import { Container } from "@/components/ui/container";
 import { Typography } from "@/components/ui/typography";
 import { Card } from "@/components/ui/card";
 import { JournalHeader, JournalPostCard } from "@/components/journal";

@@ -1,6 +1,6 @@
 "use client";
 
-import { Container } from "@/components/container";
+import { Container } from "@/components/ui/container";
 import { ImageGallery } from "./image-gallery";
 import { MasonryGallery } from "./masonry-gallery";
 import { SelectedWorksSlider } from "./selected-works-slider";
@@ -24,12 +24,10 @@ const Photography = () => {
         <div className='max-w-7xl mx-auto space-y-16 md:space-y-24'>
           <PhotographyHeader />
 
-          {/* Selected Works Section */}
           <PhotographySection title={t("photography_selected_works")}>
             <SelectedWorksSlider images={selectedWorks} allImages={allImages} />
           </PhotographySection>
 
-          {/* Top X Section */}
           <PhotographySection
             title={t("photography_top_works", { count: topImages.length })}
           >
@@ -41,7 +39,6 @@ const Photography = () => {
             />
           </PhotographySection>
 
-          {/* Full Catalog Section */}
           <PhotographySection title={t("photography_full_catalog")}>
             <MasonryGallery images={fullCatalog} allImages={allImages} />
           </PhotographySection>
