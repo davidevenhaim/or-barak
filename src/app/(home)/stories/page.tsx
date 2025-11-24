@@ -1,7 +1,9 @@
 import { Container } from "@/components/ui/container";
-import { Typography } from "@/components/ui/typography";
-import { Card } from "@/components/ui/card";
-import { StoriesHeader, StoryCard } from "@/components/stories";
+import {
+  StoriesHeader,
+  StoryCard,
+  ComingSoonSection
+} from "@/components/stories";
 import { getAllStories } from "@/lib/content/post";
 import { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
@@ -25,37 +27,33 @@ export default async function StoriesPage() {
   const t = await getTranslations();
 
   return (
-    <div className='min-h-screen bg-gradient-to-br from-white via-zinc-50 to-zinc-100 dark:from-black dark:via-zinc-950 dark:to-zinc-900'>
-      <Container className='py-20'>
-        <div className='max-w-6xl mx-auto'>
+    <div className='min-h-screen bg-black dark:bg-black'>
+      <Container className='py-4 md:py-8'>
+        <div className='max-w-7xl mx-auto space-y-16 md:space-y-8'>
           {/* Header */}
-          <StoriesHeader
-            title={t("stories_title")}
-            description={t("stories_description")}
-          />
+          <StoriesHeader title={t("stories_title_and_perspectives")} />
 
-          {/* Posts Grid */}
-          <div className='grid grid-cols-1 lg:grid-cols-2 gap-8'>
-            {posts.map((post, index) => (
-              <StoryCard
-                key={post.slug}
-                post={post}
-                index={index}
-                readMoreText={t("read_more")}
-              />
-            ))}
-          </div>
-
-          {/* Empty State */}
-          {posts.length === 0 && (
-            <div className='text-center py-32'>
-              <Card className='inline-block p-8 bg-white/50 dark:bg-zinc-900/50 backdrop-blur-xl border-zinc-200/50 dark:border-zinc-800/50'>
-                <Typography variant='h3' className='mb-4 text-zinc-400'>
-                  {t("stories_empty_state")}
-                </Typography>
-              </Card>
+          {/* Stories Grid */}
+          {posts.length > 0 && (
+            <div className='grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8'>
+              {posts.map((post, index) => (
+                <StoryCard
+                  key={post.slug}
+                  post={post}
+                  index={index}
+                  readStoryText={t("stories_read_story")}
+                  isHighlighted={index === 0}
+                />
+              ))}
             </div>
           )}
+
+          {/* Coming Soon Section */}
+          <ComingSoonSection
+            title={t("stories_coming_soon_title")}
+            subtitle={t("stories_coming_soon_subtitle")}
+            text={t("stories_coming_soon_text")}
+          />
         </div>
       </Container>
     </div>

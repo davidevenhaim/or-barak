@@ -12,7 +12,8 @@ I used to think light was about control.
 Now I think it's about permission.
 ...
     `.trim(),
-    coverImage: "/images/stories/seeing-in-the-dark.jpg",
+    coverImage:
+      "https://drive.google.com/uc?export=view&id=1x4kXSc8WRNLhcQ7SUP3QL7FcyAaPhXfM",
     publishedAt: "2025-10-20T09:00:00.000Z",
     tags: ["philosophy", "process"]
   },
@@ -26,9 +27,10 @@ There's a moment in every shoot where you ask:
 am I documenting, or am I selling?
 ...
     `.trim(),
-    publishedAt: "2025-10-12T09:00:00.000Z",
+    publishedAt: "2025-12-12T09:00:00.000Z",
     tags: ["industry", "ethics"],
-    coverImage: "/images/stories/money-vs-honesty.jpg"
+    coverImage:
+      "https://drive.google.com/uc?export=view&id=1QqrUyZqFnruIrKwjK4ESoanC5jfpHgW2"
   }
 ];
 
@@ -41,9 +43,7 @@ export async function getAllStories(): Promise<StoryPost[]> {
   );
 }
 
-export async function getStoryBySlug(
-  slug: string
-): Promise<StoryPost | null> {
+export async function getStoryBySlug(slug: string): Promise<StoryPost | null> {
   const post = POSTS.find((p) => p.slug === slug);
   return post ?? null;
 }

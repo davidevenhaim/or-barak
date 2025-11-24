@@ -82,13 +82,18 @@
   "photography_full_catalog": "הקטלוג המלא",
 
   "stories_title": "סיפורים",
+  "stories_title_and_perspectives": "סיפורים ופרספקטיבות",
   "stories_description": "מחשבות, הרהורים וסיפורים מהמסע היצירתי שלי.",
+  "stories_read_story": "קרא סיפור",
   "stories_read_time": "{minutes} דקות קריאה",
   "stories_published_on": "פורסם ב-{date}",
   "stories_empty_state": "אין עדיין פוסטים. בקרו שוב בקרוב.",
   "stories_back_link": "חזרה לסיפורים",
   "stories_not_found_title": "הפוסט לא נמצא",
   "stories_not_found_description": "הסיפור שאתם מחפשים לא קיים או הוסר.",
+  "stories_coming_soon_title": "עוד סיפורים",
+  "stories_coming_soon_subtitle": "בקרוב",
+  "stories_coming_soon_text": "הישארו מעודכנים",
 
   "about_title": "אודות",
   "about_description": "למד עוד על העבודה והפילוסופיה היצירתית שלי.",

@@ -17,7 +17,8 @@ export type ThemeColor =
   | "pink"
   | "gray"
   | "green"
-  | "purple";
+  | "purple"
+  | "divider";
 
 export type SizeClasses =
   | "xs"
@@ -31,6 +32,18 @@ export type SizeClasses =
   | "5xl";
 
 export type ShapeClasses = "square" | "pill" | "circle" | "rounded" | "sharp";
+
+export type VariantWidthClasses =
+  | "default"
+  | "full"
+  | "half"
+  | "third"
+  | "fourth"
+  | "fifth"
+  | "sixth"
+  | "seventh"
+  | "eighth"
+  | "ninth";
 
 const themeColorClasses: Record<ThemeColor, string> = {
   transparent: "text-transparent",
@@ -51,7 +64,7 @@ const themeColorClasses: Record<ThemeColor, string> = {
   pink: "text-pink",
   gray: "text-gray",
   green: "text-green",
-  purple: "text-purple",
+  purple: "text-purple"
 };
 
 export const getThemeColorClasses = (color: ThemeColor) =>
@@ -66,7 +79,7 @@ const sizeClasses: Record<SizeClasses, string> = {
   "2xl": "h-20 w-20",
   "3xl": "h-24 w-24",
   "4xl": "h-28 w-28",
-  "5xl": "h-32 w-32",
+  "5xl": "h-32 w-32"
 };
 
 export const getSizeClasses = (size: SizeClasses) => sizeClasses[size];
@@ -104,7 +117,7 @@ export const getIconSize = (size: SizeClasses) => {
     "2xl": "xl",
     "3xl": "2xl",
     "4xl": "3xl",
-    "5xl": "4xl",
+    "5xl": "4xl"
   };
   const iconSize = sizeMap[size];
   return sizeClasses[iconSize];
@@ -116,7 +129,7 @@ export const getShapeClasses = (shape: ShapeClasses) => {
     pill: "rounded-full",
     circle: "rounded-full",
     rounded: "rounded-xl",
-    sharp: "rounded-none",
+    sharp: "rounded-none"
   };
   return shapeClasses[shape];
 };
@@ -187,7 +200,7 @@ export const getBackgroundColorClasses = (color: ThemeColor) => {
     pink: "bg-pink",
     gray: "bg-gray",
     green: "bg-green",
-    purple: "bg-purple",
+    purple: "bg-purple"
   };
   return bgColorClasses[color];
 };
@@ -212,7 +225,7 @@ export const getBorderColorClasses = (color: ThemeColor) => {
     pink: "border-pink",
     gray: "border-gray",
     green: "border-green",
-    purple: "border-purple",
+    purple: "border-purple"
   };
   return borderColorClasses[color];
 };
@@ -267,7 +280,7 @@ export const getAnimationClasses = (
     shake:
       trigger === "always"
         ? "animate-[shake_0.5s_ease-in-out_infinite]"
-        : "hover:animate-[shake_0.5s_ease-in-out_infinite]",
+        : "hover:animate-[shake_0.5s_ease-in-out_infinite]"
   };
 
   const baseClass = animationClasses[animation];

@@ -100,3 +100,17 @@ export const formatPostDate = (
 ): string => {
   return formatDate(new Date(isoString), DateFormating.FULL_DATE, appLocale);
 };
+
+/**
+ * Format a post date to short uppercase format
+ * e.g., "2025-10-20T09:00:00.000Z" -> "OCT 2025"
+ */
+export const formatStoryDate = (
+  isoString: string,
+  appLocale: Language = Language.EN
+): string => {
+  const date = new Date(isoString);
+  const month = format(date, "MMM", { locale: getDateLocale(appLocale) });
+  const year = format(date, "yyyy", { locale: getDateLocale(appLocale) });
+  return `${month.toUpperCase()} ${year}`;
+};

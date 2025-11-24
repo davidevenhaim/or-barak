@@ -82,13 +82,18 @@
   "photography_full_catalog": "FULL CATALOG",
 
   "stories_title": "Stories",
+  "stories_title_and_perspectives": "Stories & Perspectives",
   "stories_description": "Thoughts, reflections, and stories from my creative journey.",
+  "stories_read_story": "READ STORY",
   "stories_read_time": "{minutes} min read",
   "stories_published_on": "Published on {date}",
   "stories_empty_state": "No posts yet. Check back soon.",
   "stories_back_link": "Back to Stories",
   "stories_not_found_title": "Post Not Found",
   "stories_not_found_description": "The story you're looking for doesn't exist or has been removed.",
+  "stories_coming_soon_title": "More Stories",
+  "stories_coming_soon_subtitle": "Coming Soon",
+  "stories_coming_soon_text": "STAY TUNED",
 
   "about_title": "About",
   "about_description": "Learn more about my work and creative philosophy.",

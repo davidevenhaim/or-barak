@@ -1,30 +1,33 @@
 import { Typography } from "@/components/ui/typography";
+import Divider from "@/components/ui/divider";
 
 interface StoriesHeaderProps {
   title: string;
-  description: string;
 }
 
-export function StoriesHeader({ title, description }: StoriesHeaderProps) {
+export function StoriesHeader({ title }: StoriesHeaderProps) {
+  // Split title by "&" to create two-line layout
+  const [firstPart, secondPart] = title.split("&").map((part) => part.trim());
+
   return (
-    <div className="mb-20 text-center">
-      <div className="inline-block mb-6">
-        <div className="h-px w-24 bg-gradient-to-r from-transparent via-amber-500 to-transparent mb-6 mx-auto" />
+    <div className='mb-16 md:mb-24'>
+      <div className='space-y-2'>
         <Typography
-          variant="h1"
-          className="mb-4 bg-gradient-to-r from-zinc-900 via-amber-700 to-zinc-900 dark:from-zinc-50 dark:via-amber-400 dark:to-zinc-50 bg-clip-text text-transparent"
+          variant='h1'
+          className='font-serif text-4xl md:text-5xl lg:text-6xl text-zinc-50 leading-tight'
         >
-          {title}
+          {firstPart}
         </Typography>
-        <div className="h-px w-24 bg-gradient-to-r from-transparent via-amber-500 to-transparent mt-6 mx-auto" />
+        {secondPart && (
+          <Typography
+            variant='h1'
+            className='font-serif text-4xl md:text-5xl lg:text-6xl text-zinc-400 leading-tight'
+          >
+            {secondPart}
+          </Typography>
+        )}
+        <Divider width='half' />
       </div>
-      <Typography
-        variant="subtitle1"
-        className="text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto"
-      >
-        {description}
-      </Typography>
     </div>
   );
 }
-
