@@ -11,7 +11,7 @@ export function StoriesHeader({ title }: StoriesHeaderProps) {
 
   return (
     <div className='mb-16 md:mb-24'>
-      <div className='space-y-2'>
+      <div className='space-y-2 text-center'>
         <Typography
           variant='h1'
           className='font-serif text-4xl md:text-5xl lg:text-6xl text-zinc-50 leading-tight'
@@ -26,7 +26,9 @@ export function StoriesHeader({ title }: StoriesHeaderProps) {
             {secondPart}
           </Typography>
         )}
-        <Divider width='half' />
+        <div className='flex justify-center'>
+          <Divider width='sixth' />
+        </div>
       </div>
     </div>
   );

@@ -1,5 +1,6 @@
 import { Typography } from "@/components/ui/typography";
 import { getTranslations } from "next-intl/server";
+import Divider from "@/components/ui/divider";
 
 const VideographyHeader = async () => {
   const t = await getTranslations();
@@ -12,6 +13,9 @@ const VideographyHeader = async () => {
       >
         {t("videography_title")}
       </Typography>
+      <div className='flex justify-center'>
+        <Divider width='sixth' />
+      </div>
     </div>
   );
 };
