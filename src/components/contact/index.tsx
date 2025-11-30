@@ -34,10 +34,7 @@ import { socialLinks } from "@/lib/content/about";
 
 const contactSchema = z.object({
   name: z.string().min(1, { message: "Name is required" }),
-  email: z
-    .string()
-    .min(1, { message: "Email is required" })
-    .email({ message: "Please enter a valid email address" }),
+  email: z.email({ message: "Please enter a valid email address" }),
   projectType: z.string().min(1, { message: "Project type is required" }),
   description: z.string().nullable()
 });
@@ -55,7 +52,7 @@ const Contact = () => {
       name: "",
       email: "",
       projectType: "",
-      description: ""
+      description: null
     },
     mode: "onBlur"
   });
@@ -177,6 +174,7 @@ const Contact = () => {
               <form
                 onSubmit={form.handleSubmit(onSubmit)}
                 className='space-y-6 sm:space-y-8'
+                noValidate
               >
                 {/* Success Message */}
                 {isSubmitted && (
@@ -200,13 +198,11 @@ const Contact = () => {
                         {t("contact_form_name_label")}
                       </FormLabel>
                       <FormControl>
-                        <div className='relative w-full'>
-                          <Input
-                            {...field}
-                            className='bg-transparent border-0 border-b border-zinc-700 dark:border-zinc-700 rounded-none px-0 py-3 text-base sm:text-lg text-white placeholder:text-zinc-600 focus-visible:ring-0 focus-visible:border-amber-500 dark:focus-visible:border-amber-400 transition-colors font-sans w-full touch-manipulation'
-                            placeholder=''
-                          />
-                        </div>
+                        <Input
+                          {...field}
+                          className='bg-transparent border-0 border-b border-zinc-700 dark:border-zinc-700 rounded-none px-0 py-3 text-base sm:text-lg text-white placeholder:text-zinc-600 focus-visible:ring-0 focus-visible:border-amber-500 dark:focus-visible:border-amber-400 transition-colors font-sans w-full touch-manipulation'
+                          placeholder=''
+                        />
                       </FormControl>
                       <FormMessage className='text-red-400 text-xs' />
                     </FormItem>
@@ -223,14 +219,13 @@ const Contact = () => {
                         {t("contact_form_email_label")}
                       </FormLabel>
                       <FormControl>
-                        <div className='relative w-full'>
-                          <Input
-                            {...field}
-                            className='bg-transparent border-0 border-b border-zinc-700 dark:border-zinc-700 rounded-none px-0 py-3 text-base sm:text-lg text-white placeholder:text-zinc-600 focus-visible:ring-0 focus-visible:border-amber-500 dark:focus-visible:border-amber-400 transition-colors font-sans w-full touch-manipulation'
-                            placeholder=''
-                            autoComplete='email'
-                          />
-                        </div>
+                        <Input
+                          {...field}
+                          type='email'
+                          className='bg-transparent border-0 border-b border-zinc-700 dark:border-zinc-700 rounded-none px-0 py-3 text-base sm:text-lg text-white placeholder:text-zinc-600 focus-visible:ring-0 focus-visible:border-amber-500 dark:focus-visible:border-amber-400 transition-colors font-sans w-full touch-manipulation'
+                          placeholder=''
+                          autoComplete='email'
+                        />
                       </FormControl>
                       <FormMessage className='text-red-400 text-xs' />
                     </FormItem>
@@ -324,8 +319,8 @@ const Contact = () => {
                       </FormLabel>
                       <FormControl>
                         <Textarea
-                          value={field.value || ""}
-                          onChange={field.onChange}
+                          {...field}
+                          value={field.value ?? ""}
                           rows={4}
                           className='bg-transparent border-0 border-b border-zinc-700 dark:border-zinc-700 rounded-none px-0 py-2 w-full text-base sm:text-lg text-white placeholder:text-zinc-600 focus-visible:ring-0 focus-visible:border-amber-500 dark:focus-visible:border-amber-400 transition-colors resize-none font-sans min-h-[80px] sm:min-h-[100px] touch-manipulation'
                           placeholder=''
