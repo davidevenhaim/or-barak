@@ -9,6 +9,7 @@ import { useTranslations } from "next-intl";
 import { OR_CONSTANTS } from "@/lib/constants/or.constants";
 import { useBoolean } from "@/hooks/use-boolean";
 import Divider from "./ui/divider";
+import { sleep } from "@/lib/utils/common.utils";
 
 const socialLinks = [
   {
@@ -97,15 +98,13 @@ const NewsletterSection = () => {
 
     isLoading.onTrue();
     // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    await sleep(1000);
     isSubmitted.onTrue();
     isLoading.onFalse();
     setEmail("");
 
-    // Reset success message after 3 seconds
-    setTimeout(() => {
-      isSubmitted.onFalse();
-    }, 3000);
+    // Reset uccess message after 3 seconds
+    isSubmitted.onFalse();
   };
 
   return (
@@ -133,7 +132,10 @@ const NewsletterSection = () => {
           </Typography>
         </div>
       ) : (
-        <form onSubmit={handleSubmit} className='flex flex-col sm:flex-row gap-2 sm:gap-3'>
+        <form
+          onSubmit={handleSubmit}
+          className='flex flex-col sm:flex-row gap-2 sm:gap-3'
+        >
           <Input
             type='email'
             placeholder={t("home_newsletter_email_placeholder")}
@@ -148,7 +150,10 @@ const NewsletterSection = () => {
             className='h-11 sm:h-10 px-4 sm:px-6 bg-zinc-900 hover:bg-zinc-800 dark:bg-zinc-100 dark:hover:bg-zinc-200 text-white dark:text-zinc-900 text-sm sm:text-base min-w-[120px] touch-manipulation'
           >
             {isLoading.value ? (
-              <Icon name='lucide:loader-2' className='w-4 h-4 sm:w-5 sm:h-5 animate-spin' />
+              <Icon
+                name='lucide:loader-2'
+                className='w-4 h-4 sm:w-5 sm:h-5 animate-spin'
+              />
             ) : (
               t("home_newsletter_submit")
             )}

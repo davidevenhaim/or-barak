@@ -1,5 +1,10 @@
 import { HeroSection, QuickLinksSection, VideoSlider } from "@/components/home";
-import { quickLinks, videos, videosSectionId } from "@/lib/content/homepage";
+import {
+  backgroundVideoUrl,
+  quickLinks,
+  videos,
+  videosSectionId
+} from "@/lib/content/homepage";
 import { getTranslations } from "next-intl/server";
 
 export async function generateMetadata() {
@@ -46,6 +51,7 @@ export default async function Home() {
         sectionTitle={t("home_videos_title")}
         sectionDescription={t("home_videos_description")}
         sectionId={videosSectionId}
+        backgroundVideoUrl={backgroundVideoUrl}
       />
 
       <QuickLinksSection

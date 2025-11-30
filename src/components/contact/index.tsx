@@ -26,6 +26,7 @@ import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { OR_CONSTANTS } from "@/lib/constants/or.constants";
+import { sleep } from "@/lib/utils/common.utils";
 
 const contactSchema = z.object({
   name: z.string().min(1, { message: "Name is required" }),
@@ -58,17 +59,14 @@ const Contact = () => {
     setIsLoading(true);
 
     // TODO: Implement actual API call with data
-    console.log("Form data:", data);
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    await sleep(1500);
 
     setIsSubmitted(true);
     setIsLoading(false);
     form.reset();
 
     // Reset success message after 5 seconds
-    setTimeout(() => {
-      setIsSubmitted(false);
-    }, 5000);
+    setIsSubmitted(false);
   };
 
   const socialLinks = [

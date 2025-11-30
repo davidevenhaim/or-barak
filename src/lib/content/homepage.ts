@@ -2,27 +2,30 @@ import { type Video, type Partner, type QuickLink } from "@/components/home";
 import { VideoCategory } from "@/components/home/video-slider";
 import { routes } from "@/lib/constants/routes";
 
+export const backgroundVideoUrl = `https://www.youtube.com/watch?v=ByLkKe0tlRo`;
+
 export const videos: Video[] = [
-  {
-    id: "1",
-    title: "ABF - 2025",
-    description: "Short documentary about the ABF 2025.",
-    videoUrl: "https://youtu.be/2e0jQjMLr7I",
-    category: VideoCategory.DirectedFilmedEdited
-  },
   {
     id: "2",
     title: "Boundaries - Short Film",
     description:
-      "Exclusive look at the creative process and production workflow.",
+      "Trigger Alert: A short film about a personal experience related sexual harassment",
     videoUrl: "https://youtu.be/qNF-tdjnIs0",
     category: VideoCategory.DirectedFilmedEdited
   },
   {
+    id: "1",
+    title: "ABF2025",
+    description:
+      "Short documentary about the Academic Bridge Fellowship Program at UPenn.",
+    videoUrl: "https://youtu.be/2e0jQjMLr7I",
+    category: VideoCategory.DirectedFilmedEdited
+  },
+  {
     id: "3",
-    title: "Penn Hillel - NSO 2025",
-    description: "Short documentary about the Penn Hillel NSO 2025.",
-    videoUrl: "https://youtu.be/ty-NHGnAsWk",
+    title: "Nave Karni - Ben Adam",
+    description: "A music video - the story of old and new",
+    videoUrl: "https://www.youtu.be/U1DDEjH66jE",
     category: VideoCategory.HeadProducer
   }
 ];

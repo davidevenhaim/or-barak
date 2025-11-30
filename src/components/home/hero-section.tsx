@@ -70,7 +70,7 @@ export function HeroSection({
       {/* Content */}
       <div className='relative z-10 flex h-full items-center justify-center px-4 sm:px-6 md:px-8'>
         <div className='max-w-5xl text-center w-full'>
-          <Typewriter className='mb-3 sm:mb-4 text-amber-400 font-semibold tracking-wider uppercase text-xs sm:text-sm md:text-base'>
+          <Typewriter className='mb-5 sm:mb-6 text-amber-400 font-semibold tracking-wider uppercase text-xs sm:text-sm md:text-base'>
             {subtitle}
           </Typewriter>
           <motion.div
@@ -80,7 +80,7 @@ export function HeroSection({
           >
             <Typography
               variant='h1'
-              className='mb-4 sm:mb-6 text-white font-bold leading-tight px-2'
+              className='mb-4 sm:mb-6 text-white font-bold px-2'
             >
               {title}
             </Typography>
@@ -93,7 +93,7 @@ export function HeroSection({
           >
             <Typography
               variant='subtitle1'
-              className='text-zinc-200 max-w-xl mx-auto leading-relaxed whitespace-pre-line text-sm sm:text-base md:text-lg px-4'
+              className='text-zinc-200 max-w-xl mx-auto leading-relaxed whitespace-pre-line sm:text-base md:text-lg px-4 mt-30'
             >
               {description}
             </Typography>
@@ -112,7 +112,9 @@ export function HeroSection({
               transition={{ duration: 2, repeat: Infinity }}
               className='flex flex-col items-center gap-2'
             >
-              <span className='text-white/70 text-xs sm:text-sm md:text-base'>Scroll</span>
+              <span className='text-white/70 text-xs sm:text-sm md:text-base'>
+                Scroll
+              </span>
               <div className='w-5 h-8 sm:w-6 sm:h-10 border-2 border-white/30 rounded-full flex items-start justify-center p-1.5 sm:p-2'>
                 <motion.div
                   animate={{ y: [0, 12, 0] }}

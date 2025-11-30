@@ -58,6 +58,7 @@ interface VideoSliderProps {
   sectionTitle: string;
   sectionDescription?: string;
   sectionId: string;
+  backgroundVideoUrl: string;
 }
 
 function VideoCard({ video }: { video: Video }) {
@@ -135,14 +136,14 @@ function VideoCard({ video }: { video: Video }) {
         {/* Content */}
         <div className='p-4 sm:p-5 md:p-6 flex flex-col flex-1 min-h-0'>
           <Typography
-            variant='h5'
-            className='mb-2 group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors line-clamp-2 min-h-[2.5rem] sm:min-h-[3.5rem]'
+            variant='h6'
+            className='mb-2 group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors'
           >
             {video.title}
           </Typography>
           <Typography
             variant='body2'
-            className='text-zinc-600 dark:text-zinc-400 line-clamp-2 flex-1 text-sm sm:text-base'
+            className='text-zinc-600 dark:text-zinc-400 flex-1 text-sm sm:text-base'
           >
             {video.description}
           </Typography>
@@ -156,14 +157,43 @@ export function VideoSlider({
   videos,
   sectionTitle,
   sectionDescription,
-  sectionId
+  sectionId,
+  backgroundVideoUrl
 }: VideoSliderProps) {
+  const backgroundVideoId = getYouTubeVideoId(backgroundVideoUrl);
+  const youtubeEmbedUrl = backgroundVideoId
+    ? `https://www.youtube.com/embed/${backgroundVideoId}?autoplay=1&loop=1&mute=1&playlist=${backgroundVideoId}&controls=0&modestbranding=1&rel=0&playsinline=1`
+    : null;
+
   return (
     <section
       id={sectionId}
-      className='py-12 sm:py-16 md:py-20 pt-8 sm:pt-10 bg-gradient-to-br from-zinc-50 via-white to-zinc-50 dark:from-zinc-950 dark:via-black dark:to-zinc-950 overflow-x-hidden max-w-full'
+      className='py-12 sm:py-16 md:py-20 pt-8 sm:pt-10 overflow-x-hidden max-w-full relative'
     >
-      <div className='container mx-auto px-4 sm:px-6 w-full'>
+      {/* Background Video */}
+      <div className='absolute inset-0 w-full h-full overflow-hidden z-0'>
+        {youtubeEmbedUrl ? (
+          <iframe
+            src={youtubeEmbedUrl}
+            className='absolute inset-0 w-full h-full object-cover pointer-events-none'
+            allow='autoplay; encrypted-media'
+            allowFullScreen={false}
+            style={{
+              width: "100%",
+              height: "100%",
+              border: "none",
+              transform: "scale(1.1)",
+              transformOrigin: "center center"
+            }}
+          />
+        ) : (
+          <div className='absolute inset-0 w-full h-full bg-gradient-to-br from-zinc-50 via-white to-zinc-50 dark:from-zinc-950 dark:via-black dark:to-zinc-950' />
+        )}
+        {/* Overlay for better content readability */}
+        <div className='absolute inset-0 bg-gradient-to-br from-zinc-50/90 via-white/80 to-zinc-50/90 dark:from-zinc-950/90 dark:via-black/80 dark:to-zinc-950/90' />
+      </div>
+
+      <div className='container mx-auto px-4 sm:px-6 w-full relative z-10'>
         {/* Section Header */}
         <div className='text-center mb-8 sm:mb-10 md:mb-12'>
           <div className='h-px w-16 sm:w-24 bg-gradient-to-r from-transparent via-amber-500 to-transparent mb-6 sm:mb-8 mx-auto' />

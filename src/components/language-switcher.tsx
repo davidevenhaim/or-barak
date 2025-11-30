@@ -15,7 +15,7 @@ import { setLocaleCookie } from "@/i18n/actions";
 
 const LanguageSwitcher = () => {
   const [isPending, startTransition] = useTransition();
-  const currentLocale = useLocale() as Language;
+  const currentLocale = useLocale();
   const router = useRouter();
 
   const handleLocaleChange = (newLocale: Language) => {

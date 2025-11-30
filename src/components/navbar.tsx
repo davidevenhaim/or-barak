@@ -29,7 +29,10 @@ const Navbar = () => {
       <div className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full'>
         <div className='relative flex h-14 sm:h-16 items-center justify-between md:justify-center'>
           {/* Logo / Name */}
-          <Link href='/' className='flex items-center md:absolute md:left-4 touch-manipulation'>
+          <Link
+            href='/'
+            className='flex items-center md:absolute md:left-4 touch-manipulation'
+          >
             <Typography
               variant='h6'
               className='font-serif text-zinc-900 dark:text-zinc-50 hover:text-amber-700 dark:hover:text-amber-600 transition-colors text-base sm:text-lg'

@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
+import { sleep } from "@/lib/utils/common.utils";
 
 type AnimationVariant =
   | "slide-up"
@@ -74,10 +75,10 @@ export const AnimatedText: React.FC<AnimatedTextProps> = ({
         if (entry.isIntersecting) {
           if (!once || !hasAnimated) {
             // Add a small delay before starting the animation
-            setTimeout(() => {
+            sleep(100).then(() => {
               setIsVisible(true);
               setHasAnimated(true);
-            }, 100);
+            });
           }
           if (once) {
             observer.disconnect();
@@ -253,4 +254,3 @@ export const AnimatedWords: React.FC<AnimatedWordsProps> = ({
     </div>
   );
 };
-
