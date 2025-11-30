@@ -79,7 +79,6 @@ export function ImageLightbox({
               priority
             />
           </div>
-
           {/* Navigation Buttons */}
           {images.length > 1 && (
             <>
@@ -103,9 +102,10 @@ export function ImageLightbox({
               </Button>
             </>
           )}
-
           {/* Image Info */}
-          {(currentImage.title || currentImage.category) && (
+          {/*
+          #TODO: Decide if we need this. or remove completely.
+           {(currentImage.title || currentImage.category) && (
             <div className='absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent p-6'>
               <div className='max-w-4xl mx-auto'>
                 {currentImage.title && (
@@ -126,8 +126,7 @@ export function ImageLightbox({
                 )}
               </div>
             </div>
-          )}
-
+          )} */}
           {/* Image Counter */}
           {images.length > 1 && (
             <div className='absolute top-4 right-4 bg-black/50 px-4 py-2 rounded-md'>

@@ -1,3 +1,5 @@
+import { OR_CONSTANTS } from "../constants/or.constants";
+
 export interface TimelineEvent {
   year: number;
   title: string;
@@ -34,5 +36,13 @@ export const timelineEvents: TimelineEvent[] = [
     title: "New Horizons",
     description:
       "Expanding into new creative territories. The story continues to evolve."
+  }
+];
+
+export const socialLinks = [
+  {
+    name: "contact_social_instagram",
+    href: OR_CONSTANTS.INSTAGRAM,
+    icon: "mdi:instagram"
   }
 ];

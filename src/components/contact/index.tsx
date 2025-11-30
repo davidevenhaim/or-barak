@@ -26,7 +26,11 @@ import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { OR_CONSTANTS } from "@/lib/constants/or.constants";
-import { sleep } from "@/lib/utils/common.utils";
+import { getEmailLink, getWhatsappLink } from "@/lib/utils/links.utils";
+import { createNewLead } from "@/lib/db/actions";
+import { toast } from "sonner";
+import { Textarea } from "@/components/ui/textarea";
+import { socialLinks } from "@/lib/content/about";
 
 const contactSchema = z.object({
   name: z.string().min(1, { message: "Name is required" }),
@@ -35,7 +39,7 @@ const contactSchema = z.object({
     .min(1, { message: "Email is required" })
     .email({ message: "Please enter a valid email address" }),
   projectType: z.string().min(1, { message: "Project type is required" }),
-  vision: z.string().min(20, { message: "Please provide more details" })
+  description: z.string().nullable()
 });
 
 type ContactFormValues = z.infer<typeof contactSchema>;
@@ -51,41 +55,31 @@ const Contact = () => {
       name: "",
       email: "",
       projectType: "",
-      vision: ""
-    }
+      description: ""
+    },
+    mode: "onBlur"
   });
 
   const onSubmit = async (data: ContactFormValues) => {
     setIsLoading(true);
 
-    // TODO: Implement actual API call with data
-    await sleep(1500);
+    try {
+      await createNewLead({
+        name: data.name,
+        email: data.email,
+        projectType: data.projectType,
+        description: data.description
+      });
 
-    setIsSubmitted(true);
-    setIsLoading(false);
-    form.reset();
-
-    // Reset success message after 5 seconds
-    setIsSubmitted(false);
-  };
-
-  const socialLinks = [
-    {
-      name: t("contact_social_instagram"),
-      href: "https://www.instagram.com/orbarak10",
-      icon: "mdi:instagram"
-    },
-    {
-      name: t("contact_social_linkedin"),
-      href: "#",
-      icon: "mdi:linkedin"
-    },
-    {
-      name: t("contact_social_imdb"),
-      href: "#",
-      icon: "mdi:movie-open"
+      setIsSubmitted(true);
+      form.reset();
+      toast.success(t("contact_form_success"));
+    } catch (error) {
+      console.error("Failed to submit lead:", error);
+    } finally {
+      setIsLoading(false);
     }
-  ];
+  };
 
   return (
     <section className='min-h-screen bg-black dark:bg-black py-12 sm:py-16 md:py-20 px-4 sm:px-6 overflow-x-hidden max-w-full'>
@@ -104,7 +98,7 @@ const Contact = () => {
             {/* Main Title */}
             <div>
               <Typography
-                variant='h1'
+                variant='h2'
                 className='font-serif italic text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white leading-tight mb-2'
               >
                 {t("contact_title_part1")}{" "}
@@ -117,7 +111,7 @@ const Contact = () => {
             {/* Description */}
             <Typography
               variant='body1'
-              className='text-zinc-400 dark:text-zinc-300 text-sm sm:text-base md:text-lg leading-relaxed max-w-lg font-sans'
+              className='text-zinc-400 dark:text-zinc-300 text-sm sm:text-base md:text-lg leading-relaxed max-w-lg font-sans whitespace-pre-line'
             >
               {t("contact_description_text")}
             </Typography>
@@ -132,12 +126,14 @@ const Contact = () => {
                 >
                   {t("contact_email_label")}
                 </Typography>
-                <a
-                  href={`mailto:${OR_CONSTANTS.EMAIL}`}
-                  className='text-zinc-300 dark:text-zinc-300 italic text-sm sm:text-base md:text-lg hover:text-amber-500 dark:hover:text-amber-400 transition-colors font-sans break-all touch-manipulation'
+                <Link
+                  href={getEmailLink(OR_CONSTANTS.EMAIL)}
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  className='text-zinc-300 dark:text-zinc-300 text-sm sm:text-base md:text-lg hover:text-amber-500 dark:hover:text-amber-400 transition-colors font-sans break-all touch-manipulation'
                 >
                   {OR_CONSTANTS.EMAIL}
-                </a>
+                </Link>
               </div>
 
               {/* Phone */}
@@ -148,12 +144,14 @@ const Contact = () => {
                 >
                   {t("contact_phone_label")}
                 </Typography>
-                <a
-                  href={`tel:${OR_CONSTANTS.PHONE.replace(/\s/g, "")}`}
+                <Link
+                  href={getWhatsappLink(OR_CONSTANTS.WHATSAPP)}
+                  target='_blank'
+                  rel='noopener noreferrer'
                   className='text-zinc-300 dark:text-zinc-300 italic text-sm sm:text-base md:text-lg hover:text-amber-500 dark:hover:text-amber-400 transition-colors font-sans touch-manipulation'
                 >
                   {OR_CONSTANTS.PHONE}
-                </a>
+                </Link>
               </div>
             </div>
 
@@ -167,7 +165,7 @@ const Contact = () => {
                   rel='noopener noreferrer'
                   className='text-zinc-500 dark:text-zinc-500 uppercase tracking-wider text-xs font-sans hover:text-amber-500 dark:hover:text-amber-400 transition-colors py-2 touch-manipulation'
                 >
-                  {link.name}
+                  {t(link.name)}
                 </Link>
               ))}
             </div>
@@ -227,10 +225,10 @@ const Contact = () => {
                       <FormControl>
                         <div className='relative w-full'>
                           <Input
-                            type='email'
                             {...field}
                             className='bg-transparent border-0 border-b border-zinc-700 dark:border-zinc-700 rounded-none px-0 py-3 text-base sm:text-lg text-white placeholder:text-zinc-600 focus-visible:ring-0 focus-visible:border-amber-500 dark:focus-visible:border-amber-400 transition-colors font-sans w-full touch-manipulation'
                             placeholder=''
+                            autoComplete='email'
                           />
                         </div>
                       </FormControl>
@@ -251,7 +249,7 @@ const Contact = () => {
                       <FormControl>
                         <Select
                           onValueChange={field.onChange}
-                          defaultValue={field.value}
+                          value={field.value}
                         >
                           <SelectTrigger className='bg-transparent border-0 border-b border-zinc-700 dark:border-zinc-700 rounded-none px-0 py-3 text-base sm:text-lg text-white focus:ring-0 focus:border-amber-500 dark:focus:border-amber-400 transition-colors font-sans [&>span]:text-zinc-400 w-full touch-manipulation'>
                             <SelectValue
@@ -260,7 +258,11 @@ const Contact = () => {
                               )}
                             />
                           </SelectTrigger>
-                          <SelectContent className='bg-zinc-900 border-zinc-800 text-white'>
+                          <SelectContent
+                            className='bg-zinc-900 border-zinc-800 text-white'
+                            sideOffset={4}
+                            position='popper'
+                          >
                             <SelectItem
                               value='commercial'
                               className='text-white focus:bg-zinc-800 py-3'
@@ -311,18 +313,19 @@ const Contact = () => {
                   )}
                 />
 
-                {/* Vision */}
+                {/* Description */}
                 <FormField
                   control={form.control}
-                  name='vision'
+                  name='description'
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel className='text-zinc-500 dark:text-zinc-500 uppercase tracking-wider text-xs font-sans mb-2 block'>
                         {t("contact_form_vision_label")}
                       </FormLabel>
                       <FormControl>
-                        <textarea
-                          {...field}
+                        <Textarea
+                          value={field.value || ""}
+                          onChange={field.onChange}
                           rows={4}
                           className='bg-transparent border-0 border-b border-zinc-700 dark:border-zinc-700 rounded-none px-0 py-2 w-full text-base sm:text-lg text-white placeholder:text-zinc-600 focus-visible:ring-0 focus-visible:border-amber-500 dark:focus-visible:border-amber-400 transition-colors resize-none font-sans min-h-[80px] sm:min-h-[100px] touch-manipulation'
                           placeholder=''

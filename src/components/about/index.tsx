@@ -10,8 +10,8 @@ const About = () => {
       <Container className='py-8 sm:py-12 md:py-16 lg:py-20'>
         <div className='max-w-7xl mx-auto'>
           <div className='grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 md:gap-12 lg:gap-16 items-start'>
-            <PotraitImage />
             <Description />
+            <PotraitImage />
           </div>
 
           <div className='mt-8 sm:mt-10 md:mt-12'>

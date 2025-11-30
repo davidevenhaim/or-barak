@@ -28,9 +28,7 @@ const Photography = () => {
             <SelectedWorksSlider images={selectedWorks} allImages={allImages} />
           </PhotographySection>
 
-          <PhotographySection
-            title={t("photography_top_works", { count: topImages.length })}
-          >
+          <PhotographySection>
             <ImageGallery
               images={topImages}
               columns={2}
@@ -49,14 +47,14 @@ const Photography = () => {
 };
 
 type PhotographySectionProps = {
-  title: string;
+  title?: string;
   children: React.ReactNode;
 };
 
 const PhotographySection = ({ title, children }: PhotographySectionProps) => {
   return (
     <section className='space-y-6 sm:space-y-8'>
-      <ImageSectionTitle>{title}</ImageSectionTitle>
+      {title && <ImageSectionTitle>{title}</ImageSectionTitle>}
       {children}
     </section>
   );

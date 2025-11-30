@@ -33,7 +33,10 @@ export function ImageCard({
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: index * 0.05 }}
-      className={cn("group relative cursor-pointer overflow-hidden rounded-lg", className)}
+      className={cn(
+        "group relative cursor-pointer overflow-hidden rounded-lg",
+        className
+      )}
       onClick={onClick}
     >
       <div
@@ -46,37 +49,39 @@ export function ImageCard({
           src={image.src}
           alt={image.alt}
           fill
-          className="object-cover transition-transform duration-700 group-hover:scale-110"
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          className='object-cover transition-transform duration-700 group-hover:scale-110'
+          sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
         />
         {/* Overlay on hover */}
-        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
-        
+        <div className='absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300' />
+
         {/* Title and category overlay */}
-        {(image.title || image.category) && (
-          <div className="absolute inset-0 flex flex-col justify-end p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            <div className="bg-gradient-to-t from-black/80 via-black/40 to-transparent p-4 -m-4 rounded-b-lg">
-              {image.title && (
-                <Typography
-                  variant="h6"
-                  className="text-white font-serif italic mb-1"
-                >
-                  {image.title}
-                </Typography>
-              )}
-              {image.category && (
-                <Typography
-                  variant="body2"
-                  className="text-amber-500 uppercase text-xs font-medium tracking-wider"
-                >
-                  {image.category}
-                </Typography>
-              )}
+        {/* 
+          {(image.title || image.category) && (
+            <div className='absolute inset-0 flex flex-col justify-end p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300'>
+              REMOVE THIS FOR NOW - No needed.
+              <div className="bg-gradient-to-t from-black/80 via-black/40 to-transparent p-4 -m-4 rounded-b-lg">
+                {image.title && (
+                  <Typography
+                    variant="h6"
+                    className="text-white font-serif italic mb-1"
+                  >
+                    {image.title}
+                  </Typography>
+                )}
+                {image.category && (
+                  <Typography
+                    variant="body2"
+                    className="text-amber-500 uppercase text-xs font-medium tracking-wider"
+                  >
+                    {image.category}
+                  </Typography>
+                )}
+              </div>
             </div>
-          </div>
-        )}
+          )}
+        */}
       </div>
     </motion.div>
   );
 }
-

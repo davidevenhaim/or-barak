@@ -16,6 +16,7 @@ const catalogImages: PhotographyImage[] = [
     title: "Catalog image 2",
     category: PhotoTag.ART
   },
+
   {
     id: "catalog-3",
     src: "https://drive.google.com/uc?export=view&id=1pjf2IVEi-S5_18C28yPDjkqA7up6dhQY",
@@ -39,14 +40,14 @@ const catalogImages: PhotographyImage[] = [
   },
   {
     id: "catalog-6",
-    src: "https://drive.google.com/uc?export=view&id=1zQwaDtDnN6DliTGZAQJtEILC4OmDApir",
+    src: "",
     alt: "Catalog image 6",
     title: "Image 6",
     category: PhotoTag.ART
   },
   {
     id: "catalog-7",
-    src: "https://drive.google.com/uc?export=view&id=14NewBSQYxj1TdfgAu6JJLAg6Zs6uNfsM",
+    src: "",
     alt: "Catalog image 7",
     title: "Image 7",
     category: PhotoTag.ART
@@ -74,7 +75,7 @@ const catalogImages: PhotographyImage[] = [
   },
   {
     id: "catalog-11",
-    src: "https://drive.google.com/uc?export=view&id=1hAl9KUnPMO-rjhDOm7jIQJ5937CFlux8",
+    src: "",
     alt: "Catalog image 11",
     title: "Image 11",
     category: PhotoTag.ART
@@ -115,10 +116,10 @@ const catalogImages: PhotographyImage[] = [
     category: PhotoTag.ART
   },
   {
-    id: "catalog-17",
-    src: "https://drive.google.com/uc?export=view&id=1n0MjSs8kFtnLjuiQ36dtwgiLZ10hpwbg",
-    alt: "Catalog image 17",
-    title: "Image 17",
+    id: "catalog-19",
+    src: "https://drive.google.com/uc?export=view&id=1K2o_PMESpR1L-KoYLodV-UTBibp_phO_",
+    alt: "Catalog image 19",
+    title: "Image 19",
     category: PhotoTag.ART
   },
   {
@@ -129,11 +130,11 @@ const catalogImages: PhotographyImage[] = [
     category: PhotoTag.ART
   },
   {
-    id: "catalog-19",
-    src: "https://drive.google.com/uc?export=view&id=1K2o_PMESpR1L-KoYLodV-UTBibp_phO_",
-    alt: "Catalog image 19",
-    title: "Image 19",
-    category: PhotoTag.ART
+    id: "catalog-taxi",
+    src: "https://drive.google.com/uc?export=view&id=1i1dE9jQ8OEOR30Nc6bd5n1fk7mWG3usJ",
+    alt: "Selected work 4",
+    title: "Architecture",
+    category: PhotoTag.ARCHITECTURE
   },
   {
     id: "catalog-20",
@@ -165,6 +166,27 @@ const generateCatalogImages = (
 // Selected Works - First section (smaller images)
 export const selectedWorks: PhotographyImage[] = [
   {
+    id: "selected-10",
+    src: "https://drive.google.com/uc?export=view&id=1qRMQDcI9tBBADMxpW2Q0shHOUU_Flp9R",
+    alt: "Selected work 10",
+    title: "10",
+    category: PhotoTag.PERSON
+  },
+  {
+    id: "selected-11",
+    src: "https://drive.google.com/uc?export=view&id=17eBF5tzDlUTfDr4zd_ycoEXAdUDQktcr",
+    alt: "Selected work 11",
+    title: "11",
+    category: PhotoTag.NATURE
+  },
+  {
+    id: "selected-3",
+    src: "https://drive.google.com/uc?export=view&id=1zoZGwEdVS8Zf20UNpPYfcZT5Flj7UWOm",
+    alt: "Selected work 3",
+    title: "Neon Sign",
+    category: PhotoTag.NATURE
+  },
+  {
     id: "selected-1",
     src: "https://drive.google.com/uc?export=view&id=1gYayUlxow6NzLqXGD_g0wrHmPxayizZQ",
     alt: "Selected work 1",
@@ -177,20 +199,6 @@ export const selectedWorks: PhotographyImage[] = [
     alt: "Selected work 2",
     title: "Street Photography",
     category: PhotoTag.STREET
-  },
-  {
-    id: "selected-3",
-    src: "https://drive.google.com/uc?export=view&id=1zoZGwEdVS8Zf20UNpPYfcZT5Flj7UWOm",
-    alt: "Selected work 3",
-    title: "Neon Sign",
-    category: PhotoTag.URBAN
-  },
-  {
-    id: "selected-4",
-    src: "https://drive.google.com/uc?export=view&id=1i1dE9jQ8OEOR30Nc6bd5n1fk7mWG3usJ",
-    alt: "Selected work 4",
-    title: "Architecture",
-    category: PhotoTag.ARCHITECTURE
   },
   {
     id: "selected-5",
@@ -225,6 +233,20 @@ export const selectedWorks: PhotographyImage[] = [
     src: "https://drive.google.com/uc?export=view&id=1JyVbdkyeOZgbnFU2B--4VHQhSg5bkoZt",
     alt: "Selected work 9",
     title: "Architecture",
+    category: PhotoTag.ARCHITECTURE
+  },
+  {
+    id: "selected-12",
+    src: "https://drive.google.com/uc?export=view&id=1P8L7SCxXFuJxaL6w2HzEaNOwLzMXdJqx",
+    alt: "Selected work 12",
+    title: "12",
+    category: PhotoTag.ARCHITECTURE
+  },
+  {
+    id: "selected-13",
+    src: "https://drive.google.com/uc?export=view&id=1yLfdPqtiTdXUaF5-iY_Y6KzrEJr5I3YP",
+    alt: "Selected work 13",
+    title: "13",
     category: PhotoTag.ARCHITECTURE
   }
 ];

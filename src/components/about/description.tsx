@@ -20,15 +20,6 @@ const Description = () => {
 
   return (
     <div className='space-y-6 md:space-y-8 flex flex-col justify-center'>
-      {/* Label */}
-      <Typography
-        variant='caption1'
-        className='text-zinc-400 uppercase tracking-wider font-medium text-xs md:text-sm'
-      >
-        {t("about_label")}
-      </Typography>
-
-      {/* Heading */}
       <div className='space-y-2'>
         <Typography
           variant='h1'

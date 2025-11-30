@@ -6,5 +6,6 @@ export enum PhotoTag {
   LANDSCAPE = "Landscape",
   NATURE = "Nature",
   SPORTS = "Sports",
-  ART = "Art"
+  ART = "Art",
+  PERSON = "Person"
 }

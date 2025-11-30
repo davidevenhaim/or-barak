@@ -15,15 +15,19 @@ interface MasonryGalleryProps {
   allImages?: PhotographyImage[];
 }
 
-// Generate sizes for masonry layout based on index for consistency
+// Generate varied sizes for freestyle masonry feel
 const getSizeForIndex = (index: number) => {
-  const sizes = [
-    { w: "md:col-span-1", h: "md:row-span-1" },
-    { w: "md:col-span-2", h: "md:row-span-1" },
-    { w: "md:col-span-1", h: "md:row-span-2" },
-    { w: "md:col-span-2", h: "md:row-span-2" }
+  const patterns = [
+    { w: "md:col-span-1", h: "md:row-span-1" }, // Small square
+    { w: "md:col-span-2", h: "md:row-span-1" }, // Wide
+    { w: "md:col-span-1", h: "md:row-span-2" }, // Tall
+    { w: "md:col-span-1", h: "md:row-span-1" }, // Small square
+    { w: "md:col-span-2", h: "md:row-span-2" }, // Large
+    { w: "md:col-span-1", h: "md:row-span-1" }, // Small square
+    { w: "md:col-span-1", h: "md:row-span-2" }, // Tall
+    { w: "md:col-span-2", h: "md:row-span-1" } // Wide
   ];
-  return sizes[index % sizes.length];
+  return patterns[index % patterns.length];
 };
 
 export function MasonryGallery({
@@ -39,12 +43,12 @@ export function MasonryGallery({
 
   const handleImageClick = (index: number) => {
     if (!enableLightbox) return;
-    
+
     const clickedImage = images[index];
     const fullIndex = imagesForLightbox.findIndex(
       (img) => img.id === clickedImage.id
     );
-    
+
     setLightboxIndex(fullIndex >= 0 ? fullIndex : index);
     setLightboxOpen(true);
   };
@@ -56,6 +60,7 @@ export function MasonryGallery({
           "grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 auto-rows-[minmax(200px,auto)]",
           className
         )}
+        style={{ gridAutoFlow: "dense" }}
       >
         {images.map((image, index) => {
           const size = getSizeForIndex(index);
@@ -72,30 +77,31 @@ export function MasonryGallery({
               )}
               onClick={() => handleImageClick(index)}
             >
-              <div className="relative w-full h-full min-h-[200px] md:min-h-[250px] overflow-hidden bg-zinc-100 dark:bg-zinc-900">
+              <div className='relative w-full h-full min-h-[200px] md:min-h-[250px] overflow-hidden bg-zinc-100 dark:bg-zinc-900'>
                 <Image
                   src={image.src}
                   alt={image.alt}
                   fill
-                  className="object-cover transition-transform duration-700 group-hover:scale-110"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+                  className='object-cover transition-transform duration-700 group-hover:scale-110'
+                  sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw'
                 />
                 {/* Overlay on hover */}
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
-                
+                <div className='absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300' />
+
                 {/* Title overlay */}
-                {image.title && (
-                  <div className="absolute inset-0 flex flex-col justify-end p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <div className="bg-gradient-to-t from-black/80 via-black/40 to-transparent p-4 -m-4 rounded-b-lg">
+                {/* {image.title && (
+                #TODO: Decide if we need this. or remove completely.
+                  <div className='absolute inset-0 flex flex-col justify-end p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300'>
+                    <div className='bg-gradient-to-t from-black/80 via-black/40 to-transparent p-4 -m-4 rounded-b-lg'>
                       <Typography
-                        variant="body2"
-                        className="text-white font-serif italic text-sm"
+                        variant='body2'
+                        className='text-white font-serif italic text-sm'
                       >
                         {image.title}
                       </Typography>
                     </div>
                   </div>
-                )}
+                )} */}
               </div>
             </motion.div>
           );
@@ -113,4 +119,3 @@ export function MasonryGallery({
     </>
   );
 }
-
