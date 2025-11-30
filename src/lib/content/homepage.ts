@@ -123,32 +123,32 @@ export const partners: Partner[] = [
 export const quickLinks: QuickLink[] = [
   {
     id: "1",
-    title: "Videography",
-    description: "Explore my latest video productions and cinematic work",
+    title: "quicklinks_videography",
+    description: "quicklinks_description_videography",
     href: routes.videography,
     icon: "lucide:video",
     color: "from-purple-500 to-purple-600"
   },
   {
     id: "2",
-    title: "Photography",
-    description: "Browse through my photography portfolio and collections",
+    title: "quicklinks_photography",
+    description: "quicklinks_description_photography",
     href: routes.photography,
     icon: "lucide:camera",
     color: "from-blue-500 to-blue-600"
   },
   {
     id: "3",
-    title: "Stories",
-    description: "Read about my creative journey and behind-the-scenes stories",
+    title: "quicklinks_stories",
+    description: "quicklinks_description_stories",
     href: routes.stories,
     icon: "lucide:book-open",
     color: "from-amber-500 to-amber-600"
   },
   {
     id: "4",
-    title: "Contact",
-    description: "Let's collaborate on your next creative project",
+    title: "quicklinks_contact",
+    description: "quicklinks_description_contact",
     href: routes.contact,
     icon: "lucide:mail",
     color: "from-green-500 to-green-600"

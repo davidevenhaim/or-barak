@@ -41,6 +41,15 @@
   "contact_form_email_required": "Email is required",
   "contact_form_email_invalid": "Please enter a valid email address",
 
+  "quicklinks_videography": "Videography",
+  "quicklinks_photography": "Photography",
+  "quicklinks_stories": "Stories",
+  "quicklinks_contact": "Contact",
+  "quicklinks_description_videography": "Explore my latest video productions and cinematic work",
+  "quicklinks_description_photography": "Browse through my photography portfolio and collections",
+  "quicklinks_description_stories": "Thoughts - Ideas - Memories.\nThere's a lot of ways to tell a story.\nHere's mine.",
+  "quicklinks_description_contact": "Lets Connect.",
+
   "videography_title": "Videography",
   "videography_subtitle": "Directed, Filmed & Edited",
   "videography_head_producer_videos": "Head Producer",

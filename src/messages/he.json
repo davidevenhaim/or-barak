@@ -4,7 +4,7 @@
   "site_tagline": "צלם וידאו ובמאי יצירה",
 
   "nav_home": "בית",
-  "nav_videography": "וידאוגרפיה",
+  "nav_videography": "סרטים",
   "nav_photography": "צילום",
   "nav_stories": "סיפורים",
   "nav_about": "אודות",
@@ -41,7 +41,16 @@
   "contact_form_email_required": "יש למלא אימייל",
   "contact_form_email_invalid": "נא להזין כתובת אימייל תקינה",
 
-  "videography_title": "וידאוגרפיה",
+  "quicklinks_videography": "סרטים",
+  "quicklinks_photography": "צילום",
+  "quicklinks_stories": "סיפורים",
+  "quicklinks_contact": "צור קשר",
+  "quicklinks_description_videography": "חקרו את הפקות הווידאו והפרויקטים הקולנועיים האחרונים שלי",
+  "quicklinks_description_photography": "חקרו את הצילומים והאוסף שלי",
+  "quicklinks_description_stories": "מחשבות - רעיונות - זיכרונות.\nישנם מספר דרכים לספר סיפור.\nכאן מה שלי.",
+  "quicklinks_description_contact": "בואו ניצור קשר.",
+
+  "videography_title": "סרטים",
   "videography_subtitle": "בימוי, צילום ועריכה",
   "videography_description": "היצירות המרכזיות שלי. שליטה יצירתית מלאה מהקונספט ועד הגרסה הסופית.",
   "videography_more_projects": "עוד פרויקטים",

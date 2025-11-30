@@ -58,7 +58,7 @@ interface VideoSliderProps {
   sectionTitle: string;
   sectionDescription?: string;
   sectionId: string;
-  backgroundVideoUrl: string;
+  backgroundVideoUrl?: string;
 }
 
 function VideoCard({ video }: { video: Video }) {
@@ -137,13 +137,13 @@ function VideoCard({ video }: { video: Video }) {
         <div className='p-4 sm:p-5 md:p-6 flex flex-col flex-1 min-h-0'>
           <Typography
             variant='h6'
-            className='mb-2 group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors'
+            className='mb-2 group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors whitespace-pre-line'
           >
             {video.title}
           </Typography>
           <Typography
             variant='body2'
-            className='text-zinc-600 dark:text-zinc-400 flex-1 text-sm sm:text-base'
+            className='text-zinc-600 dark:text-zinc-400 flex-1 text-sm sm:text-base whitespace-pre-line'
           >
             {video.description}
           </Typography>
@@ -160,10 +160,12 @@ export function VideoSlider({
   sectionId,
   backgroundVideoUrl
 }: VideoSliderProps) {
-  const backgroundVideoId = getYouTubeVideoId(backgroundVideoUrl);
+  const backgroundVideoId = backgroundVideoUrl
+    ? getYouTubeVideoId(backgroundVideoUrl)
+    : null;
   const youtubeEmbedUrl = backgroundVideoId
     ? `https://www.youtube.com/embed/${backgroundVideoId}?autoplay=1&loop=1&mute=1&playlist=${backgroundVideoId}&controls=0&modestbranding=1&rel=0&playsinline=1`
-    : null;
+    : undefined;
 
   return (
     <section

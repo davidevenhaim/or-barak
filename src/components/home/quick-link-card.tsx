@@ -34,7 +34,7 @@ export function QuickLinkCard({ link, index = 0 }: QuickLinkCardProps) {
             {/* Title */}
             <Typography
               variant='h6'
-              className='mb-2 sm:mb-3 flex-shrink-0 text-zinc-900 dark:text-zinc-100 font-medium group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors line-clamp-2 min-h-[2.5rem] sm:min-h-[3rem]'
+              className='mb-2 sm:mb-3 flex-shrink-0 text-zinc-900 dark:text-zinc-100 font-medium group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors whitespace-pre-line'
             >
               {link.title}
             </Typography>
@@ -42,7 +42,7 @@ export function QuickLinkCard({ link, index = 0 }: QuickLinkCardProps) {
             {/* Description */}
             <Typography
               variant='body2'
-              className='text-zinc-600 dark:text-zinc-400 leading-relaxed flex-grow line-clamp-3 text-sm sm:text-base'
+              className='text-zinc-600 dark:text-zinc-400 leading-relaxed flex-grow text-sm sm:text-base whitespace-pre-line'
             >
               {link.description}
             </Typography>

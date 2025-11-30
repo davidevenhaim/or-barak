@@ -51,11 +51,15 @@ export default async function Home() {
         sectionTitle={t("home_videos_title")}
         sectionDescription={t("home_videos_description")}
         sectionId={videosSectionId}
-        backgroundVideoUrl={backgroundVideoUrl}
+        // backgroundVideoUrl={backgroundVideoUrl}
       />
 
       <QuickLinksSection
-        links={quickLinks}
+        links={quickLinks.map((l) => ({
+          ...l,
+          description: t(l.description),
+          title: t(l.title)
+        }))}
         sectionTitle={t("home_quicklinks_title")}
         sectionDescription={t("home_quicklinks_description")}
       />
