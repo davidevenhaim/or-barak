@@ -16,7 +16,7 @@ import { useBoolean } from "@/hooks/use-boolean";
 
 interface VideoCarouselProps {
   videos: VideoItem[];
-  title: string;
+  title?: string;
 }
 
 export function VideoCarousel({ videos, title }: VideoCarouselProps) {
@@ -31,14 +31,15 @@ export function VideoCarousel({ videos, title }: VideoCarouselProps) {
   return (
     <>
       <div className='space-y-6'>
-        <Typography
-          variant='h4'
-          className='uppercase tracking-wider text-zinc-500 dark:text-zinc-400 font-medium 
-          text-center sm:text-left
-          '
-        >
-          {title}
-        </Typography>
+        {title && (
+          <Typography
+            variant='h4'
+            className='uppercase tracking-wider text-zinc-500 dark:text-zinc-400 font-medium 
+          text-center sm:text-left'
+          >
+            {title}
+          </Typography>
+        )}
         <Carousel
           opts={{
             align: "start",
