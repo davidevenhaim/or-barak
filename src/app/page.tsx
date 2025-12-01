@@ -20,7 +20,7 @@ export async function generateMetadata(): Promise<Metadata> {
       type: "website",
       images: [
         {
-          url: "/images/or-2.jpg",
+          url: "/images/or-primary.jpg",
           alt: t("site_title")
         }
       ]
@@ -29,7 +29,7 @@ export async function generateMetadata(): Promise<Metadata> {
       card: "summary_large_image",
       title: `${t("about_title")} | ${t("site_title")}`,
       description: t("about_description"),
-      images: ["/images/or-2.jpg"]
+      images: ["/images/or-primary.jpg"]
     }
   };
 }
