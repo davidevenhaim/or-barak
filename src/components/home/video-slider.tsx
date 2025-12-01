@@ -170,10 +170,10 @@ export function VideoSlider({
   return (
     <section
       id={sectionId}
-      className='py-12 sm:py-16 md:py-20 pt-8 sm:pt-10 overflow-x-hidden max-w-full relative'
+      className='py-12 sm:py-16 md:py-20 pt-8 sm:pt-10 overflow-x-hidden max-w-full relative bg-black dark:bg-black md:bg-transparent md:dark:bg-transparent'
     >
       {/* Background Video */}
-      <div className='absolute inset-0 w-full h-full overflow-hidden z-0'>
+      <div className='hidden md:block absolute inset-0 w-full h-full overflow-hidden z-0'>
         {youtubeEmbedUrl ? (
           <iframe
             src={youtubeEmbedUrl}

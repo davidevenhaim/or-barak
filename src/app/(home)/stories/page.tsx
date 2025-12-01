@@ -48,28 +48,31 @@ export default async function StoriesPage() {
       data-has-stories={hasStories}
     >
       <div className='absolute inset-0 w-full h-full overflow-hidden pointer-events-none'>
-        {backgroundVideoEmbedUrl ? (
-          <iframe
-            src={backgroundVideoEmbedUrl}
-            title='Stories background video'
-            className='absolute inset-0 w-full h-full object-cover'
-            allow='autoplay; encrypted-media'
-            allowFullScreen={false}
-            loading='lazy'
-            aria-hidden='true'
-            style={{
-              width: "100%",
-              height: "100%",
-              border: "none",
-              transform: "scale(1.1)",
-              transformOrigin: "center center",
-              opacity: 0.8
-            }}
-          />
-        ) : (
-          <div className='absolute inset-0 w-full h-full bg-gradient-to-b from-black via-zinc-900 to-black' />
-        )}
-        <div className='absolute inset-0 bg-gradient-to-b from-black/90 via-black/80 to-black/90 backdrop-blur-[1px]' />
+        {/* Desktop / large-screen video background */}
+        <div className='hidden md:block absolute inset-0'>
+          {backgroundVideoEmbedUrl ? (
+            <iframe
+              src={backgroundVideoEmbedUrl}
+              title='Stories background video'
+              className='absolute inset-0 w-full h-full object-cover'
+              allow='autoplay; encrypted-media'
+              allowFullScreen={false}
+              loading='lazy'
+              aria-hidden='true'
+              style={{
+                width: "100%",
+                height: "100%",
+                border: "none",
+                transform: "scale(1.1)",
+                transformOrigin: "center center",
+                opacity: 0.8
+              }}
+            />
+          ) : (
+            <div className='absolute inset-0 w-full h-full bg-gradient-to-b from-black via-zinc-900 to-black' />
+          )}
+          <div className='absolute inset-0 bg-gradient-to-b from-black/90 via-black/80 to-black/90 backdrop-blur-[1px]' />
+        </div>
       </div>
 
       <Container className='py-4 md:py-8 relative z-10'>
