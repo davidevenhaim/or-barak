@@ -62,9 +62,9 @@ export const formatDateRange = (
 };
 
 export const getDateLocale = (currentLang: Language): Locale => {
-  if (currentLang === Language.HE) {
-    return he;
-  }
+  // if (currentLang === Language.HE) {
+  //   return he;
+  // }
   // if (currentLang === Language.ES) {
   //   return es;
   // }
