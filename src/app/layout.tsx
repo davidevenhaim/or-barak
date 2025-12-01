@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/images/or-1.png",
+        url: "/images/or-2.png",
         alt: "Or Barak"
       }
     ]
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     title: "Or Barak",
     description:
       "Or Barak is a Producer, Entrepreneur, Filmmaker and visual storyteller",
-    images: ["/images/or-1.png"]
+    images: ["/images/or-2.png"]
   }
 };
 
