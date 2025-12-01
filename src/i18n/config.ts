@@ -1,13 +1,13 @@
 export enum Language {
-  EN = "en",
+  EN = "en"
   // ES = "es",
-  HE = "he"
+  // HE = "he"
 }
 
 export const LANGUAGES = Object.values(Language);
 export const DEFAULT_LOCALE = Language.EN;
 export const LOCALE_COOKIE = "app.locale";
-export const RTL_LOCALES = [Language.HE];
+// export const RTL_LOCALES = [Language.HE];
 
 export const COOKIE_OPTIONS = {
   MAX_AGE: 31536000,
@@ -16,9 +16,9 @@ export const COOKIE_OPTIONS = {
 };
 
 export const LANGUAGE_NAMES: Record<Language, string> = {
-  [Language.EN]: "English",
+  [Language.EN]: "English"
   // [Language.ES]: "Español",
-  [Language.HE]: "עברית"
+  // [Language.HE]: "עברית"
 };
 
 export function isLocale(value: string): value is Language {
