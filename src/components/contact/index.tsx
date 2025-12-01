@@ -82,21 +82,17 @@ const Contact = () => {
     <section className='min-h-screen bg-black dark:bg-black py-12 sm:py-16 md:py-20 px-4 sm:px-6 overflow-x-hidden max-w-full'>
       <div className='container mx-auto max-w-7xl w-full'>
         <div className='grid grid-cols-1 lg:grid-cols-2 gap-0'>
-          {/* Left Column - Info */}
           <div className='flex flex-col justify-center space-y-6 sm:space-y-8 bg-black dark:bg-black p-6 sm:p-8 lg:p-12 xl:p-16'>
-            {/* Header */}
             <Typography
               variant='caption1'
               className='text-zinc-400 dark:text-zinc-500 uppercase tracking-wider text-xs sm:text-sm font-sans'
             >
               {t("contact_header")}
             </Typography>
-
-            {/* Main Title */}
             <div>
               <Typography
                 variant='h2'
-                className='font-serif italic text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white leading-tight mb-2'
+                className='font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white leading-tight mb-2'
               >
                 {t("contact_title_part1")}{" "}
                 <span className='text-amber-500 dark:text-amber-400'>
@@ -104,18 +100,13 @@ const Contact = () => {
                 </span>
               </Typography>
             </div>
-
-            {/* Description */}
             <Typography
               variant='body1'
               className='text-zinc-400 dark:text-zinc-300 text-sm sm:text-base md:text-lg leading-relaxed max-w-lg font-sans whitespace-pre-line'
             >
               {t("contact_description_text")}
             </Typography>
-
-            {/* Contact Info */}
             <div className='space-y-4 sm:space-y-6 pt-2 sm:pt-4'>
-              {/* Email */}
               <div>
                 <Typography
                   variant='caption1'
@@ -132,8 +123,6 @@ const Contact = () => {
                   {OR_CONSTANTS.EMAIL}
                 </Link>
               </div>
-
-              {/* Phone */}
               <div>
                 <Typography
                   variant='caption1'
@@ -145,14 +134,12 @@ const Contact = () => {
                   href={getWhatsappLink(OR_CONSTANTS.WHATSAPP)}
                   target='_blank'
                   rel='noopener noreferrer'
-                  className='text-zinc-300 dark:text-zinc-300 italic text-sm sm:text-base md:text-lg hover:text-amber-500 dark:hover:text-amber-400 transition-colors font-sans touch-manipulation'
+                  className='text-zinc-300 dark:text-zinc-300 text-sm sm:text-base md:text-lg hover:text-amber-500 dark:hover:text-amber-400 transition-colors font-sans touch-manipulation'
                 >
                   {OR_CONSTANTS.PHONE}
                 </Link>
               </div>
             </div>
-
-            {/* Social Links */}
             <div className='flex flex-wrap gap-4 sm:gap-6 pt-2 sm:pt-4'>
               {socialLinks.map((link) => (
                 <Link

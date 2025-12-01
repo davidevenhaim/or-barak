@@ -24,7 +24,7 @@ export function Timeline({ events }: TimelineProps) {
         </Typography>
         <Typography
           variant='h2'
-          className='font-serif italic text-3xl md:text-4xl lg:text-5xl text-zinc-50'
+          className='font-serif text-3xl md:text-4xl lg:text-5xl text-zinc-50'
         >
           {t("about_timeline_subtitle")}
         </Typography>
@@ -104,4 +104,3 @@ export function Timeline({ events }: TimelineProps) {
     </div>
   );
 }
-

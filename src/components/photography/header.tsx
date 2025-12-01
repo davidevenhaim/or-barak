@@ -9,7 +9,7 @@ const PhotographyHeader = () => {
     <div className='text-center  space-y-4'>
       <Typography
         variant='h1'
-        className='font-serif italic text-4xl md:text-5xl lg:text-6xl text-zinc-900 dark:text-zinc-50'
+        className='font-serif text-4xl md:text-5xl lg:text-6xl text-zinc-900 dark:text-zinc-50'
       >
         {t("photography_collection_title")}
       </Typography>

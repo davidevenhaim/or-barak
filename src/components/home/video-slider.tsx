@@ -191,8 +191,8 @@ export function VideoSlider({
         ) : (
           <div className='absolute inset-0 w-full h-full bg-gradient-to-br from-zinc-50 via-white to-zinc-50 dark:from-zinc-950 dark:via-black dark:to-zinc-950' />
         )}
-        {/* Overlay for better content readability */}
-        <div className='absolute inset-0 bg-gradient-to-br from-zinc-50/90 via-white/80 to-zinc-50/90 dark:from-zinc-950/90 dark:via-black/80 dark:to-zinc-950/90' />
+        {/* Overlay for better content readability while keeping video clear */}
+        <div className='absolute inset-0 bg-gradient-to-br from-zinc-50/70 via-white/60 to-zinc-50/70 dark:from-zinc-950/70 dark:via-black/60 dark:to-zinc-950/70' />
       </div>
 
       <div className='container mx-auto px-4 sm:px-6 w-full relative z-10'>

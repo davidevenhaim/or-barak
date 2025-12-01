@@ -11,7 +11,7 @@ const catalogImages: PhotographyImage[] = [
   },
   {
     id: "catalog-2",
-    src: "https://drive.google.com/uc?export=view&id=1b8_g5kBwxjpsI7g6vHnq7RQYqE35nZhH",
+    src: "https://drive.google.com/uc?export=view&id=1E8aTkQvD0n81GN5-WLt2X4kaMx40Doeo",
     alt: "Catalog image 2",
     title: "Catalog image 2",
     category: PhotoTag.ART
@@ -40,14 +40,14 @@ const catalogImages: PhotographyImage[] = [
   },
   {
     id: "catalog-6",
-    src: "",
+    src: "https://drive.google.com/uc?export=view&id=1L4PubWpKmE1DuddLiL9ceaadJyPgiXXY",
     alt: "Catalog image 6",
     title: "Image 6",
     category: PhotoTag.ART
   },
   {
     id: "catalog-7",
-    src: "",
+    src: "https://drive.google.com/uc?export=view&id=1AzAgbaTKPf3YrjEvWXENj_a-ytdkbbbI",
     alt: "Catalog image 7",
     title: "Image 7",
     category: PhotoTag.ART
@@ -75,7 +75,7 @@ const catalogImages: PhotographyImage[] = [
   },
   {
     id: "catalog-11",
-    src: "",
+    src: "https://drive.google.com/uc?export=view&id=1jwovvOOt3UbCX4-mzlqFL-RMCtUVDHl1",
     alt: "Catalog image 11",
     title: "Image 11",
     category: PhotoTag.ART

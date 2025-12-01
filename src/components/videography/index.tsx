@@ -4,7 +4,7 @@ import {
   executiveProducerVideos,
   featuredVideos,
   headProducerVideos,
-  moreVideos
+  directedFilmedAndEdited
 } from "@/lib/content/videography";
 import VideographyHeader from "./header";
 import { VideoGrid } from "./video-grid";
@@ -29,9 +29,9 @@ const Videography = async () => {
               />
             </section>
 
-            {moreVideos.length > 0 && (
+            {directedFilmedAndEdited.length > 0 && (
               <section className='space-y-6 sm:space-y-8'>
-                <VideoCarousel videos={moreVideos} />
+                <VideoCarousel videos={directedFilmedAndEdited} />
               </section>
             )}
           </div>

@@ -2,7 +2,7 @@ import { type Video, type Partner, type QuickLink } from "@/components/home";
 import { VideoCategory } from "@/components/home/video-slider";
 import { routes } from "@/lib/constants/routes";
 
-export const backgroundVideoUrl = `https://www.youtube.com/watch?v=ByLkKe0tlRo`;
+export const backgroundVideoUrl = `https://www.youtube.com/watch?v=zovzuZLY6G0`;
 
 export const videos: Video[] = [
   {

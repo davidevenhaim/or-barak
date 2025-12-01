@@ -51,7 +51,7 @@ export default async function Home() {
         sectionTitle={t("home_videos_title")}
         sectionDescription={t("home_videos_description")}
         sectionId={videosSectionId}
-        // backgroundVideoUrl={backgroundVideoUrl}
+        backgroundVideoUrl={backgroundVideoUrl}
       />
 
       <QuickLinksSection

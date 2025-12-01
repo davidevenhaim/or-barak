@@ -208,4 +208,6 @@ export const btsPaVideos = videographyVideos.filter(
   (video) => video.role === VideoRole.BTS_PA
 );
 
-export const moreVideos = videographyVideos.slice(5);
+export const directedFilmedAndEdited = videographyVideos.filter(
+  (video) => video.role === VideoRole.Directed_Filmed_Edited
+);

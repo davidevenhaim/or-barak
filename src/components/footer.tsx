@@ -63,7 +63,7 @@ const Footer = async () => {
 
           <Typography
             variant='caption2'
-            className='text-zinc-400 dark:text-zinc-600 italic text-xs sm:text-sm px-4 text-center'
+            className='text-zinc-400 dark:text-zinc-600 text-xs sm:text-sm px-4 text-center'
           >
             {t("footer_tagline")}
           </Typography>

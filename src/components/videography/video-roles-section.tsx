@@ -71,7 +71,7 @@ export function VideoRolesSection({ videos }: VideoRolesSectionProps) {
             <div key={role} className='space-y-4 text-center md:text-left'>
               <Typography
                 variant='subtitle1'
-                className='font-serif italic text-xl md:text-2xl text-zinc-400'
+                className='font-serif text-xl md:text-2xl text-zinc-400'
               >
                 {t(getRoleTranslationKey(role))}
               </Typography>
