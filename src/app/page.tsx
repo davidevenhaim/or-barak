@@ -5,9 +5,10 @@ import {
   videos,
   videosSectionId
 } from "@/lib/content/homepage";
+import { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 
-export async function generateMetadata() {
+export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations();
 
   return {
@@ -19,16 +20,16 @@ export async function generateMetadata() {
       type: "website",
       images: [
         {
-          url: "/images/or-2.png",
+          url: "/images/or-2.jpg",
           alt: t("site_title")
         }
       ]
     },
     twitter: {
       card: "summary_large_image",
-      title: t("site_title"),
-      description: t("site_description"),
-      images: ["/images/or-2.png"]
+      title: `${t("about_title")} | ${t("site_title")}`,
+      description: t("about_description"),
+      images: ["/images/or-2.jpg"]
     }
   };
 }
