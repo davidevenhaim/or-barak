@@ -106,40 +106,6 @@ const Contact = () => {
             >
               {t("contact_description_text")}
             </Typography>
-            <div className='space-y-4 sm:space-y-6 pt-2 sm:pt-4'>
-              <div>
-                <Typography
-                  variant='caption1'
-                  className='text-zinc-500 dark:text-zinc-500 uppercase tracking-wider text-xs font-sans mb-1'
-                >
-                  {t("contact_email_label")}
-                </Typography>
-                <Link
-                  href={getEmailLink(OR_CONSTANTS.EMAIL)}
-                  target='_blank'
-                  rel='noopener noreferrer'
-                  className='text-zinc-300 dark:text-zinc-300 text-sm sm:text-base md:text-lg hover:text-amber-500 dark:hover:text-amber-400 transition-colors font-sans break-all touch-manipulation'
-                >
-                  {OR_CONSTANTS.EMAIL}
-                </Link>
-              </div>
-              <div>
-                <Typography
-                  variant='caption1'
-                  className='text-zinc-500 dark:text-zinc-500 uppercase tracking-wider text-xs font-sans mb-1'
-                >
-                  {t("contact_phone_label")}
-                </Typography>
-                <Link
-                  href={getWhatsappLink(OR_CONSTANTS.WHATSAPP)}
-                  target='_blank'
-                  rel='noopener noreferrer'
-                  className='text-zinc-300 dark:text-zinc-300 text-sm sm:text-base md:text-lg hover:text-amber-500 dark:hover:text-amber-400 transition-colors font-sans touch-manipulation'
-                >
-                  {OR_CONSTANTS.PHONE}
-                </Link>
-              </div>
-            </div>
             <div className='flex flex-wrap gap-4 sm:gap-6 pt-2 sm:pt-4'>
               {socialLinks.map((link) => (
                 <Link

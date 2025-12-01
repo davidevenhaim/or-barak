@@ -84,7 +84,7 @@ export function Timeline({ events }: TimelineProps) {
                       variant='h4'
                       className='text-zinc-50 font-bold text-xl md:text-2xl mb-3'
                     >
-                      {t(`${translationKey}_title`)}
+                      {event.title}
                     </Typography>
 
                     {/* Description */}
@@ -92,7 +92,7 @@ export function Timeline({ events }: TimelineProps) {
                       variant='body2'
                       className='text-zinc-300 dark:text-zinc-400 text-sm md:text-base leading-relaxed'
                     >
-                      {t(`${translationKey}_description`)}
+                      {event.description}
                     </Typography>
                   </div>
                 </div>
