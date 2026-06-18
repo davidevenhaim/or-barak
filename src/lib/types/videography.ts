@@ -4,4 +4,5 @@ export interface VideoItem {
   role: VideoRole;
   title: string;
   url: string;
+  featured?: boolean;
 }

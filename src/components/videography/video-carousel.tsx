@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Carousel,
+  CarouselApi,
   CarouselContent,
   CarouselItem,
   CarouselNext,
@@ -23,10 +24,38 @@ export function VideoCarousel({ videos, title }: VideoCarouselProps) {
   const [selectedVideo, setSelectedVideo] = useState<VideoItem | null>(null);
   const isDialogOpen = useBoolean();
 
+  const [api, setApi] = useState<CarouselApi>();
+  const [canScrollPrev, setCanScrollPrev] = useState(false);
+  const [canScrollNext, setCanScrollNext] = useState(false);
+
+  useEffect(() => {
+    if (!api) {
+      return;
+    }
+
+    const onSelect = () => {
+      setCanScrollPrev(api.canScrollPrev());
+      setCanScrollNext(api.canScrollNext());
+    };
+
+    onSelect();
+    api.on("select", onSelect);
+    api.on("reInit", onSelect);
+
+    return () => {
+      api.off("select", onSelect);
+      api.off("reInit", onSelect);
+    };
+  }, [api]);
+
   const handleVideoClick = (video: VideoItem) => {
     setSelectedVideo(video);
     isDialogOpen.onTrue();
   };
+
+  // Shared styling for the prev/next arrows — warm gold accent used elsewhere.
+  const arrowClassName =
+    "hidden md:flex border-zinc-800 bg-black/80 hover:bg-amber-500 hover:text-white hover:border-amber-500 text-white";
 
   return (
     <>
@@ -34,24 +63,25 @@ export function VideoCarousel({ videos, title }: VideoCarouselProps) {
         {title && (
           <Typography
             variant='h4'
-            className='uppercase tracking-wider text-zinc-500 dark:text-zinc-400 font-medium 
+            className='uppercase tracking-wider text-zinc-500 dark:text-zinc-400 font-medium
           text-center sm:text-left'
           >
             {title}
           </Typography>
         )}
         <Carousel
+          setApi={setApi}
           opts={{
             align: "start",
             loop: false
           }}
-          className='w-full max-w-full overflow-hidden'
+          className='w-full max-w-full'
         >
           <CarouselContent className='-ml-2 md:-ml-4'>
             {videos.map((video, index) => (
               <CarouselItem
                 key={index}
-                className='pl-2 md:pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4'
+                className='pl-2 md:pl-4 basis-[85%] sm:basis-[45%] md:basis-[31%] lg:basis-[23%]'
               >
                 <VideoCard
                   video={video}
@@ -62,8 +92,16 @@ export function VideoCarousel({ videos, title }: VideoCarouselProps) {
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious className='hidden md:flex -left-12 border-zinc-800 bg-black/80 hover:bg-amber-500 hover:text-white hover:border-amber-500 text-white' />
-          <CarouselNext className='hidden md:flex -right-12 border-zinc-800 bg-black/80 hover:bg-amber-500 hover:text-white hover:border-amber-500 text-white' />
+          {canScrollPrev && (
+            <CarouselPrevious
+              className={`${arrowClassName} left-2 top-1/2 -translate-y-1/2`}
+            />
+          )}
+          {canScrollNext && (
+            <CarouselNext
+              className={`${arrowClassName} right-2 top-1/2 -translate-y-1/2`}
+            />
+          )}
         </Carousel>
       </div>
       <VideoDialog

@@ -2,10 +2,16 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { VideoItem } from "@/lib/types/videography";
 import { Typography } from "@/components/ui/typography";
-import { getYouTubeVideoId, getYouTubeThumbnail, isYouTubeUrl } from "@/lib/utils/youtube.utils";
+import {
+  getYouTubeVideoId,
+  getYouTubeThumbnail,
+  getYouTubeThumbnailFallback,
+  isYouTubeUrl
+} from "@/lib/utils/youtube.utils";
 import { Icon } from "@/components/ui/icon";
 
 interface VideoCardProps {
@@ -26,6 +32,7 @@ export function VideoCard({
   const isYouTube = isYouTubeUrl(video.url);
   const youtubeId = isYouTube ? getYouTubeVideoId(video.url) : null;
   const thumbnail = youtubeId ? getYouTubeThumbnail(youtubeId) : "";
+  const [thumbnailSrc, setThumbnailSrc] = useState(thumbnail);
 
   // Extract year and type from title if available
   // Handle formats like "ABF 2025 (Short Documentary)" or "Title (Type)"
@@ -49,10 +56,10 @@ export function VideoCard({
       onClick={onClick}
     >
       <div className="relative h-full w-full overflow-hidden bg-zinc-900">
-        {thumbnail ? (
+        {thumbnailSrc ? (
           <>
             <Image
-              src={thumbnail}
+              src={thumbnailSrc}
               alt={video.title}
               fill
               className="object-cover transition-transform duration-700 group-hover:scale-110"
@@ -62,6 +69,31 @@ export function VideoCard({
                   : "(max-width: 768px) 100vw, 33vw"
               }
               unoptimized
+              onLoad={(e) => {
+                // YouTube returns a gray 120x90 placeholder (HTTP 200) when a
+                // video has no maxresdefault, so onError never fires. Detect the
+                // placeholder by its width and fall back to hqdefault, which
+                // always exists for public and unlisted videos.
+                const img = e.currentTarget;
+                const fallback = youtubeId
+                  ? getYouTubeThumbnailFallback(youtubeId)
+                  : "";
+                if (
+                  fallback &&
+                  thumbnailSrc !== fallback &&
+                  img.naturalWidth <= 120
+                ) {
+                  setThumbnailSrc(fallback);
+                }
+              }}
+              onError={() => {
+                const fallback = youtubeId
+                  ? getYouTubeThumbnailFallback(youtubeId)
+                  : "";
+                if (fallback && thumbnailSrc !== fallback) {
+                  setThumbnailSrc(fallback);
+                }
+              }}
             />
             {/* Overlay on hover */}
             <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors duration-300" />
@@ -84,7 +116,7 @@ export function VideoCard({
           <div className="bg-gradient-to-t from-black/90 via-black/50 to-transparent p-4 -m-4 rounded-b-lg">
             <Typography
               variant="h5"
-              className="text-white font-sans font-bold mb-2 line-clamp-2"
+              className="text-white font-sans font-bold mb-2 line-clamp-2 text-sm sm:text-base md:text-lg lg:text-lg"
             >
               {displayTitle}
             </Typography>

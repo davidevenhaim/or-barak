@@ -4,13 +4,36 @@ import { VideoItem } from "@/lib/types/videography";
 export const videographyVideos: VideoItem[] = [
   {
     role: VideoRole.Directed_Filmed_Edited,
-    title: "ABF 2025 (Short Documentary)",
-    url: "https://youtu.be/2e0jQjMLr7I"
+    title: "Chabad of Sonoma County",
+    url: "https://youtu.be/NwjSxRFWY_o"
+  },
+  {
+    role: VideoRole.Directed_Filmed_Edited,
+    title: "Whole Time (Music Video)",
+    url: "https://youtu.be/0B4ZbF_Gw3c"
+  },
+  {
+    role: VideoRole.Directed_Filmed_Edited,
+    title: "Israel Deep Dive",
+    url: "https://youtu.be/9nq_QBjySag"
+  },
+  {
+    role: VideoRole.Directed_Filmed_Edited,
+    title: "Save Cinema",
+    url: "https://youtu.be/OxPKrjwFD3w",
+    featured: true
+  },
+  {
+    role: VideoRole.Directed_Filmed_Edited,
+    title: "The Booklady",
+    url: "https://youtu.be/vOPwA3h1hss",
+    featured: true
   },
   {
     role: VideoRole.Directed_Filmed_Edited,
     title: "Boundaries (Short Film)",
-    url: "https://youtu.be/qNF-tdjnIs0"
+    url: "https://youtu.be/qNF-tdjnIs0",
+    featured: true
   },
   {
     role: VideoRole.Directed_Filmed_Edited,
@@ -71,6 +94,18 @@ export const videographyVideos: VideoItem[] = [
     role: VideoRole.Directed_Filmed_Edited,
     title: "Ballerina (Vibe Video)",
     url: "https://youtu.be/HG_IXNlaHAA"
+  },
+  {
+    role: VideoRole.Directed_Filmed_Edited,
+    title: "Nia Therapeutics",
+    url: "https://youtu.be/aS4MmtXAEhY",
+    featured: true
+  },
+  {
+    role: VideoRole.Directed_Filmed_Edited,
+    title: "Academic Bridge Fellowship",
+    url: "https://youtu.be/e11ykZL0Cvg",
+    featured: true
   },
   {
     role: VideoRole.Head_Producer,
@@ -194,7 +229,9 @@ export const videographyVideos: VideoItem[] = [
   }
 ];
 
-export const featuredVideos = videographyVideos.slice(0, 5);
+export const featuredVideos = videographyVideos.filter(
+  (video) => video.featured === true
+);
 
 export const headProducerVideos = videographyVideos.filter(
   (video) => video.role === VideoRole.Head_Producer
@@ -209,5 +246,6 @@ export const btsPaVideos = videographyVideos.filter(
 );
 
 export const directedFilmedAndEdited = videographyVideos.filter(
-  (video) => video.role === VideoRole.Directed_Filmed_Edited
+  (video) =>
+    video.role === VideoRole.Directed_Filmed_Edited && video.featured !== true
 );
