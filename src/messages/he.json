@@ -5,10 +5,16 @@
 
   "nav_home": "בית",
   "nav_videography": "סרטים",
+  "nav_films": "סרטים",
   "nav_photography": "צילום",
   "nav_stories": "סיפורים",
   "nav_about": "אודות",
   "nav_contact": "צור קשר",
+
+  "home_videography_view_all": "צפו בכל הסרטים",
+  "home_videography_credits": "קרדיטים נבחרים",
+  "home_photography_title": "רגעים קפואים",
+  "home_photography_view_all": "צפו בכל הצילומים",
 
   "footer_copyright": "© {year} אור ברק. כל הזכויות שמורות.",
   "footer_tagline": "מפיק • יזם • צלם",

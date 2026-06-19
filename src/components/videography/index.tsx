@@ -44,7 +44,10 @@ const Videography = async () => {
             </section>
           )}
 
-          <section className='space-y-6 sm:space-y-8'>
+          <section
+            id='credits'
+            className='space-y-6 sm:space-y-8 scroll-mt-14 sm:scroll-mt-16'
+          >
             <VideoRolesSection
               videos={btsPaVideos.concat(executiveProducerVideos)}
             />

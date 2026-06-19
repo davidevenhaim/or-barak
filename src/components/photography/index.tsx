@@ -1,21 +1,11 @@
 "use client";
 
 import { Container } from "@/components/ui/container";
-import { ImageGallery } from "./image-gallery";
-import { MasonryGallery } from "./masonry-gallery";
-import { SelectedWorksSlider } from "./selected-works-slider";
-import {
-  selectedWorks,
-  topImages,
-  fullCatalog,
-  getAllPhotographyImages
-} from "@/lib/content/photography";
-import { useTranslations } from "next-intl";
-import ImageSectionTitle from "./image-section-title";
+import { MagazineGallery } from "./magazine-gallery";
+import { getAllPhotographyImages } from "@/lib/content/photography";
 import PhotographyHeader from "./header";
 
 const Photography = () => {
-  const t = useTranslations();
   const allImages = getAllPhotographyImages();
 
   return (
@@ -24,39 +14,10 @@ const Photography = () => {
         <div className='max-w-7xl mx-auto space-y-12 sm:space-y-16 md:space-y-20 lg:space-y-24'>
           <PhotographyHeader />
 
-          <PhotographySection title={t("photography_selected_works")}>
-            <SelectedWorksSlider images={selectedWorks} allImages={allImages} />
-          </PhotographySection>
-
-          <PhotographySection>
-            <ImageGallery
-              images={topImages}
-              columns={2}
-              size='large'
-              allImages={allImages}
-            />
-          </PhotographySection>
-
-          <PhotographySection title={t("photography_full_catalog")}>
-            <MasonryGallery images={fullCatalog} allImages={allImages} />
-          </PhotographySection>
+          <MagazineGallery images={allImages} allImages={allImages} />
         </div>
       </Container>
     </div>
-  );
-};
-
-type PhotographySectionProps = {
-  title?: string;
-  children: React.ReactNode;
-};
-
-const PhotographySection = ({ title, children }: PhotographySectionProps) => {
-  return (
-    <section className='space-y-6 sm:space-y-8'>
-      {title && <ImageSectionTitle>{title}</ImageSectionTitle>}
-      {children}
-    </section>
   );
 };
 

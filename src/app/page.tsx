@@ -1,11 +1,14 @@
-import { HeroSection, QuickLinksSection, VideoSlider } from "@/components/home";
-import {
-  backgroundVideoUrl,
-  quickLinks,
-  videos,
-  videosSectionId
-} from "@/lib/content/homepage";
+import Contact from "@/components/contact";
+import { HeroSection } from "@/components/home";
+import { ImageGallery } from "@/components/photography/image-gallery";
+import ImageSectionTitle from "@/components/photography/image-section-title";
+import { Button } from "@/components/ui/button";
+import { Container } from "@/components/ui/container";
+import { VideoGrid } from "@/components/videography/video-grid";
+import { selectedWorks } from "@/lib/content/photography";
+import { featuredVideos } from "@/lib/content/videography";
 import { Metadata } from "next";
+import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -39,31 +42,64 @@ export default async function Home() {
 
   return (
     <div className='overflow-x-hidden max-w-full'>
-      <HeroSection
-        title={t("home_hero_name")}
-        subtitle={t("home_hero_subtitle")}
-        description={t("home_hero_description")}
-        backgroundImage='/images/hero-bg.jpg'
-        // backgroundVideo="/videos/hero-background.mp4" // Uncomment and add your video
-      />
+      <section id='home' className='scroll-mt-14 sm:scroll-mt-16'>
+        <HeroSection
+          title={t("home_hero_name")}
+          subtitle={t("home_hero_subtitle")}
+          description={t("home_hero_description")}
+          backgroundImage='/images/hero-bg.jpg'
+          // backgroundVideo="/videos/hero-background.mp4" // Uncomment and add your video
+        />
+      </section>
 
-      <VideoSlider
-        videos={videos}
-        sectionTitle={t("home_videos_title")}
-        sectionDescription={t("home_videos_description")}
-        sectionId={videosSectionId}
-        backgroundVideoUrl={backgroundVideoUrl}
-      />
+      <section
+        id='videography'
+        className='scroll-mt-14 sm:scroll-mt-16 bg-black'
+      >
+        <Container className='py-8 sm:py-12 md:py-16 lg:py-20'>
+          <div className='max-w-7xl mx-auto space-y-8 sm:space-y-12'>
+            <VideoGrid
+              videos={featuredVideos}
+              title={t("videography_subtitle")}
+            />
+            <div className='flex flex-col sm:flex-row justify-center gap-3 sm:gap-4'>
+              <Button asChild variant='outline' size='lg'>
+                <Link href='/videography'>
+                  {t("home_videography_view_all")}
+                </Link>
+              </Button>
+              <Button asChild variant='outline' size='lg'>
+                <Link href='/videography#credits'>
+                  {t("home_videography_credits")}
+                </Link>
+              </Button>
+            </div>
+          </div>
+        </Container>
+      </section>
 
-      <QuickLinksSection
-        links={quickLinks.map((l) => ({
-          ...l,
-          description: t(l.description),
-          title: t(l.title)
-        }))}
-        sectionTitle={t("home_quicklinks_title")}
-        sectionDescription={t("home_quicklinks_description")}
-      />
+      <section
+        id='photography'
+        className='scroll-mt-14 sm:scroll-mt-16 bg-gradient-to-br from-white via-zinc-50 to-zinc-100 dark:from-black dark:via-zinc-950 dark:to-zinc-900'
+      >
+        <Container className='py-8 sm:py-12 md:py-16 lg:py-20'>
+          <div className='max-w-7xl mx-auto space-y-8 sm:space-y-12'>
+            <ImageSectionTitle>{t("home_photography_title")}</ImageSectionTitle>
+            <ImageGallery images={selectedWorks.slice(0, 6)} columns={3} />
+            <div className='flex justify-center'>
+              <Button asChild variant='outline' size='lg'>
+                <Link href='/photography'>
+                  {t("home_photography_view_all")}
+                </Link>
+              </Button>
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      <section id='contact' className='scroll-mt-14 sm:scroll-mt-16'>
+        <Contact />
+      </section>
     </div>
   );
 }

@@ -8,7 +8,6 @@ import { Typography } from "@/components/ui/typography";
 import { cn } from "@/lib/utils";
 import { useBoolean } from "@/hooks/use-boolean";
 import { useTranslations } from "next-intl";
-import { routes } from "@/lib/constants/routes";
 
 const Navbar = () => {
   const t = useTranslations();
@@ -16,12 +15,10 @@ const Navbar = () => {
   const mobileMenuOpen = useBoolean(false);
 
   const navigation = [
-    { name: t("nav_home"), href: routes.home },
-    { name: t("nav_videography"), href: routes.videography },
-    { name: t("nav_photography"), href: routes.photography },
-    { name: t("nav_stories"), href: routes.stories },
-    { name: t("nav_about"), href: routes.about },
-    { name: t("nav_contact"), href: routes.contact }
+    { name: t("nav_home"), href: "#home" },
+    { name: t("nav_films"), href: "#videography" },
+    { name: t("nav_photography"), href: "#photography" },
+    { name: t("nav_contact"), href: "#contact" }
   ];
 
   return (

@@ -5,10 +5,16 @@
 
   "nav_home": "Home",
   "nav_videography": "Videography",
+  "nav_films": "Films",
   "nav_photography": "Photography",
   "nav_stories": "Stories",
   "nav_about": "About",
   "nav_contact": "Contact",
+
+  "home_videography_view_all": "View all films",
+  "home_videography_credits": "Selected Credits",
+  "home_photography_title": "Frozen Moments",
+  "home_photography_view_all": "View all photography",
 
   "footer_copyright": "© {year} Or Barak. All rights reserved.",
   "footer_tagline": "Producer • Entrepreneur • Filmmaker",

@@ -1,14 +1,23 @@
 import { PhotographyImage } from "@/lib/types/photography";
 import { PhotoTag } from "../enums/photo-tags.enum";
 
+// Google Drive's `uc?export=view` endpoint serves the full-resolution original.
+// For large files (30+ MP / tens of MB) Next's image optimizer fails to process
+// them, so the image never renders. The thumbnail endpoint returns a pre-resized
+// version instead — 2000px wide is plenty for web display and loads much faster.
+const DRIVE_THUMBNAIL_WIDTH = 2000;
+
+export const driveThumbnail = (id: string): string =>
+  `https://drive.google.com/thumbnail?id=${id}&sz=w${DRIVE_THUMBNAIL_WIDTH}`;
+
+// Rewrite a Drive `...&id=<fileId>` URL to the thumbnail endpoint. Any src that
+// doesn't carry a Drive file id (e.g. non-Drive hosts) is returned unchanged.
+const toThumbnailSrc = (image: PhotographyImage): PhotographyImage => {
+  const match = image.src.match(/[?&]id=([A-Za-z0-9_-]+)/);
+  return match ? { ...image, src: driveThumbnail(match[1]) } : image;
+};
+
 const catalogImages: PhotographyImage[] = [
-  {
-    id: "catalog-1",
-    src: "https://drive.google.com/uc?export=view&id=1wCFdB0062Upn2N4Ci_DYlICnK9_QpMyf",
-    alt: "Catalog image 1",
-    title: "Catalog image 1",
-    category: PhotoTag.SPORTS
-  },
   {
     id: "catalog-2",
     src: "https://drive.google.com/uc?export=view&id=1E8aTkQvD0n81GN5-WLt2X4kaMx40Doeo",
@@ -143,7 +152,7 @@ const catalogImages: PhotographyImage[] = [
     title: "Image 20",
     category: PhotoTag.ART
   }
-];
+].map(toThumbnailSrc);
 
 // Placeholder images - Replace with actual image paths
 // You can use Unsplash, local images, or any image source
@@ -249,7 +258,7 @@ export const selectedWorks: PhotographyImage[] = [
     title: "13",
     category: PhotoTag.ARCHITECTURE
   }
-];
+].map(toThumbnailSrc);
 
 // Top 20 - Second section (bigger images)
 export const topImages: PhotographyImage[] = [
@@ -379,7 +388,7 @@ export const topImages: PhotographyImage[] = [
   //   alt: "Top image 21",
   //   title: "Washington"
   // }
-];
+].map(toThumbnailSrc);
 
 // Full Catalog - Third section (varied sizes)
 // Generate more images for the full catalog (excluding selectedWorks and topImages to avoid duplicates)
