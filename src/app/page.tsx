@@ -54,7 +54,7 @@ export default async function Home() {
           title={t("home_hero_name")}
           subtitle={t("home_hero_subtitle")}
           description={t("home_hero_description")}
-          backgroundImage='/images/herophoto.jpg'
+          backgroundImage='/images/img-5737.jpg'
           revealImages={heroRevealImages}
           // backgroundVideo="/videos/hero-background.mp4" // Uncomment and add your video
         />
