@@ -32,7 +32,7 @@ export function HeroSection({
     <section className='relative w-full overflow-hidden bg-black md:h-[calc(100vh-50px)]'>
       <div className='flex h-full flex-col md:flex-row'>
         {/* Portrait — top on mobile, right column on desktop */}
-        <div className='relative order-1 h-[55vh] w-full md:order-2 md:h-full md:w-[55%] md:border-l md:border-white/10'>
+        <div className='relative order-1 h-[55vh] w-full md:order-2 md:h-full md:w-[55%]'>
           {backgroundVideo ? (
             <>
               {/* Fallback Image */}
@@ -42,7 +42,7 @@ export function HeroSection({
                   alt='Portrait of Or Barak'
                   fill
                   sizes='(min-width: 768px) 55vw, 100vw'
-                  className='object-cover object-top'
+                  className='object-cover object-[50%_35%]'
                   priority
                 />
               )}
@@ -64,7 +64,7 @@ export function HeroSection({
               alt='Portrait of Or Barak'
               fill
               sizes='(min-width: 768px) 55vw, 100vw'
-              className='object-cover object-top'
+              className='object-cover object-[50%_35%]'
               priority
             />
           )}
