@@ -224,3 +224,158 @@
     animation-delay: 0.2s;
   }
 }
+
+/* Hero text panel: a drifting light that reveals photography beneath it.
+   The glow (.hero-light) and the image mask (.hero-reveal) run the same
+   keyframes — identical position/size values — so the reveal tracks the light. */
+.hero-light,
+.hero-reveal {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* Glow */
+.hero-light::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(
+    closest-side,
+    rgba(253, 232, 185, 0.4) 0%,
+    rgba(253, 232, 185, 0.22) 35%,
+    rgba(253, 232, 185, 0.06) 65%,
+    transparent 100%
+  );
+  background-repeat: no-repeat;
+  background-size: 40rem 40rem;
+  background-position: -12rem -8rem;
+  opacity: 0.55;
+  animation: hero-light-drift 20s ease-in-out infinite;
+}
+
+/* Trace of grain on top for texture */
+.hero-light::after {
+  content: "";
+  position: absolute;
+  inset: -6rem;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 240px 240px;
+  opacity: 0.04;
+  animation: hero-grain-shift 9s steps(10) infinite;
+}
+
+/* Photography collage, visible only where the light falls.
+   luminosity blend over the black panel keeps only the images' tonal values,
+   so they sit in the dark as monochrome rather than on top of it. */
+.hero-reveal {
+  mix-blend-mode: luminosity;
+  -webkit-mask-image: radial-gradient(
+    closest-side,
+    rgba(0, 0, 0, 0.5) 0%,
+    rgba(0, 0, 0, 0.3) 35%,
+    rgba(0, 0, 0, 0.08) 65%,
+    transparent 100%
+  );
+  mask-image: radial-gradient(
+    closest-side,
+    rgba(0, 0, 0, 0.5) 0%,
+    rgba(0, 0, 0, 0.3) 35%,
+    rgba(0, 0, 0, 0.08) 65%,
+    transparent 100%
+  );
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 40rem 40rem;
+  mask-size: 40rem 40rem;
+  -webkit-mask-position: -12rem -8rem;
+  mask-position: -12rem -8rem;
+  opacity: 0.55;
+  animation: hero-light-drift 20s ease-in-out infinite;
+}
+
+.hero-reveal img {
+  filter: brightness(0.75);
+}
+
+@keyframes hero-light-drift {
+  0% {
+    background-position: -12rem -8rem;
+    -webkit-mask-position: -12rem -8rem;
+    mask-position: -12rem -8rem;
+    background-size: 40rem 40rem;
+    -webkit-mask-size: 40rem 40rem;
+    mask-size: 40rem 40rem;
+    opacity: 0.55;
+  }
+  30% {
+    background-position: 2rem 4rem;
+    -webkit-mask-position: 2rem 4rem;
+    mask-position: 2rem 4rem;
+    background-size: 48rem 48rem;
+    -webkit-mask-size: 48rem 48rem;
+    mask-size: 48rem 48rem;
+    opacity: 0.95;
+  }
+  55% {
+    background-position: 12rem 18rem;
+    -webkit-mask-position: 12rem 18rem;
+    mask-position: 12rem 18rem;
+    background-size: 36rem 36rem;
+    -webkit-mask-size: 36rem 36rem;
+    mask-size: 36rem 36rem;
+    opacity: 0.5;
+  }
+  80% {
+    background-position: -4rem 24rem;
+    -webkit-mask-position: -4rem 24rem;
+    mask-position: -4rem 24rem;
+    background-size: 46rem 46rem;
+    -webkit-mask-size: 46rem 46rem;
+    mask-size: 46rem 46rem;
+    opacity: 0.85;
+  }
+  100% {
+    background-position: -12rem -8rem;
+    -webkit-mask-position: -12rem -8rem;
+    mask-position: -12rem -8rem;
+    background-size: 40rem 40rem;
+    -webkit-mask-size: 40rem 40rem;
+    mask-size: 40rem 40rem;
+    opacity: 0.55;
+  }
+}
+
+@keyframes hero-grain-shift {
+  0% { transform: translate3d(0, 0, 0); }
+  10% { transform: translate3d(-2rem, 1rem, 0); }
+  20% { transform: translate3d(1rem, -2rem, 0); }
+  30% { transform: translate3d(-1rem, -1rem, 0); }
+  40% { transform: translate3d(2rem, 2rem, 0); }
+  50% { transform: translate3d(-2rem, -2rem, 0); }
+  60% { transform: translate3d(2rem, -1rem, 0); }
+  70% { transform: translate3d(0, 2rem, 0); }
+  80% { transform: translate3d(-1rem, 0, 0); }
+  90% { transform: translate3d(1rem, 1rem, 0); }
+  100% { transform: translate3d(0, 0, 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-light::before,
+  .hero-light::after,
+  .hero-reveal {
+    animation: none;
+  }
+
+  .hero-light::before {
+    background-position: 0 2rem;
+    opacity: 0.7;
+  }
+
+  .hero-reveal {
+    -webkit-mask-position: 0 2rem;
+    mask-position: 0 2rem;
+    opacity: 0.35;
+  }
+}

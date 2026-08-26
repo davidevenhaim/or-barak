@@ -14,6 +14,8 @@ interface HeroSectionProps {
   description: string;
   backgroundImage: string;
   backgroundVideo?: string;
+  /** Photography revealed behind the text where the drifting light falls */
+  revealImages?: string[];
 }
 
 export function HeroSection({
@@ -21,90 +23,115 @@ export function HeroSection({
   subtitle,
   description,
   backgroundImage,
-  backgroundVideo
+  backgroundVideo,
+  revealImages = []
 }: HeroSectionProps) {
   const isVideoLoaded = useBoolean(false);
 
   return (
-    <section className='relative h-[calc(100vh-64px)] sm:h-[calc(100vh-64px)] md:h-[calc(100vh-50px)] w-full overflow-hidden'>
-      {/* Background Media */}
-      <div className='absolute inset-0'>
-        {backgroundVideo ? (
-          <>
-            {/* Fallback Image */}
-            {!isVideoLoaded.value && (
-              <Image
-                src={backgroundImage}
-                alt='Hero background'
-                fill
-                className='object-cover'
-                priority
-              />
-            )}
-            {/* Video Background */}
-            <video
-              autoPlay
-              loop
-              muted
-              playsInline
-              className='h-full w-full object-cover'
-              onLoadedData={isVideoLoaded.onTrue}
-            >
-              <source src={backgroundVideo} type='video/mp4' />
-            </video>
-          </>
-        ) : (
-          <Image
-            src={backgroundImage}
-            alt='Hero background'
-            fill
-            className='object-cover'
-            priority
-          />
-        )}
+    <section className='relative w-full overflow-hidden bg-black md:h-[calc(100vh-50px)]'>
+      <div className='flex h-full flex-col md:flex-row'>
+        {/* Portrait — top on mobile, right column on desktop */}
+        <div className='relative order-1 h-[55vh] w-full md:order-2 md:h-full md:w-[55%]'>
+          {backgroundVideo ? (
+            <>
+              {/* Fallback Image */}
+              {!isVideoLoaded.value && (
+                <Image
+                  src={backgroundImage}
+                  alt='Portrait of Or Barak'
+                  fill
+                  sizes='(min-width: 768px) 55vw, 100vw'
+                  className='object-cover object-[50%_35%]'
+                  priority
+                />
+              )}
+              {/* Video */}
+              <video
+                autoPlay
+                loop
+                muted
+                playsInline
+                className='h-full w-full object-cover'
+                onLoadedData={isVideoLoaded.onTrue}
+              >
+                <source src={backgroundVideo} type='video/mp4' />
+              </video>
+            </>
+          ) : (
+            <Image
+              src={backgroundImage}
+              alt='Portrait of Or Barak'
+              fill
+              sizes='(min-width: 768px) 55vw, 100vw'
+              className='object-cover object-[50%_35%]'
+              priority
+            />
+          )}
+          {/* Fade into the dark text panel below (mobile only) */}
+          <div className='pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-b from-transparent to-black md:hidden' />
+        </div>
 
-        {/* Gradient Overlay */}
-        <div className='absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/70' />
-      </div>
+        {/* Text — below on mobile, left column on desktop */}
+        <div className='relative order-2 flex w-full items-center bg-black px-6 py-14 pb-32 sm:px-10 md:order-1 md:w-[45%] md:px-12 md:py-0 md:pb-0 lg:px-16'>
+          {revealImages.length > 0 && (
+            <div aria-hidden className='hero-reveal'>
+              <div className='grid h-full w-full grid-cols-2 grid-rows-2'>
+                {revealImages.map((src) => (
+                  <div key={src} className='relative overflow-hidden'>
+                    <Image
+                      src={src}
+                      alt=''
+                      fill
+                      sizes='(min-width: 768px) 25vw, 50vw'
+                      className='object-cover'
+                      loading='lazy'
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+          <div aria-hidden className='hero-light' />
 
-      {/* Content */}
-      <div className='relative z-10 flex h-full items-center justify-center px-4 sm:px-6 md:px-8'>
-        <div className='max-w-5xl text-center w-full'>
-          <Typewriter className='mb-5 sm:mb-6 text-amber-400 font-semibold tracking-wider uppercase text-xs sm:text-sm md:text-base'>
-            {subtitle}
-          </Typewriter>
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-          >
-            <Typography
-              variant='h1'
-              className='mb-4 sm:mb-6 text-white font-bold px-2'
+          <div className='relative max-w-xl'>
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
             >
-              {title}
-            </Typography>
-          </motion.div>
+              <Typography
+                variant='h1'
+                className='mb-3 sm:mb-4 text-white font-bold text-4xl sm:text-5xl lg:text-6xl xl:text-6xl'
+              >
+                {title}
+              </Typography>
+            </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-          >
-            <Typography
-              variant='subtitle1'
-              className='text-zinc-200 max-w-xl mx-auto leading-relaxed whitespace-pre-line sm:text-base md:text-lg px-4 mt-30'
+            <Typewriter className='mb-4 sm:mb-5 text-amber-400 font-semibold tracking-wider uppercase text-xs sm:text-sm md:text-base'>
+              {subtitle}
+            </Typewriter>
+
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
             >
-              {description}
-            </Typography>
-          </motion.div>
+              <Typography
+                variant='subtitle1'
+                className='text-zinc-200 leading-relaxed whitespace-pre-line sm:text-base md:text-lg'
+              >
+                {description}
+              </Typography>
+            </motion.div>
+          </div>
 
           {/* Scroll Indicator */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 1.2 }}
-            className='absolute bottom-8 sm:bottom-12 left-1/2 -translate-x-1/2 cursor-pointer touch-manipulation'
+            className='absolute bottom-6 left-1/2 -translate-x-1/2 cursor-pointer touch-manipulation md:bottom-10'
             onClick={() => scrollToElement(videosSectionId)}
           >
             <motion.div

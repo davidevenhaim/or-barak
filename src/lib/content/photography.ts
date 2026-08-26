@@ -10,11 +10,15 @@ const DRIVE_THUMBNAIL_WIDTH = 2000;
 export const driveThumbnail = (id: string): string =>
   `https://drive.google.com/thumbnail?id=${id}&sz=w${DRIVE_THUMBNAIL_WIDTH}`;
 
+// Extract the file id from a Drive `...&id=<fileId>` URL; null for non-Drive srcs.
+export const driveFileId = (src: string): string | null =>
+  src.match(/[?&]id=([A-Za-z0-9_-]+)/)?.[1] ?? null;
+
 // Rewrite a Drive `...&id=<fileId>` URL to the thumbnail endpoint. Any src that
 // doesn't carry a Drive file id (e.g. non-Drive hosts) is returned unchanged.
 const toThumbnailSrc = (image: PhotographyImage): PhotographyImage => {
-  const match = image.src.match(/[?&]id=([A-Za-z0-9_-]+)/);
-  return match ? { ...image, src: driveThumbnail(match[1]) } : image;
+  const id = driveFileId(image.src);
+  return id ? { ...image, src: driveThumbnail(id) } : image;
 };
 
 const catalogImages: PhotographyImage[] = [
