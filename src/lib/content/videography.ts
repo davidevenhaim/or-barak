@@ -104,7 +104,7 @@ export const videographyVideos: VideoItem[] = [
   {
     role: VideoRole.Directed_Filmed_Edited,
     title: "Academic Bridge Fellowship",
-    url: "https://youtu.be/e11ykZL0Cvg",
+    url: "https://youtu.be/Cj4F1seMxMA",
     featured: true
   },
   {

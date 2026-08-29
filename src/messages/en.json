@@ -16,6 +16,9 @@
   "home_photography_title": "Frozen Moments",
   "home_photography_view_all": "View all photography",
 
+  "home_about_title": "About",
+  "home_about_content": "Filmmaker, producer, and founder of LightVision World, working between Israel and the US. Beyond directing, I lead projects end to end: at UPenn I ran operations for the Academic Bridge Fellowship, coordinating the team, budget, and logistics, and built the platform that ran it. I develop websites and internal systems, and I'm most useful where creative work and execution meet.",
+
   "footer_copyright": "© {year} Or Barak. All rights reserved.",
   "footer_tagline": "Producer • Entrepreneur • Filmmaker",
 
@@ -108,6 +111,9 @@
   "contact_title_part1": "Let's Tell Your",
   "contact_title_part2": "Story.",
   "contact_description_text": " Your Story Matters.\nWhether you have a script, a brand vision, or just a spark of an idea -\nI'm here to produce it into existence.",
+  "contact_heading": "Let's work together.",
+  "contact_intro": "Have a project in mind, or just an idea worth exploring? Tell me about it.",
+  "contact_form_message_label": "MESSAGE",
   "contact_email_label": "EMAIL",
   "contact_phone_label": "PHONE",
   "contact_social_instagram": "INSTAGRAM",

@@ -361,10 +361,468 @@
   100% { transform: translate3d(0, 0, 0); }
 }
 
+/* Cinema-screening atmosphere for the films section. The section bg is pure
+   black, so darkening alone would be invisible: the vignette layer first
+   lifts the center with a faint warm "light scattered off the screen" glow,
+   then darkens back to black toward the edges and corners — that contrast is
+   what reads as a darkened theater. A soft warm cone (the beam layer) falls
+   from a projector apex above the section, flickering and drifting slightly. */
+.cinema-screening {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* Projector beam: tungsten-warm cone with its apex above the top edge,
+   ~26deg half-angle so it washes down over the content, blurred soft and
+   faded out near the bottom of the section */
+.cinema-screening::before {
+  content: "";
+  position: absolute;
+  inset: -4rem 0 0;
+  background-image: conic-gradient(
+    at 50% -6rem,
+    transparent 148deg,
+    rgba(255, 214, 150, 0.12) 158deg,
+    rgba(255, 222, 166, 0.28) 176deg 184deg,
+    rgba(255, 214, 150, 0.12) 202deg,
+    transparent 212deg
+  );
+  filter: blur(8px);
+  -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent 97%);
+  mask-image: linear-gradient(to bottom, #000 55%, transparent 97%);
+  animation: cinema-beam-flicker 6s ease-in-out infinite,
+    cinema-beam-drift 19s ease-in-out infinite alternate;
+}
+
+/* Screen glow + vignette: warm lift strongest where the cards sit, deepening
+   to a wine-black at the corners */
+.cinema-screening::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(
+      ellipse 140% 110% at 50% 45%,
+      transparent 40%,
+      rgba(22, 6, 11, 0.45) 74%,
+      rgba(14, 4, 8, 0.8) 100%
+    ),
+    radial-gradient(
+      ellipse 75% 65% at 50% 42%,
+      rgba(255, 240, 214, 0.12),
+      rgba(255, 240, 214, 0.05) 55%,
+      transparent 78%
+    );
+}
+
+/* Irregularly spaced stops so the flicker doesn't read as a metronome */
+@keyframes cinema-beam-flicker {
+  0%,
+  100% {
+    opacity: 0.85;
+  }
+  7% {
+    opacity: 1;
+  }
+  12% {
+    opacity: 0.6;
+  }
+  19% {
+    opacity: 0.9;
+  }
+  27% {
+    opacity: 0.7;
+  }
+  38% {
+    opacity: 1;
+  }
+  44% {
+    opacity: 0.65;
+  }
+  57% {
+    opacity: 0.88;
+  }
+  66% {
+    opacity: 0.74;
+  }
+  79% {
+    opacity: 1;
+  }
+  87% {
+    opacity: 0.58;
+  }
+  93% {
+    opacity: 0.9;
+  }
+}
+
+@keyframes cinema-beam-drift {
+  from {
+    transform: translateX(-1rem);
+  }
+  to {
+    transform: translateX(1rem);
+  }
+}
+
+/* Screening-room curtains on the section's side edges: draped fabric
+   suggested purely with layered gradients — deep shadow valleys, warm
+   wine-black faces, and gold sheen catching the fold edges. The whole
+   drape fades into the section at its inner edge and softens at top and
+   bottom. Right side mirrors the left. Hidden below md. */
+.cinema-curtain {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: clamp(4rem, 8vw, 10rem);
+  display: none;
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    #000 3rem,
+    #000 calc(100% - 3rem),
+    transparent
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    #000 3rem,
+    #000 calc(100% - 3rem),
+    transparent
+  );
+}
+
+.cinema-curtain--left {
+  left: 0;
+}
+
+.cinema-curtain--right {
+  right: 0;
+  transform: scaleX(-1);
+}
+
+@media (min-width: 768px) {
+  .cinema-curtain {
+    display: block;
+  }
+}
+
+.cinema-curtain::before,
+.cinema-curtain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  -webkit-mask-image: linear-gradient(to right, #000 40%, transparent);
+  mask-image: linear-gradient(to right, #000 40%, transparent);
+}
+
+/* Fabric body: each primary fold runs shadow valley → wine-lit face →
+   gold edge → back into shadow; a broader offset period underneath keeps
+   the drape from looking machine-pleated */
+.cinema-curtain::before {
+  background-image: repeating-linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.8) 0,
+      rgba(74, 34, 34, 0.4) 1rem,
+      rgba(240, 198, 124, 0.11) 1.625rem,
+      rgba(74, 34, 34, 0.36) 2.25rem,
+      rgba(0, 0, 0, 0.8) 3.5rem
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.45) 0,
+      transparent 1.75rem,
+      rgba(58, 28, 30, 0.32) 3rem,
+      rgba(0, 0, 0, 0.45) 5.25rem
+    ),
+    linear-gradient(
+      to right,
+      rgba(50, 24, 26, 0.7),
+      rgba(50, 24, 26, 0.32) 60%,
+      transparent
+    );
+}
+
+/* Gold sheen riding the fold edges; two periods drifting apart make the
+   fabric breathe */
+.cinema-curtain::after {
+  background-image: repeating-linear-gradient(
+      90deg,
+      transparent 0,
+      rgba(244, 205, 134, 0.12) 1.5rem,
+      transparent 1.875rem,
+      transparent 3.5rem
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent 0,
+      rgba(233, 185, 110, 0.06) 2.5rem,
+      transparent 5.25rem
+    );
+  opacity: 0.9;
+  animation: cinema-curtain-sway 21s ease-in-out infinite;
+}
+
+@keyframes cinema-curtain-sway {
+  0%,
+  100% {
+    background-position: 0 0, 0 0;
+    opacity: 0.8;
+  }
+  33% {
+    background-position: 0.625rem 0, -0.5rem 0;
+    opacity: 1;
+  }
+  66% {
+    background-position: -0.375rem 0, 0.75rem 0;
+    opacity: 0.88;
+  }
+}
+
+/* Camera-viewfinder frame for the photography section: focus-frame corner
+   brackets plus a rule-of-thirds composition grid, drawn behind the gallery.
+   Brackets pick up the site's bronze accent; the grid stays neutral. Colors
+   are themed per mode since this section flips light/dark. The grid is
+   dropped below sm — narrow screens get busy fast. */
+.camera-viewfinder {
+  --vf-inset: clamp(0.75rem, 2.5vw, 2rem);
+  --vf-bracket: rgba(146, 107, 50, 0.8);
+  --vf-grid: rgba(20, 15, 8, 0.25);
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.dark .camera-viewfinder {
+  --vf-bracket: rgba(224, 176, 104, 0.75);
+  --vf-grid: rgba(255, 243, 219, 0.22);
+}
+
+.camera-viewfinder::before,
+.camera-viewfinder::after {
+  content: "";
+  position: absolute;
+  inset: var(--vf-inset);
+  background-repeat: no-repeat;
+}
+
+/* Corner brackets: a vertical and a horizontal strip per corner */
+.camera-viewfinder::before {
+  background-image: linear-gradient(var(--vf-bracket), var(--vf-bracket)),
+    linear-gradient(var(--vf-bracket), var(--vf-bracket)),
+    linear-gradient(var(--vf-bracket), var(--vf-bracket)),
+    linear-gradient(var(--vf-bracket), var(--vf-bracket)),
+    linear-gradient(var(--vf-bracket), var(--vf-bracket)),
+    linear-gradient(var(--vf-bracket), var(--vf-bracket)),
+    linear-gradient(var(--vf-bracket), var(--vf-bracket)),
+    linear-gradient(var(--vf-bracket), var(--vf-bracket));
+  background-size: 2px 1.75rem, 1.75rem 2px, 2px 1.75rem, 1.75rem 2px,
+    2px 1.75rem, 1.75rem 2px, 2px 1.75rem, 1.75rem 2px;
+  background-position: left top, left top, right top, right top, left bottom,
+    left bottom, right bottom, right bottom;
+}
+
+/* Rule-of-thirds grid inside the bracket frame */
+.camera-viewfinder::after {
+  display: none;
+  background-image: linear-gradient(var(--vf-grid), var(--vf-grid)),
+    linear-gradient(var(--vf-grid), var(--vf-grid)),
+    linear-gradient(var(--vf-grid), var(--vf-grid)),
+    linear-gradient(var(--vf-grid), var(--vf-grid));
+  background-size: 1px 100%, 1px 100%, 100% 1px, 100% 1px;
+  background-position: 33.333% 0, 66.667% 0, 0 33.333%, 0 66.667%;
+}
+
+@media (min-width: 640px) {
+  .camera-viewfinder::after {
+    display: block;
+  }
+}
+
+/* Contact section: the reel is still running. Three layers on black —
+   1. .contact-reels: a strip of 35mm stock down each edge whose perforation
+      pattern scrolls steadily downward like film through a projector.
+      ::before holds the static chrome (film base + edge highlights);
+      ::after holds only the repeating layers (sprocket holes, frame lines
+      confined to the strips) so the run animation shifts them cleanly.
+      Gradient positions are strictly 2-value — Chrome rejects 3-value
+      positions inside gradients and drops the whole declaration.
+   2. Grain across the center (CSS-embedded SVG turbulence, jittering in
+      steps), eased behind the content column by a radial mask.
+   3. A soft warm light drifting slowly across the section — the hero's
+      proven glow approach, quieter.
+   No horizontal lines cross the content area. Everything sits at z-index -1
+   inside the section's stacking context (isolate), behind all content. */
+.contact-atmosphere {
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-atmosphere::before,
+.contact-atmosphere::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Grain: oversized so the step-jitter never exposes an edge; the mask keeps
+   it quiet directly behind the heading and form */
+.contact-atmosphere::before {
+  inset: -6rem;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 240px 240px;
+  opacity: 0.15;
+  -webkit-mask-image: radial-gradient(
+    ellipse 55% 60% at 50% 45%,
+    rgba(0, 0, 0, 0.45),
+    rgba(0, 0, 0, 0.6) 50%,
+    #000 85%
+  );
+  mask-image: radial-gradient(
+    ellipse 55% 60% at 50% 45%,
+    rgba(0, 0, 0, 0.45),
+    rgba(0, 0, 0, 0.6) 50%,
+    #000 85%
+  );
+  animation: hero-grain-shift 9s steps(10) infinite;
+}
+
+/* Drifting projection light */
+.contact-atmosphere::after {
+  inset: 0;
+  background-image: radial-gradient(
+    closest-side,
+    rgba(253, 232, 185, 0.28) 0%,
+    rgba(253, 232, 185, 0.14) 40%,
+    rgba(253, 232, 185, 0.04) 70%,
+    transparent 100%
+  );
+  background-repeat: no-repeat;
+  background-size: 48rem 48rem;
+  background-position: 10% 0%;
+  opacity: 0.5;
+  animation: contact-light-drift 26s ease-in-out infinite;
+}
+
+@keyframes contact-light-drift {
+  0%,
+  100% {
+    background-position: 10% 0%;
+    opacity: 0.4;
+  }
+  33% {
+    background-position: 80% 30%;
+    opacity: 0.55;
+  }
+  66% {
+    background-position: 25% 85%;
+    opacity: 0.45;
+  }
+}
+
+/* Running reels at the edges */
+.contact-reels {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    #000 2.5rem,
+    #000 calc(100% - 2.5rem),
+    transparent
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    #000 2.5rem,
+    #000 calc(100% - 2.5rem),
+    transparent
+  );
+}
+
+/* 35mm stock drawn as one SVG tile per frame (4 perforations per column at
+   real film proportions: rounded-rect perfs ~2:3 w:h on a tight pitch,
+   lighter base margins, dark exposed image area, frame separator, edge
+   highlights where light catches the celluloid). The tile repeats down each
+   edge; a long-period tonal wash on top keeps the stock from looking
+   printed. Both scroll together — the shift per cycle (22.4rem) is a whole
+   number of frames and wash periods, so the loop is seamless. */
+.contact-reels::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+      to bottom,
+      rgba(255, 244, 224, 0.04) 0rem,
+      rgba(0, 0, 0, 0.12) 6rem,
+      rgba(255, 244, 224, 0.02) 11rem,
+      rgba(0, 0, 0, 0.1) 17rem,
+      rgba(255, 244, 224, 0.04) 22.4rem
+    ),
+    repeating-linear-gradient(
+      to bottom,
+      rgba(255, 244, 224, 0.04) 0rem,
+      rgba(0, 0, 0, 0.12) 6rem,
+      rgba(255, 244, 224, 0.02) 11rem,
+      rgba(0, 0, 0, 0.1) 17rem,
+      rgba(255, 244, 224, 0.04) 22.4rem
+    ),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='52' height='51.2' viewBox='0 0 52 51.2'%3E%3Crect width='52' height='51.2' fill='%2346423c'/%3E%3Crect x='14.5' width='23' height='51.2' fill='%23171513'/%3E%3Crect x='14.5' width='23' height='1.8' fill='%234a463f'/%3E%3Cg fill='%230b0a09' stroke='%2397845f' stroke-opacity='0.4' stroke-width='0.7'%3E%3Crect x='5.5' y='2.65' width='5' height='7.5' rx='1.5'/%3E%3Crect x='41.5' y='2.65' width='5' height='7.5' rx='1.5'/%3E%3Crect x='5.5' y='15.45' width='5' height='7.5' rx='1.5'/%3E%3Crect x='41.5' y='15.45' width='5' height='7.5' rx='1.5'/%3E%3Crect x='5.5' y='28.25' width='5' height='7.5' rx='1.5'/%3E%3Crect x='41.5' y='28.25' width='5' height='7.5' rx='1.5'/%3E%3Crect x='5.5' y='41.05' width='5' height='7.5' rx='1.5'/%3E%3Crect x='41.5' y='41.05' width='5' height='7.5' rx='1.5'/%3E%3C/g%3E%3Crect width='0.9' height='51.2' fill='%239a8862' opacity='0.38'/%3E%3Crect x='51.1' width='0.9' height='51.2' fill='%239a8862' opacity='0.38'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='52' height='51.2' viewBox='0 0 52 51.2'%3E%3Crect width='52' height='51.2' fill='%2346423c'/%3E%3Crect x='14.5' width='23' height='51.2' fill='%23171513'/%3E%3Crect x='14.5' width='23' height='1.8' fill='%234a463f'/%3E%3Cg fill='%230b0a09' stroke='%2397845f' stroke-opacity='0.4' stroke-width='0.7'%3E%3Crect x='5.5' y='2.65' width='5' height='7.5' rx='1.5'/%3E%3Crect x='41.5' y='2.65' width='5' height='7.5' rx='1.5'/%3E%3Crect x='5.5' y='15.45' width='5' height='7.5' rx='1.5'/%3E%3Crect x='41.5' y='15.45' width='5' height='7.5' rx='1.5'/%3E%3Crect x='5.5' y='28.25' width='5' height='7.5' rx='1.5'/%3E%3Crect x='41.5' y='28.25' width='5' height='7.5' rx='1.5'/%3E%3Crect x='5.5' y='41.05' width='5' height='7.5' rx='1.5'/%3E%3Crect x='41.5' y='41.05' width='5' height='7.5' rx='1.5'/%3E%3C/g%3E%3Crect width='0.9' height='51.2' fill='%239a8862' opacity='0.38'/%3E%3Crect x='51.1' width='0.9' height='51.2' fill='%239a8862' opacity='0.38'/%3E%3C/svg%3E");
+  background-size: 3.25rem 22.4rem, 3.25rem 22.4rem, 3.25rem 3.2rem,
+    3.25rem 3.2rem;
+  background-position: 0 0, 100% 0, 0 0, 100% 0;
+  background-repeat: repeat-y;
+  animation: contact-reel-run 11.2s linear infinite;
+}
+
+@keyframes contact-reel-run {
+  from {
+    background-position: 0 0, 100% 0, 0 0, 100% 0;
+  }
+  to {
+    background-position: 0 22.4rem, 100% 22.4rem, 0 22.4rem, 100% 22.4rem;
+  }
+}
+
+@media (max-width: 639px) {
+  .contact-reels {
+    display: none;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .hero-light::before,
   .hero-light::after,
   .hero-reveal {
+    animation: none;
+  }
+
+  .cinema-screening::before {
+    animation: none;
+    opacity: 0.9;
+    transform: none;
+  }
+
+  .cinema-curtain::after {
+    animation: none;
+  }
+
+  .contact-atmosphere::before {
+    animation: none;
+  }
+
+  .contact-atmosphere::after {
+    animation: none;
+    opacity: 0.45;
+  }
+
+  .contact-reels::after {
     animation: none;
   }
 

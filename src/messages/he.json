@@ -16,6 +16,9 @@
   "home_photography_title": "רגעים קפואים",
   "home_photography_view_all": "צפו בכל הצילומים",
 
+  "home_about_title": "About",
+  "home_about_content": "Filmmaker, producer, and founder of LightVision World, working between Israel and the US. Beyond directing, I lead projects end to end: at UPenn I ran operations for the Academic Bridge Fellowship, coordinating the team, budget, and logistics, and built the platform that ran it. I develop websites and internal systems, and I'm most useful where creative work and execution meet.",
+
   "footer_copyright": "© {year} אור ברק. כל הזכויות שמורות.",
   "footer_tagline": "מפיק • יזם • צלם",
 
@@ -108,6 +111,9 @@
   "contact_title_part1": "בואו ניצור",
   "contact_title_part2": "מציאות.",
   "contact_description_text": "בין אם יש לכם תסריט, חזון מותג, או רק ניצוץ של רעיון – אני כאן כדי להפיק אותו למציאות.",
+  "contact_heading": "Let's work together.",
+  "contact_intro": "Have a project in mind, or just an idea worth exploring? Tell me about it.",
+  "contact_form_message_label": "MESSAGE",
   "contact_email_label": "אימייל",
   "contact_phone_label": "טלפון",
   "contact_social_instagram": "אינסטגרם",

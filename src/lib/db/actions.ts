@@ -9,7 +9,6 @@ export async function createNewLead(lead: NewLead) {
     .insert({
       name: lead.name,
       email: lead.email,
-      project_type: lead.projectType,
       description: lead.description
     })
     .select()

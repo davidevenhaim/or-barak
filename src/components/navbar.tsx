@@ -18,6 +18,7 @@ const Navbar = () => {
     { name: t("nav_home"), href: "#home" },
     { name: t("nav_films"), href: "#videography" },
     { name: t("nav_photography"), href: "#photography" },
+    { name: t("nav_about"), href: "#about" },
     { name: t("nav_contact"), href: "#contact" }
   ];
 

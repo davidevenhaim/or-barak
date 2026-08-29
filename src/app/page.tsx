@@ -62,10 +62,16 @@ export default async function Home() {
 
       <section
         id='videography'
-        className='scroll-mt-14 sm:scroll-mt-16 bg-black'
+        className='relative isolate scroll-mt-14 sm:scroll-mt-16 bg-black'
       >
+        <div aria-hidden='true' className='cinema-screening' />
+        <div aria-hidden='true' className='cinema-curtain cinema-curtain--left' />
+        <div
+          aria-hidden='true'
+          className='cinema-curtain cinema-curtain--right'
+        />
         <Container className='py-8 sm:py-12 md:py-16 lg:py-20'>
-          <div className='max-w-7xl mx-auto space-y-8 sm:space-y-12'>
+          <div className='relative max-w-7xl mx-auto space-y-8 sm:space-y-12'>
             <VideoGrid
               videos={featuredVideos}
               title={t("videography_subtitle")}
@@ -88,10 +94,11 @@ export default async function Home() {
 
       <section
         id='photography'
-        className='scroll-mt-14 sm:scroll-mt-16 bg-gradient-to-br from-white via-zinc-50 to-zinc-100 dark:from-black dark:via-zinc-950 dark:to-zinc-900'
+        className='relative isolate scroll-mt-14 sm:scroll-mt-16 bg-gradient-to-br from-white via-zinc-50 to-zinc-100 dark:from-black dark:via-zinc-950 dark:to-zinc-900'
       >
+        <div aria-hidden='true' className='camera-viewfinder' />
         <Container className='py-8 sm:py-12 md:py-16 lg:py-20'>
-          <div className='max-w-7xl mx-auto space-y-8 sm:space-y-12'>
+          <div className='relative max-w-7xl mx-auto space-y-8 sm:space-y-12'>
             <ImageSectionTitle>{t("home_photography_title")}</ImageSectionTitle>
             <ImageGallery images={selectedWorks.slice(0, 6)} columns={3} />
             <div className='flex justify-center'>
@@ -101,6 +108,17 @@ export default async function Home() {
                 </Link>
               </Button>
             </div>
+          </div>
+        </Container>
+      </section>
+
+      <section id='about' className='scroll-mt-14 sm:scroll-mt-16'>
+        <Container size='narrow' className='py-8 sm:py-12 md:py-16 lg:py-20'>
+          <div className='max-w-2xl mx-auto space-y-8 sm:space-y-12'>
+            <ImageSectionTitle>{t("home_about_title")}</ImageSectionTitle>
+            <p className='text-base sm:text-lg leading-relaxed text-zinc-600 dark:text-zinc-300 text-center sm:text-start'>
+              {t("home_about_content")}
+            </p>
           </div>
         </Container>
       </section>
