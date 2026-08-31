@@ -1,4 +1,5 @@
 import { Montserrat } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, getLocale } from "next-intl/server";
 import Navbar from "@/components/navbar";
@@ -38,6 +39,7 @@ export default async function RootLayout({
           </main>
           <Footer />
         </NextIntlClientProvider>
+        <Analytics />
       </body>
     </html>
   );
