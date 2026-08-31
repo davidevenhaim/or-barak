@@ -1,5 +1,5 @@
 import { OR_CONSTANTS } from "../constants/or.constants";
-import { getEmailLink, getWhatsappLink } from "../utils/links.utils";
+import { getEmailLink } from "../utils/links.utils";
 
 export interface TimelineEvent {
   year: string;
@@ -69,11 +69,6 @@ export const socialLinks = [
     name: "contact_social_instagram",
     href: OR_CONSTANTS.INSTAGRAM,
     icon: "mdi:instagram"
-  },
-  {
-    name: "contact_social_whatsapp",
-    href: getWhatsappLink(OR_CONSTANTS.WHATSAPP),
-    icon: "mdi:whatsapp"
   },
   {
     name: "contact_social_email",
