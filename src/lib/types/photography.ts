@@ -6,6 +6,8 @@ export interface PhotographyImage {
   category?: string;
   width?: number;
   height?: number;
+  /** Shown in the landing page's photography teaser */
+  featured?: boolean;
 }
 
 export interface PhotographySection {

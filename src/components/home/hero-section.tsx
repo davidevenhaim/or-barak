@@ -11,6 +11,8 @@ import { useBoolean } from "@/hooks/use-boolean";
 interface HeroSectionProps {
   title: string;
   subtitle: string;
+  /** Muted supporting line under the gold tagline */
+  subtitleDetail?: string;
   description: string;
   backgroundImage: string;
   backgroundVideo?: string;
@@ -21,6 +23,7 @@ interface HeroSectionProps {
 export function HeroSection({
   title,
   subtitle,
+  subtitleDetail,
   description,
   backgroundImage,
   backgroundVideo,
@@ -108,9 +111,24 @@ export function HeroSection({
               </Typography>
             </motion.div>
 
-            <Typewriter className='mb-4 sm:mb-5 text-amber-400 font-semibold tracking-wider uppercase text-xs sm:text-sm md:text-base'>
+            <Typewriter
+              className={`${
+                subtitleDetail ? "mb-2" : "mb-4 sm:mb-5"
+              } text-amber-400 font-semibold tracking-wider uppercase text-xs sm:text-sm md:text-base`}
+            >
               {subtitle}
             </Typewriter>
+
+            {subtitleDetail && (
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.8, delay: 0.5 }}
+                className='mb-5 sm:mb-6 text-zinc-500 tracking-wide text-[11px] sm:text-xs md:text-sm'
+              >
+                {subtitleDetail}
+              </motion.p>
+            )}
 
             <motion.div
               initial={{ opacity: 0, y: 30 }}

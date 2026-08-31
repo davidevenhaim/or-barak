@@ -5,7 +5,7 @@ import ImageSectionTitle from "@/components/photography/image-section-title";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import { VideoGrid } from "@/components/videography/video-grid";
-import { selectedWorks } from "@/lib/content/photography";
+import { featuredPhotos } from "@/lib/content/photography";
 import { featuredVideos } from "@/lib/content/videography";
 import { Metadata } from "next";
 import Link from "next/link";
@@ -53,6 +53,7 @@ export default async function Home() {
         <HeroSection
           title={t("home_hero_name")}
           subtitle={t("home_hero_subtitle")}
+          subtitleDetail={t("home_hero_subtitle_detail")}
           description={t("home_hero_description")}
           backgroundImage='/images/herophoto.jpg'
           revealImages={heroRevealImages}
@@ -100,7 +101,7 @@ export default async function Home() {
         <Container className='py-8 sm:py-12 md:py-16 lg:py-20'>
           <div className='relative max-w-7xl mx-auto space-y-8 sm:space-y-12'>
             <ImageSectionTitle>{t("home_photography_title")}</ImageSectionTitle>
-            <ImageGallery images={selectedWorks.slice(0, 6)} columns={3} />
+            <ImageGallery images={featuredPhotos} columns={3} />
             <div className='flex justify-center'>
               <Button asChild variant='outline' size='lg'>
                 <Link href='/photography'>
@@ -119,6 +120,34 @@ export default async function Home() {
             <p className='text-base sm:text-lg leading-relaxed text-zinc-600 dark:text-zinc-300 text-center sm:text-start'>
               {t("home_about_content")}
             </p>
+            <div className='space-y-5 sm:space-y-6'>
+              {[
+                {
+                  verb: t("home_about_skill_create"),
+                  detail: t("home_about_skill_create_detail")
+                },
+                {
+                  verb: t("home_about_skill_lead"),
+                  detail: t("home_about_skill_lead_detail")
+                },
+                {
+                  verb: t("home_about_skill_build"),
+                  detail: t("home_about_skill_build_detail")
+                }
+              ].map(({ verb, detail }) => (
+                <div
+                  key={verb}
+                  className='flex flex-col items-center gap-1 text-center sm:flex-row sm:items-baseline sm:gap-4 sm:text-start'
+                >
+                  <span className='w-20 shrink-0 text-sm font-semibold uppercase tracking-wider text-amber-600 dark:text-amber-400'>
+                    {verb}
+                  </span>
+                  <span className='text-sm sm:text-base text-zinc-500 dark:text-zinc-400'>
+                    {detail}
+                  </span>
+                </div>
+              ))}
+            </div>
           </div>
         </Container>
       </section>

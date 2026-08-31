@@ -53,9 +53,12 @@ export function VideoCarousel({ videos, title }: VideoCarouselProps) {
     isDialogOpen.onTrue();
   };
 
-  // Shared styling for the prev/next arrows — warm gold accent used elsewhere.
+  // Shared styling for the prev/next arrows — solid gold so they read
+  // immediately as navigation against dark thumbnails.
+  // dark: duplicates are needed — the outline Button variant sets
+  // dark:bg-input/30 etc., which outrank unprefixed utilities in dark mode.
   const arrowClassName =
-    "hidden md:flex border-zinc-800 bg-black/80 hover:bg-amber-500 hover:text-white hover:border-amber-500 text-white";
+    "hidden md:flex border-amber-400 bg-amber-500 text-black shadow-lg hover:bg-amber-400 hover:border-amber-300 hover:text-black dark:border-amber-400 dark:bg-amber-500 dark:text-black dark:hover:bg-amber-400 dark:hover:border-amber-300";
 
   return (
     <>
@@ -87,6 +90,7 @@ export function VideoCarousel({ videos, title }: VideoCarouselProps) {
                   video={video}
                   index={index}
                   size='small'
+                  showTitle
                   onClick={() => handleVideoClick(video)}
                 />
               </CarouselItem>

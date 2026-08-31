@@ -20,17 +20,27 @@ export function getYouTubeVideoId(url: string): string | null {
  * Gets YouTube thumbnail URL for a video ID.
  * Defaults to maxresdefault, which isn't available for every video — use
  * getYouTubeThumbnailFallback as an onError fallback.
+ * `version` busts YouTube's CDN cache, which can keep serving a stale
+ * maxresdefault long after a thumbnail is replaced on YouTube.
  */
-export function getYouTubeThumbnail(videoId: string): string {
-  return `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+export function getYouTubeThumbnail(videoId: string, version?: number): string {
+  return `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg${
+    version ? `?v=${version}` : ""
+  }`;
 }
 
 /**
- * Gets a YouTube thumbnail URL that exists for every video (hqdefault).
- * Use as an onError fallback when maxresdefault is missing.
+ * Gets a YouTube thumbnail URL that exists for every video (mqdefault).
+ * Use as an onError fallback when maxresdefault is missing. mqdefault is
+ * clean 16:9, unlike hqdefault which is 4:3 with letterbox bars baked in.
  */
-export function getYouTubeThumbnailFallback(videoId: string): string {
-  return `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+export function getYouTubeThumbnailFallback(
+  videoId: string,
+  version?: number
+): string {
+  return `https://img.youtube.com/vi/${videoId}/mqdefault.jpg${
+    version ? `?v=${version}` : ""
+  }`;
 }
 
 /**

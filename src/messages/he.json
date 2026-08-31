@@ -17,7 +17,13 @@
   "home_photography_view_all": "צפו בכל הצילומים",
 
   "home_about_title": "About",
-  "home_about_content": "Filmmaker, producer, and founder of LightVision World, working between Israel and the US. Beyond directing, I lead projects end to end: at UPenn I ran operations for the Academic Bridge Fellowship, coordinating the team, budget, and logistics, and built the platform that ran it. I develop websites and internal systems, and I'm most useful where creative work and execution meet.",
+  "home_about_content": "I'm most useful where creative work and execution meet. I've learned that a good idea is only half the work, so I've built the skills for the other half: leading teams, managing budgets, shaping strategy, and developing the systems and websites that turn plans into something real.",
+  "home_about_skill_create": "Create",
+  "home_about_skill_create_detail": "writing, directing, cinematography, editing",
+  "home_about_skill_lead": "Lead",
+  "home_about_skill_lead_detail": "teams, budgets, strategy",
+  "home_about_skill_build": "Build",
+  "home_about_skill_build_detail": "web, systems, AI workflows",
 
   "footer_copyright": "© {year} אור ברק. כל הזכויות שמורות.",
   "footer_tagline": "מפיק • יזם • צלם",
@@ -28,7 +34,8 @@
 
   "home_hero_name": "Or Barak",
   "home_hero_subtitle": "Filmmaker & Producer",
-  "home_hero_description": "I work end to end, from concept and writing through production, cinematography, and the final edit. My passion is storytelling, and my goal is to create work that inspires.",
+  "home_hero_subtitle_detail": "Project management · Systems development",
+  "home_hero_description": "My passion is storytelling, and my goal is to create work that inspires. To get there, I work end to end, from concept and writing through production, cinematography, and the final edit.",
 
   "home_videos_title": "עבודות אחרונות",
   "home_videos_description": "החיים ממשיכים - ספרו את הסיפור שלכם, שתפו את החזון שלכם.",

@@ -8,19 +8,35 @@ import { Typography } from "@/components/ui/typography";
 import { cn } from "@/lib/utils";
 import { useBoolean } from "@/hooks/use-boolean";
 import { useTranslations } from "next-intl";
+import { scrollToElement } from "@/components/home/scroll-handler";
 
 const Navbar = () => {
   const t = useTranslations();
   const pathname = usePathname();
   const mobileMenuOpen = useBoolean(false);
 
+  // Links target the landing page's sections, so they work from deep pages
+  // too (/videography, /photography, ...) — Link navigates home and the
+  // browser scrolls to the anchor. Already on the landing page, we skip the
+  // navigation and smooth-scroll instead.
   const navigation = [
-    { name: t("nav_home"), href: "#home" },
-    { name: t("nav_films"), href: "#videography" },
-    { name: t("nav_photography"), href: "#photography" },
-    { name: t("nav_about"), href: "#about" },
-    { name: t("nav_contact"), href: "#contact" }
-  ];
+    { name: t("nav_home"), section: "home" },
+    { name: t("nav_films"), section: "videography" },
+    { name: t("nav_photography"), section: "photography" },
+    { name: t("nav_about"), section: "about" },
+    { name: t("nav_contact"), section: "contact" }
+  ].map((item) => ({ ...item, href: `/#${item.section}` }));
+
+  const handleNavClick = (
+    event: React.MouseEvent<HTMLAnchorElement>,
+    section: string
+  ) => {
+    if (pathname === "/") {
+      event.preventDefault();
+      scrollToElement(section);
+      window.history.replaceState(null, "", `/#${section}`);
+    }
+  };
 
   return (
     <nav className='fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-zinc-200 dark:bg-card/95 dark:border-border overflow-x-hidden max-w-full'>
@@ -47,6 +63,7 @@ const Navbar = () => {
                 <Link
                   key={item.name}
                   href={item.href}
+                  onClick={(e) => handleNavClick(e, item.section)}
                   className='relative py-2 touch-manipulation'
                 >
                   <Typography
@@ -113,7 +130,10 @@ const Navbar = () => {
                   <Link
                     key={item.name}
                     href={item.href}
-                    onClick={mobileMenuOpen.onFalse}
+                    onClick={(e) => {
+                      mobileMenuOpen.onFalse();
+                      handleNavClick(e, item.section);
+                    }}
                     className={cn(
                       "block py-3 px-3 rounded-lg transition-colors touch-manipulation",
                       isActive

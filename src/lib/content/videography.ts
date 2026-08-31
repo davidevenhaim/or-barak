@@ -33,7 +33,8 @@ export const videographyVideos: VideoItem[] = [
     role: VideoRole.Directed_Filmed_Edited,
     title: "Boundaries (Short Film)",
     url: "https://youtu.be/qNF-tdjnIs0",
-    featured: true
+    featured: true,
+    thumbnailVersion: 2
   },
   {
     role: VideoRole.Directed_Filmed_Edited,
@@ -105,7 +106,8 @@ export const videographyVideos: VideoItem[] = [
     role: VideoRole.Directed_Filmed_Edited,
     title: "Academic Bridge Fellowship",
     url: "https://youtu.be/Cj4F1seMxMA",
-    featured: true
+    featured: true,
+    thumbnailVersion: 2
   },
   {
     role: VideoRole.Head_Producer,

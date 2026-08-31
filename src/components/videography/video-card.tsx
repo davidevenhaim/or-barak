@@ -18,6 +18,12 @@ interface VideoCardProps {
   video: VideoItem;
   index?: number;
   size?: "small" | "large";
+  /**
+   * Render the title/label overlay. Off for the featured grid, whose
+   * thumbnails carry designed titles; on for carousel cards, whose plain
+   * thumbnails are unidentifiable without it.
+   */
+  showTitle?: boolean;
   onClick?: () => void;
   className?: string;
 }
@@ -26,12 +32,15 @@ export function VideoCard({
   video,
   index = 0,
   size = "small",
+  showTitle = false,
   onClick,
   className
 }: VideoCardProps) {
   const isYouTube = isYouTubeUrl(video.url);
   const youtubeId = isYouTube ? getYouTubeVideoId(video.url) : null;
-  const thumbnail = youtubeId ? getYouTubeThumbnail(youtubeId) : "";
+  const thumbnail = youtubeId
+    ? getYouTubeThumbnail(youtubeId, video.thumbnailVersion)
+    : "";
   const [thumbnailSrc, setThumbnailSrc] = useState(thumbnail);
 
   // Extract year and type from title if available
@@ -49,8 +58,9 @@ export function VideoCard({
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: index * 0.05 }}
       className={cn(
+        // 16:9 matches YouTube thumbnails exactly, so object-cover never crops
         "group relative cursor-pointer overflow-hidden rounded-lg border border-zinc-800 bg-black transition-all duration-300 hover:border-zinc-600 hover:shadow-xl",
-        size === "large" ? "aspect-[16/10]" : "aspect-[4/3]",
+        "aspect-video",
         className
       )}
       onClick={onClick}
@@ -72,11 +82,12 @@ export function VideoCard({
               onLoad={(e) => {
                 // YouTube returns a gray 120x90 placeholder (HTTP 200) when a
                 // video has no maxresdefault, so onError never fires. Detect the
-                // placeholder by its width and fall back to hqdefault, which
-                // always exists for public and unlisted videos.
+                // placeholder by its width and fall back to mqdefault, which
+                // always exists for public and unlisted videos and is clean
+                // 16:9 (hqdefault has letterbox bars baked in).
                 const img = e.currentTarget;
                 const fallback = youtubeId
-                  ? getYouTubeThumbnailFallback(youtubeId)
+                  ? getYouTubeThumbnailFallback(youtubeId, video.thumbnailVersion)
                   : "";
                 if (
                   fallback &&
@@ -88,7 +99,7 @@ export function VideoCard({
               }}
               onError={() => {
                 const fallback = youtubeId
-                  ? getYouTubeThumbnailFallback(youtubeId)
+                  ? getYouTubeThumbnailFallback(youtubeId, video.thumbnailVersion)
                   : "";
                 if (fallback && thumbnailSrc !== fallback) {
                   setThumbnailSrc(fallback);
@@ -111,24 +122,26 @@ export function VideoCard({
           </div>
         </div>
 
-        {/* Content overlay */}
-        <div className="absolute inset-0 flex flex-col justify-end p-4 md:p-6">
-          <div className="bg-gradient-to-t from-black/90 via-black/50 to-transparent p-4 -m-4 rounded-b-lg">
-            <Typography
-              variant="h5"
-              className="text-white font-sans font-bold mb-2 line-clamp-2 text-sm sm:text-base md:text-lg lg:text-lg"
-            >
-              {displayTitle}
-            </Typography>
-            {(year || type) && (
-              <div className="flex items-center gap-2 text-xs text-amber-500 dark:text-amber-400 font-medium uppercase tracking-wider">
-                {year && <span>{year}</span>}
-                {year && type && <span>·</span>}
-                {type && <span>{type}</span>}
-              </div>
-            )}
+        {/* Title overlay — carousel cards only */}
+        {showTitle && (
+          <div className="absolute inset-0 flex flex-col justify-end p-4 md:p-6">
+            <div className="bg-gradient-to-t from-black/90 via-black/50 to-transparent p-4 -m-4 rounded-b-lg">
+              <Typography
+                variant="h5"
+                className="text-white font-sans font-bold mb-2 line-clamp-2 text-sm sm:text-base md:text-lg lg:text-lg"
+              >
+                {displayTitle}
+              </Typography>
+              {(year || type) && (
+                <div className="flex items-center gap-2 text-xs text-amber-500 dark:text-amber-400 font-medium uppercase tracking-wider">
+                  {year && <span>{year}</span>}
+                  {year && type && <span>·</span>}
+                  {type && <span>{type}</span>}
+                </div>
+              )}
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </motion.div>
   );

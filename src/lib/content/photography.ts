@@ -180,6 +180,7 @@ const generateCatalogImages = (
 export const selectedWorks: PhotographyImage[] = [
   {
     id: "selected-10",
+    featured: true,
     src: "https://drive.google.com/uc?export=view&id=1qRMQDcI9tBBADMxpW2Q0shHOUU_Flp9R",
     alt: "Selected work 10",
     title: "10",
@@ -194,6 +195,7 @@ export const selectedWorks: PhotographyImage[] = [
   },
   {
     id: "selected-3",
+    featured: true,
     src: "https://drive.google.com/uc?export=view&id=1zoZGwEdVS8Zf20UNpPYfcZT5Flj7UWOm",
     alt: "Selected work 3",
     title: "Neon Sign",
@@ -243,6 +245,7 @@ export const selectedWorks: PhotographyImage[] = [
   },
   {
     id: "selected-9",
+    featured: true,
     src: "https://drive.google.com/uc?export=view&id=1JyVbdkyeOZgbnFU2B--4VHQhSg5bkoZt",
     alt: "Selected work 9",
     title: "Architecture",
@@ -250,6 +253,7 @@ export const selectedWorks: PhotographyImage[] = [
   },
   {
     id: "selected-12",
+    featured: true,
     src: "https://drive.google.com/uc?export=view&id=1P8L7SCxXFuJxaL6w2HzEaNOwLzMXdJqx",
     alt: "Selected work 12",
     title: "12",
@@ -292,6 +296,7 @@ export const topImages: PhotographyImage[] = [
   },
   {
     id: "top-5",
+    featured: true,
     src: "https://drive.google.com/uc?export=view&id=1u_51A0PFAum3mlvCH_tNi6dtChD-N054",
     alt: "Top image 5",
     title: "Ocean View"
@@ -346,6 +351,7 @@ export const topImages: PhotographyImage[] = [
   },
   {
     id: "top-14",
+    featured: true,
     src: "https://drive.google.com/uc?export=view&id=1hR1yIlHnSe6Mi3Sjvrd9c62SDGrF3y1-",
     alt: "Top image 14",
     title: "Night City"
@@ -407,3 +413,24 @@ export const fullCatalog: PhotographyImage[] = generateCatalogImages(
 export function getAllPhotographyImages(): PhotographyImage[] {
   return [...selectedWorks, ...topImages, ...fullCatalog];
 }
+
+// Landing page photography teaser — any image from any group can be featured.
+// Display order is set here, independent of array order; a featured image
+// missing from this list sorts to the end.
+const featuredPhotoOrder = [
+  "selected-3",
+  "top-5",
+  "selected-10",
+  "selected-9",
+  "selected-12",
+  "top-14"
+];
+
+const featuredRank = (image: PhotographyImage): number => {
+  const rank = featuredPhotoOrder.indexOf(image.id);
+  return rank === -1 ? featuredPhotoOrder.length : rank;
+};
+
+export const featuredPhotos: PhotographyImage[] = getAllPhotographyImages()
+  .filter((image) => image.featured === true)
+  .sort((a, b) => featuredRank(a) - featuredRank(b));
