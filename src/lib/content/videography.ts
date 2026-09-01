@@ -32,7 +32,7 @@ export const videographyVideos: VideoItem[] = [
   {
     role: VideoRole.Directed_Filmed_Edited,
     title: "Boundaries (Short Film)",
-    url: "https://youtu.be/qNF-tdjnIs0",
+    url: "https://youtu.be/8AteGtAEHI8",
     featured: true,
     thumbnailVersion: 2
   },
@@ -99,7 +99,7 @@ export const videographyVideos: VideoItem[] = [
   {
     role: VideoRole.Directed_Filmed_Edited,
     title: "Nia Therapeutics",
-    url: "https://youtu.be/aS4MmtXAEhY",
+    url: "https://youtu.be/_NRFxVC78-Q",
     featured: true
   },
   {

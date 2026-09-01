@@ -10,7 +10,7 @@ export const videos: Video[] = [
     title: "Boundaries - Short Film",
     description:
       "Trigger Alert: A short film about a personal experience related sexual harassment",
-    videoUrl: "https://youtu.be/qNF-tdjnIs0",
+    videoUrl: "https://youtu.be/8AteGtAEHI8",
     category: VideoCategory.DirectedFilmedEdited
   },
   {
