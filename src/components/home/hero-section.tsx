@@ -8,8 +8,13 @@ import { videosSectionId } from "@/lib/content/homepage";
 import { scrollToElement } from "@/components/home/scroll-handler";
 import { useHeroVisibility } from "@/components/hero-visibility";
 import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
+import { useMediaQuery } from "@/hooks/use-media-query";
 
 const heroPoster = "/videos/hero-poster.jpg";
+/** Below md the hero is this still portrait instead of the video */
+const heroPhoto = "/images/herophoto.jpg";
+/** Tailwind's md breakpoint; the video only exists from here up */
+const desktopQuery = "(min-width: 768px)";
 // mp4 (H.264) first: iOS Safari reports it can play VP9 webm but often
 // fails to autoplay it, and this webm is larger than the mp4 anyway.
 const heroSources = [
@@ -30,6 +35,11 @@ export function HeroSection({
   description
 }: HeroSectionProps) {
   const prefersReducedMotion = usePrefersReducedMotion();
+  // null until mounted: server HTML carries both stills, CSS shows the right
+  // one, and the <video> is only ever created on a desktop-width client, so
+  // phones never request the video file.
+  const isDesktop = useMediaQuery(desktopQuery);
+  const showVideo = isDesktop === true && !prefersReducedMotion;
   const videoRef = useRef<HTMLVideoElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
   const { heroVisibility, setHeroVisibility } = useHeroVisibility();
@@ -62,7 +72,7 @@ export function HeroSection({
   useEffect(() => {
     const video = videoRef.current;
     const section = video?.closest("section");
-    if (!video || !section || prefersReducedMotion) return;
+    if (!video || !section || !showVideo) return;
 
     const tryPlay = () => {
       video.muted = true;
@@ -82,24 +92,39 @@ export function HeroSection({
       section.removeEventListener("pointerdown", playOnGesture);
       section.removeEventListener("touchstart", playOnGesture);
     };
-  }, [prefersReducedMotion]);
+  }, [showVideo]);
 
   return (
     <section
       ref={sectionRef}
       className='relative isolate flex min-h-[calc(100svh-3.5rem)] w-full flex-col justify-between overflow-hidden bg-black sm:min-h-[calc(100svh-4rem)]'
     >
-      {/* Background: poster underneath, video on top unless motion is reduced.
-          The CSS hide (motion-reduce) is instant; the unmount stops playback. */}
-      <Image
-        src={heroPoster}
-        alt=''
-        fill
-        priority
-        sizes='100vw'
-        className='object-cover'
-      />
-      {!prefersReducedMotion && (
+      {/* Background. Below md: the portrait still. From md up: the video's
+          poster underneath, video on top unless motion is reduced (the CSS
+          hide is instant; the unmount stops playback). Until the client
+          knows its width both stills render and CSS picks; the one for the
+          other breakpoint is asked for at its smallest size via `sizes`. */}
+      {isDesktop !== true && (
+        <Image
+          src={heroPhoto}
+          alt=''
+          fill
+          priority
+          sizes='(min-width: 768px) 1px, 100vw'
+          className='object-cover object-[52%_35%] md:hidden'
+        />
+      )}
+      {isDesktop !== false && (
+        <Image
+          src={heroPoster}
+          alt=''
+          fill
+          priority
+          sizes='(max-width: 767px) 1px, 100vw'
+          className='hidden object-cover md:block'
+        />
+      )}
+      {showVideo && (
         <video
           ref={videoRef}
           autoPlay
