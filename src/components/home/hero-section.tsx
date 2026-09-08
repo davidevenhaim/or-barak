@@ -49,14 +49,34 @@ export function HeroSection({
   const prefersReducedMotion = usePrefersReducedMotion();
   const videoRef = useRef<HTMLVideoElement>(null);
 
-  // iOS ignores the autoplay attribute in some cases (after hydration, or
-  // when the element was created client-side), so nudge playback manually.
-  // If the browser refuses (Low Power Mode etc.) the poster underneath stays.
+  // Mobile autoplay hardening. React sets `muted` as a JS property and may
+  // not write the HTML attribute, which iOS Safari requires, so set it
+  // imperatively and kick playback ourselves. If the browser still refuses
+  // (Low Power Mode, Low Data Mode) the poster stays and the first tap
+  // anywhere on the hero starts the video — a tap counts as a user gesture.
   useEffect(() => {
     const video = videoRef.current;
-    if (!video || prefersReducedMotion) return;
-    video.muted = true;
-    video.play().catch(() => {});
+    const section = video?.closest("section");
+    if (!video || !section || prefersReducedMotion) return;
+
+    const tryPlay = () => {
+      video.muted = true;
+      video.defaultMuted = true;
+      video.play().catch(() => {});
+    };
+    const playOnGesture = () => {
+      if (video.paused) tryPlay();
+    };
+
+    tryPlay();
+    video.addEventListener("loadedmetadata", tryPlay);
+    section.addEventListener("pointerdown", playOnGesture);
+    section.addEventListener("touchstart", playOnGesture, { passive: true });
+    return () => {
+      video.removeEventListener("loadedmetadata", tryPlay);
+      section.removeEventListener("pointerdown", playOnGesture);
+      section.removeEventListener("touchstart", playOnGesture);
+    };
   }, [prefersReducedMotion]);
 
   return (
@@ -78,7 +98,7 @@ export function HeroSection({
           muted
           loop
           playsInline
-          preload='metadata'
+          preload='auto'
           poster={heroPoster}
           aria-hidden
           className='absolute inset-0 h-full w-full object-cover motion-reduce:hidden'
