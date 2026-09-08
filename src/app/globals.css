@@ -225,32 +225,51 @@
   }
 }
 
-/* Hero: dark scrim between the background video and the centered text.
-   Three layers in one element, top to bottom:
-   1. radial pool of darkness behind the text block,
-   2. vertical fade — a touch at the top (sky), heavy at the bottom so the
-      section melts into the black videography section below,
-   3. flat tint over the whole frame (the footage has bright sky and road).
-   Deliberately on the dark side; tune the alphas down from here. */
+/* Hero: gradient scrims only where text sits, top to bottom:
+   1. a soft pool of darkness in the upper-right corner behind the tagline,
+   2. a stronger bottom fade behind the description paragraph, running to
+      black so the section melts into the videography section below.
+   The center of the frame is untouched so the video plays at full
+   brightness. Deliberately on the dark side; tune the alphas down from here. */
 .hero-scrim {
   position: absolute;
   inset: 0;
   pointer-events: none;
   background-image:
     radial-gradient(
-      ellipse 70% 65% at 50% 50%,
-      rgba(0, 0, 0, 0.55) 0%,
-      rgba(0, 0, 0, 0.25) 55%,
+      ellipse 70% 60% at 100% 0%,
+      rgba(0, 0, 0, 0.85) 0%,
+      rgba(0, 0, 0, 0.55) 40%,
       rgba(0, 0, 0, 0) 100%
     ),
     linear-gradient(
       to bottom,
-      rgba(0, 0, 0, 0.35) 0%,
-      rgba(0, 0, 0, 0) 30%,
-      rgba(0, 0, 0, 0) 60%,
-      rgba(0, 0, 0, 0.85) 100%
-    ),
-    linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45));
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0) 45%,
+      rgba(0, 0, 0, 0.65) 75%,
+      rgba(0, 0, 0, 0.92) 100%
+    );
+}
+
+/* Narrow screens: the label spans most of the width, so stretch the corner
+   pool across it instead of letting it fall off mid-line */
+@media (max-width: 767px) {
+  .hero-scrim {
+    background-image:
+      radial-gradient(
+        ellipse 130% 45% at 100% 0%,
+        rgba(0, 0, 0, 0.85) 0%,
+        rgba(0, 0, 0, 0.55) 40%,
+        rgba(0, 0, 0, 0) 100%
+      ),
+      linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 0) 45%,
+        rgba(0, 0, 0, 0.65) 75%,
+        rgba(0, 0, 0, 0.92) 100%
+      );
+  }
 }
 
 @keyframes hero-grain-shift {

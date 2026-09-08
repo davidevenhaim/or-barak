@@ -44,7 +44,6 @@ export default async function Home() {
     <div className='overflow-x-hidden max-w-full'>
       <section id='home' className='scroll-mt-14 sm:scroll-mt-16'>
         <HeroSection
-          title={t("home_hero_name")}
           subtitle={t("home_hero_subtitle")}
           subtitleDetail={t("home_hero_subtitle_detail")}
           description={t("home_hero_description")}

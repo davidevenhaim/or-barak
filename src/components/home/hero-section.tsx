@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { Typography } from "@/components/ui/typography";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { Typewriter } from "../ui/typewriter";
@@ -17,7 +16,6 @@ const heroSources = [
 ];
 
 interface HeroSectionProps {
-  title: string;
   subtitle: string;
   /** Muted supporting line under the gold tagline */
   subtitleDetail?: string;
@@ -44,7 +42,6 @@ function usePrefersReducedMotion() {
 }
 
 export function HeroSection({
-  title,
   subtitle,
   subtitleDetail,
   description
@@ -63,7 +60,7 @@ export function HeroSection({
   }, [prefersReducedMotion]);
 
   return (
-    <section className='relative isolate flex min-h-[calc(100svh-3.5rem)] w-full items-center justify-center overflow-hidden bg-black px-6 py-24 sm:min-h-[calc(100svh-4rem)] sm:px-10 md:py-28'>
+    <section className='relative isolate flex min-h-[calc(100svh-3.5rem)] w-full flex-col justify-between overflow-hidden bg-black sm:min-h-[calc(100svh-4rem)]'>
       {/* Background: poster underneath, video on top unless motion is reduced.
           The CSS hide (motion-reduce) is instant; the unmount stops playback. */}
       <Image
@@ -92,81 +89,74 @@ export function HeroSection({
         </video>
       )}
 
-      {/* Dark scrim so the centered text reads over bright sky and road */}
+      {/* Scrims only where text sits (top-right label, bottom paragraph);
+          the center of the frame stays at full brightness */}
       <div aria-hidden className='hero-scrim' />
 
-      <div className='relative z-10 w-full max-w-2xl text-center [text-shadow:0_2px_16px_rgba(0,0,0,0.6)]'>
+      {/* Top-right label — mirrors the wordmark's position in the navbar.
+          Physical right (not logical end) so it stays opposite the wordmark in RTL. */}
+      <div className='relative z-10 mx-auto w-full max-w-7xl px-4 pt-5 sm:px-6 sm:pt-7 lg:px-8 lg:pt-8'>
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: -12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
+          className='ml-auto w-fit text-right md:mr-4 [text-shadow:0_1px_8px_rgba(0,0,0,0.7)]'
         >
-          <Typography
-            variant='h1'
-            className='mb-3 sm:mb-4 text-white font-bold text-4xl sm:text-5xl lg:text-6xl xl:text-7xl'
-          >
-            {title}
-          </Typography>
+          <Typewriter className='text-amber-400 font-semibold tracking-wider uppercase text-[11px] sm:text-xs md:text-sm'>
+            {subtitle}
+          </Typewriter>
+          {subtitleDetail && (
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.5 }}
+              className='mt-1 text-zinc-400 tracking-wide text-[10px] sm:text-[11px] md:text-xs'
+            >
+              {subtitleDetail}
+            </motion.p>
+          )}
         </motion.div>
+      </div>
 
-        <Typewriter
-          className={`${
-            subtitleDetail ? "mb-2" : "mb-4 sm:mb-5"
-          } text-amber-400 font-semibold tracking-wider uppercase text-xs sm:text-sm md:text-base`}
-        >
-          {subtitle}
-        </Typewriter>
-
-        {subtitleDetail && (
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-            className='mb-5 sm:mb-6 text-zinc-400 tracking-wide text-[11px] sm:text-xs md:text-sm'
-          >
-            {subtitleDetail}
-          </motion.p>
-        )}
-
+      {/* Bottom: description, then the scroll indicator in normal flow so
+          they can never overlap however many lines the paragraph wraps to */}
+      <div className='relative z-10 flex flex-col items-center gap-6 px-5 pb-6 pt-10 sm:px-8 md:gap-8 md:pb-10'>
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
         >
-          <Typography
-            variant='subtitle1'
-            className='mx-auto max-w-xl text-zinc-200 leading-relaxed whitespace-pre-line sm:text-base md:text-lg'
-          >
+          <p className='mx-auto max-w-3xl text-center text-balance text-zinc-200 leading-relaxed whitespace-pre-line text-sm md:text-[15px] [text-shadow:0_2px_12px_rgba(0,0,0,0.7)]'>
             {description}
-          </Typography>
+          </p>
+        </motion.div>
+
+        {/* Scroll Indicator */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 1.2 }}
+          className='cursor-pointer touch-manipulation'
+          onClick={() => scrollToElement(videosSectionId)}
+        >
+          <motion.div
+            animate={{ y: [0, 10, 0] }}
+            transition={{ duration: 2, repeat: Infinity }}
+            className='flex flex-col items-center gap-2'
+          >
+            <span className='text-white/70 text-xs sm:text-sm md:text-base'>
+              Scroll
+            </span>
+            <div className='w-5 h-8 sm:w-6 sm:h-10 border-2 border-white/30 rounded-full flex items-start justify-center p-1.5 sm:p-2'>
+              <motion.div
+                animate={{ y: [0, 12, 0] }}
+                transition={{ duration: 2, repeat: Infinity }}
+                className='w-1 h-1.5 sm:h-2 bg-white/70 rounded-full'
+              />
+            </div>
+          </motion.div>
         </motion.div>
       </div>
-
-      {/* Scroll Indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 1.2 }}
-        className='absolute bottom-6 left-1/2 z-10 -translate-x-1/2 cursor-pointer touch-manipulation md:bottom-10'
-        onClick={() => scrollToElement(videosSectionId)}
-      >
-        <motion.div
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
-          className='flex flex-col items-center gap-2'
-        >
-          <span className='text-white/70 text-xs sm:text-sm md:text-base'>
-            Scroll
-          </span>
-          <div className='w-5 h-8 sm:w-6 sm:h-10 border-2 border-white/30 rounded-full flex items-start justify-center p-1.5 sm:p-2'>
-            <motion.div
-              animate={{ y: [0, 12, 0] }}
-              transition={{ duration: 2, repeat: Infinity }}
-              className='w-1 h-1.5 sm:h-2 bg-white/70 rounded-full'
-            />
-          </div>
-        </motion.div>
-      </motion.div>
     </section>
   );
 }
