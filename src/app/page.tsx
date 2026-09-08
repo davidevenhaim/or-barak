@@ -37,13 +37,6 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-const heroRevealImages = [
-  "/images/1y4a1193.jpg",
-  "/images/la1-01.jpg",
-  "/images/washington-048.jpg",
-  "/images/washington-053.jpg"
-];
-
 export default async function Home() {
   const t = await getTranslations();
 
@@ -55,9 +48,6 @@ export default async function Home() {
           subtitle={t("home_hero_subtitle")}
           subtitleDetail={t("home_hero_subtitle_detail")}
           description={t("home_hero_description")}
-          backgroundImage='/images/herophoto.jpg'
-          revealImages={heroRevealImages}
-          // backgroundVideo="/videos/hero-background.mp4" // Uncomment and add your video
         />
       </section>
 
