@@ -4,6 +4,7 @@ import { NextIntlClientProvider } from "next-intl";
 import { getMessages, getLocale } from "next-intl/server";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
+import { HeroVisibilityProvider } from "@/components/hero-visibility";
 
 import "./globals.css";
 
@@ -33,11 +34,13 @@ export default async function RootLayout({
     >
       <body className='antialiased bg-background text-foreground overflow-x-hidden'>
         <NextIntlClientProvider messages={messages} locale={locale}>
-          <Navbar />
-          <main className='min-h-screen pt-14 sm:pt-16 overflow-x-hidden max-w-full'>
-            {children}
-          </main>
-          <Footer />
+          <HeroVisibilityProvider>
+            <Navbar />
+            <main className='min-h-screen pt-14 sm:pt-16 overflow-x-hidden max-w-full'>
+              {children}
+            </main>
+            <Footer />
+          </HeroVisibilityProvider>
         </NextIntlClientProvider>
         <Analytics />
       </body>

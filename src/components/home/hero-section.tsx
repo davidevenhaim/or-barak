@@ -1,11 +1,13 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { Typewriter } from "../ui/typewriter";
 import { videosSectionId } from "@/lib/content/homepage";
 import { scrollToElement } from "@/components/home/scroll-handler";
+import { useHeroVisibility } from "@/components/hero-visibility";
+import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
 
 const heroPoster = "/videos/hero-poster.jpg";
 // mp4 (H.264) first: iOS Safari reports it can play VP9 webm but often
@@ -22,25 +24,6 @@ interface HeroSectionProps {
   description: string;
 }
 
-/**
- * `false` on the server and during hydration (so markup matches), then the
- * device's real prefers-reduced-motion setting once mounted. Unlike
- * framer-motion's useReducedMotion, this never reads matchMedia during render.
- */
-function usePrefersReducedMotion() {
-  const [reduced, setReduced] = useState(false);
-
-  useEffect(() => {
-    const query = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const update = () => setReduced(query.matches);
-    update();
-    query.addEventListener("change", update);
-    return () => query.removeEventListener("change", update);
-  }, []);
-
-  return reduced;
-}
-
 export function HeroSection({
   subtitle,
   subtitleDetail,
@@ -48,6 +31,28 @@ export function HeroSection({
 }: HeroSectionProps) {
   const prefersReducedMotion = usePrefersReducedMotion();
   const videoRef = useRef<HTMLVideoElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
+  const { heroVisibility, setHeroVisibility } = useHeroVisibility();
+
+  // Report whether the hero is still on screen. The navbar shows the tagline
+  // once the hero's bottom edge scrolls up under the fixed navbar. The top
+  // margin is the navbar height plus a few px: an element touching the
+  // boundary still counts as intersecting, and the section anchors' scroll
+  // margin parks the hero's bottom edge exactly on the navbar's.
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+    const observer = new IntersectionObserver(
+      ([entry]) =>
+        setHeroVisibility(entry.isIntersecting ? "in-view" : "out-of-view"),
+      { rootMargin: "-72px 0px 0px 0px", threshold: 0 }
+    );
+    observer.observe(section);
+    return () => {
+      observer.disconnect();
+      setHeroVisibility("absent");
+    };
+  }, [setHeroVisibility]);
 
   // Mobile autoplay hardening. React sets `muted` as a JS property and may
   // not write the HTML attribute, which iOS Safari requires, so set it
@@ -80,7 +85,10 @@ export function HeroSection({
   }, [prefersReducedMotion]);
 
   return (
-    <section className='relative isolate flex min-h-[calc(100svh-3.5rem)] w-full flex-col justify-between overflow-hidden bg-black sm:min-h-[calc(100svh-4rem)]'>
+    <section
+      ref={sectionRef}
+      className='relative isolate flex min-h-[calc(100svh-3.5rem)] w-full flex-col justify-between overflow-hidden bg-black sm:min-h-[calc(100svh-4rem)]'
+    >
       {/* Background: poster underneath, video on top unless motion is reduced.
           The CSS hide (motion-reduce) is instant; the unmount stops playback. */}
       <Image
@@ -109,18 +117,18 @@ export function HeroSection({
         </video>
       )}
 
-      {/* Scrims only where text sits (top-right label, bottom paragraph);
+      {/* Scrims only where text sits (top-center label, bottom paragraph);
           the center of the frame stays at full brightness */}
       <div aria-hidden className='hero-scrim' />
 
-      {/* Top-right label — mirrors the wordmark's position in the navbar.
-          Physical right (not logical end) so it stays opposite the wordmark in RTL. */}
-      <div className='relative z-10 mx-auto w-full max-w-7xl px-4 pt-5 sm:px-6 sm:pt-7 lg:px-8 lg:pt-8'>
+      {/* Top-center label. Fades out once the hero scrolls away, at which
+          point the navbar shows the tagline instead. */}
+      <div className='relative z-10 flex w-full justify-center px-4 pt-5 sm:px-6 sm:pt-7 lg:pt-8'>
         <motion.div
-          initial={{ opacity: 0, y: -12 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: prefersReducedMotion ? 0 : -12 }}
+          animate={{ opacity: heroVisibility === "out-of-view" ? 0 : 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className='ml-auto w-fit text-right md:mr-4 [text-shadow:0_1px_8px_rgba(0,0,0,0.7)]'
+          className='w-fit text-center [text-shadow:0_1px_8px_rgba(0,0,0,0.7)]'
         >
           <Typewriter className='text-amber-400 font-semibold tracking-wider uppercase text-[11px] sm:text-xs md:text-sm'>
             {subtitle}

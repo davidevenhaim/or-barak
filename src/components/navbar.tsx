@@ -9,11 +9,17 @@ import { cn } from "@/lib/utils";
 import { useBoolean } from "@/hooks/use-boolean";
 import { useTranslations } from "next-intl";
 import { scrollToElement } from "@/components/home/scroll-handler";
+import { useHeroVisibility } from "@/components/hero-visibility";
+import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
 
 const Navbar = () => {
   const t = useTranslations();
   const pathname = usePathname();
   const mobileMenuOpen = useBoolean(false);
+  const { heroVisibility } = useHeroVisibility();
+  const prefersReducedMotion = usePrefersReducedMotion();
+  // The hero's tagline "arrives" here once the hero has scrolled away
+  const showTagline = heroVisibility === "out-of-view";
 
   // Links target the landing page's sections, so they work from deep pages
   // too (/videography, /photography, ...) — Link navigates home and the
@@ -42,18 +48,42 @@ const Navbar = () => {
     <nav className='fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-zinc-200 dark:bg-card/95 dark:border-border overflow-x-hidden max-w-full'>
       <div className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full'>
         <div className='relative flex h-14 sm:h-16 items-center justify-between md:justify-center'>
-          {/* Logo / Name */}
-          <Link
-            href='/'
-            className='flex items-center md:absolute md:left-4 touch-manipulation'
-          >
-            <Typography
-              variant='h6'
-              className='font-serif text-zinc-900 dark:text-zinc-50 hover:text-amber-700 dark:hover:text-amber-600 transition-colors text-base sm:text-lg'
-            >
-              {t("home_hero_name")}
-            </Typography>
-          </Link>
+          {/* Logo / Name, with the hero tagline beside it once the hero has
+              scrolled out of view (desktop only — no room next to the
+              hamburger on mobile) */}
+          <div className='flex items-center md:absolute md:left-4'>
+            <Link href='/' className='flex items-center touch-manipulation'>
+              <Typography
+                variant='h6'
+                className='font-serif text-zinc-900 dark:text-zinc-50 hover:text-amber-700 dark:hover:text-amber-600 transition-colors text-base sm:text-lg'
+              >
+                {t("home_hero_name")}
+              </Typography>
+            </Link>
+            <AnimatePresence initial={false}>
+              {showTagline && (
+                <motion.div
+                  key='navbar-tagline'
+                  initial={{ opacity: 0, x: prefersReducedMotion ? 0 : -8 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: prefersReducedMotion ? 0 : -8 }}
+                  transition={{
+                    duration: prefersReducedMotion ? 0.15 : 0.3,
+                    ease: "easeOut"
+                  }}
+                  className='hidden md:flex items-center'
+                >
+                  <span
+                    aria-hidden
+                    className='mx-3 h-4 w-px bg-zinc-300 dark:bg-zinc-600'
+                  />
+                  <span className='whitespace-nowrap text-[11px] font-semibold uppercase tracking-wider text-amber-600 dark:text-amber-400'>
+                    {t("home_hero_subtitle")}
+                  </span>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
 
           {/* Desktop Navigation */}
           <div className='hidden md:flex md:items-center md:gap-6'>

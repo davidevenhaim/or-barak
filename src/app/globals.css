@@ -226,7 +226,7 @@
 }
 
 /* Hero: gradient scrims only where text sits, top to bottom:
-   1. a soft pool of darkness in the upper-right corner behind the tagline,
+   1. a soft pool of darkness at the top center behind the tagline,
    2. a stronger bottom fade behind the description paragraph, running to
       black so the section melts into the videography section below.
    The center of the frame is untouched so the video plays at full
@@ -237,9 +237,9 @@
   pointer-events: none;
   background-image:
     radial-gradient(
-      ellipse 70% 60% at 100% 0%,
-      rgba(0, 0, 0, 0.85) 0%,
-      rgba(0, 0, 0, 0.55) 40%,
+      ellipse 40% 45% at 50% 0%,
+      rgba(0, 0, 0, 0.8) 0%,
+      rgba(0, 0, 0, 0.5) 40%,
       rgba(0, 0, 0, 0) 100%
     ),
     linear-gradient(
@@ -251,15 +251,15 @@
     );
 }
 
-/* Narrow screens: the label spans most of the width, so stretch the corner
-   pool across it instead of letting it fall off mid-line */
+/* Narrow screens: the label spans most of the width, so stretch the pool
+   across it instead of letting it fall off mid-line */
 @media (max-width: 767px) {
   .hero-scrim {
     background-image:
       radial-gradient(
-        ellipse 130% 45% at 100% 0%,
-        rgba(0, 0, 0, 0.85) 0%,
-        rgba(0, 0, 0, 0.55) 40%,
+        ellipse 80% 40% at 50% 0%,
+        rgba(0, 0, 0, 0.8) 0%,
+        rgba(0, 0, 0, 0.5) 40%,
         rgba(0, 0, 0, 0) 100%
       ),
       linear-gradient(
