@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Typography } from "@/components/ui/typography";
 import { motion } from "framer-motion";
 import Image from "next/image";
@@ -9,9 +9,11 @@ import { videosSectionId } from "@/lib/content/homepage";
 import { scrollToElement } from "@/components/home/scroll-handler";
 
 const heroPoster = "/videos/hero-poster.jpg";
+// mp4 (H.264) first: iOS Safari reports it can play VP9 webm but often
+// fails to autoplay it, and this webm is larger than the mp4 anyway.
 const heroSources = [
-  { src: "/videos/hero.webm", type: "video/webm" },
-  { src: "/videos/hero.mp4", type: "video/mp4" }
+  { src: "/videos/hero.mp4", type: "video/mp4" },
+  { src: "/videos/hero.webm", type: "video/webm" }
 ];
 
 interface HeroSectionProps {
@@ -48,6 +50,17 @@ export function HeroSection({
   description
 }: HeroSectionProps) {
   const prefersReducedMotion = usePrefersReducedMotion();
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  // iOS ignores the autoplay attribute in some cases (after hydration, or
+  // when the element was created client-side), so nudge playback manually.
+  // If the browser refuses (Low Power Mode etc.) the poster underneath stays.
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video || prefersReducedMotion) return;
+    video.muted = true;
+    video.play().catch(() => {});
+  }, [prefersReducedMotion]);
 
   return (
     <section className='relative isolate flex min-h-[calc(100svh-3.5rem)] w-full items-center justify-center overflow-hidden bg-black px-6 py-24 sm:min-h-[calc(100svh-4rem)] sm:px-10 md:py-28'>
@@ -63,6 +76,7 @@ export function HeroSection({
       />
       {!prefersReducedMotion && (
         <video
+          ref={videoRef}
           autoPlay
           muted
           loop
